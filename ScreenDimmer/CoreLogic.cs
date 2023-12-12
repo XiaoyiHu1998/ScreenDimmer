@@ -23,13 +23,14 @@ namespace ScreenDimmer
         NightStart
     }
 
-    public partial class SettingsForm : Form
+    public partial class CoreLogic
     {
         //Internal logic members;
-        private List<OverlayForm> overlayForms;
         private readonly object updateLock = new object();
-        private PreviewSelection previewSelection;
+        private List<OverlayForm> overlayForms;
         private DimmingPhase dimmingPhase = DimmingPhase.Day;
+        private float maxTrueOpacity;
+        private int opacityCurrent;
 
         private DateTime now;
         private DateTime dayTransitionStart;
@@ -38,13 +39,13 @@ namespace ScreenDimmer
         private DateTime nightTransitionEnd;
         private TimeSpan transitionTimeSpan;
 
-        private float maxTrueOpacity;
+        //Public members
+        public PreviewSelection previewSelection;
+        public float overlayFormOpacity { get; private set; }
 
-        //UI members
         public bool dimmingEnabled;
         public int opacityDay;
         public int opacityNight;
-        public int overlayOpacityCurrent;
 
         public bool nightTransitionEnabled;
         public int dayStartHour;
@@ -56,13 +57,14 @@ namespace ScreenDimmer
 
         public bool previewEnabled;
 
-        public SettingsForm()
+        public CoreLogic()
         {
-            overlayForms = new List<OverlayForm>();
             UpdateOverlayOpacityCurrent();
+
+            overlayForms = new List<OverlayForm>();
             for (int i = 0; i < Screen.AllScreens.Length; i++)
             {
-                OverlayForm currentOverlayForm = new OverlayForm(overlayOpacityCurrent);
+                OverlayForm currentOverlayForm = new OverlayForm(this);
                 Screen currentScreen = Screen.AllScreens[i];
 
                 currentOverlayForm.StartPosition = FormStartPosition.Manual;
@@ -73,20 +75,12 @@ namespace ScreenDimmer
                 overlayForms[i].Show();
             }
 
-            InitializeComponent();
-            setDefaultLogicValues();
-            SetDefaultUIValues();
-            UpdateOverlayForms();
+            SetDefaultValues();
+            Update();
+
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            this.DoubleBuffered = true;
-            this.ShowInTaskbar = true;
-        }
-         
-        public void UpdateOverlayForms()
+        public void Update()
         {
             lock (updateLock)
             {
@@ -94,7 +88,7 @@ namespace ScreenDimmer
                 UpdateTotalTransitionTimeMinutes();
                 UpdateDimmingPhase();
                 UpdateOverlayOpacityCurrent();
-                SetOpacity(overlayOpacityCurrent);
+                UpdateOverlayFormOpacity(opacityCurrent);
             }
         }
 
@@ -157,19 +151,19 @@ namespace ScreenDimmer
         {
             if(previewEnabled)
             {
-                overlayOpacityCurrent = previewSelection == PreviewSelection.Day ? opacityDay : opacityNight;
+                opacityCurrent = previewSelection == PreviewSelection.Day ? opacityDay : opacityNight;
                 return;
             }
 
             if (!dimmingEnabled)
             {
-                overlayOpacityCurrent = 0;
+                opacityCurrent = 0;
                 return;
             }
 
             if (!nightTransitionEnabled)
             {
-                overlayOpacityCurrent = opacityDay;
+                opacityCurrent = opacityDay;
                 return;
             }
 
@@ -179,52 +173,42 @@ namespace ScreenDimmer
             switch (dimmingPhase)
             {
                 case DimmingPhase.Day:
-                    overlayOpacityCurrent = opacityDay;
+                    opacityCurrent = opacityDay;
                     break;
                 case DimmingPhase.DayStart:
-                    overlayOpacityCurrent = InterpolateOpacity(dayStartDelta);
+                    opacityCurrent = InterpolateOpacity(dayStartDelta);
                     break;
                 case DimmingPhase.Night:
-                    overlayOpacityCurrent = opacityNight;
+                    opacityCurrent = opacityNight;
                     break;
                 case DimmingPhase.NightStart:
-                    overlayOpacityCurrent = InterpolateOpacity(nightStartDelta);
+                    opacityCurrent = InterpolateOpacity(nightStartDelta);
                     break;
             }
         }
 
-        private void SetOpacity(int opacityPercentage)
+        private void UpdateOverlayFormOpacity(int opacityPercentage)
         {
             Func<int, float> TrueOverlayOpacity = x => Math.Max(Math.Min((float)x / 100.0f, maxTrueOpacity), 0.0f);
-            float trueOverlayOpacity = TrueOverlayOpacity(opacityPercentage);
+            overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
 
             foreach (OverlayForm overlayForm in overlayForms)
             {
-                overlayForm.SetOpacity(trueOverlayOpacity);
+                overlayForm.UpdateOpacity();
                 overlayForm.Refresh();
             }
         }
 
-        private void EnableDimming()
+        public void EnableDimming()
         {
             dimmingEnabled = true;
-            UpdateOverlayForms();
+            Update();
         }
 
-        private void DisableDimming()
+        public void DisableDimming()
         {
             dimmingEnabled = false;
-            UpdateOverlayForms();
-        }
-
-        private int BoxIndexToHour(int boxIndex)
-        {
-            return boxIndex;
-        }
-
-        private int BoxIndexToMinute(int boxIndex)
-        {
-            return boxIndex * 15;
+            Update();
         }
     }
 }

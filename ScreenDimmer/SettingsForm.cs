@@ -10,6 +10,9 @@ namespace ScreenDimmer
 {
     public partial class SettingsForm : Form
     {
+        //reference to CoreLogic
+        CoreLogic core;
+
         //UI elements
         private TrackBar OpacityDaySlider;
         private Label NightStartTimeLabel;
@@ -37,11 +40,200 @@ namespace ScreenDimmer
         private RadioButton PreviewNightRadioButton;
         private CheckBox NightTransitionEnabledCheckedBox;
 
+        public SettingsForm(CoreLogic core)
+        {
+            this.core = core;
+            InitializeComponent();
+            SetDefaultValues();
+        }
 
         ~SettingsForm()
         {
             NotifyIcon = null;
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            this.DoubleBuffered = true;
+            this.ShowInTaskbar = true;
+        }
+
+        
+        #region General
+        //________________ General ________________
+        private void SettingsForm_Closing(object sender, EventArgs e)
+        {
+            NotifyIcon.Visible = false;
+            NotifyIcon = null;
+        }
+
+        private void SettignsFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)  // only hide if minimizing the form
+            {
+                this.ShowInTaskbar = false;
+                this.Visible = false;
+            }
+        }
+
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            this.Visible = true;
+            WindowState = FormWindowState.Normal;
+            if (CanFocus)
+            {
+                Focus();
+            }
+        }
+
+        public static int BoxIndexToHour(int boxIndex)
+        {
+            return boxIndex;
+        }
+
+        public static int BoxIndexToMinute(int boxIndex)
+        {
+            return boxIndex * 15;
+        }
+        #endregion
+
+        #region Dimming
+        //________________ Dimming ________________
+        private void DimmingEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DimmingEnableCheckBox.Checked)
+            {
+                core.EnableDimming();
+            }
+            else
+            {
+                core.DisableDimming();
+            }
+
+            core.Update();
+        }
+
+        private void OpacityDaySlider_Scroll(object sender, EventArgs e)
+        {
+            core.opacityDay = OpacityDaySlider.Value;
+            OpacityDayValueBox.Text = core.opacityDay.ToString();
+            core.Update();
+        }
+
+        private void OpacityNightSlider_Scroll(object sender, EventArgs e)
+        {
+            core.opacityNight = OpacityNightSlider.Value;
+            OpacityNightValueBox.Text = core.opacityNight.ToString();
+            core.Update();
+        }
+
+        private void OpacityDayValueBox_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            if (Int32.TryParse(OpacityDayValueBox.Text, out value))
+            {
+                if(value < 0 || value > 100)
+                {
+                    OpacityDayValueBox.Text = core.opacityDay.ToString();
+                    return;
+                }
+
+                core.opacityDay = value;
+                OpacityDaySlider.Value = core.opacityDay;
+                core.Update();
+            }
+            else
+            {
+                if (OpacityDayValueBox.Text != "")
+                    OpacityDayValueBox.Text = core.opacityDay.ToString();
+            }
+        }
+
+        private void OpacityNightValueBox_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            if (Int32.TryParse(OpacityNightValueBox.Text, out value))
+            {
+                if (value < 0 || value > 100)
+                {
+                    OpacityDayValueBox.Text = core.opacityDay.ToString();
+                    return;
+                }
+
+                core.opacityNight = value;
+                OpacityNightSlider.Value = core.opacityNight;
+                core.Update();
+            }
+            else
+            {
+                if (OpacityDayValueBox.Text != "")
+                    OpacityNightValueBox.Text = core.opacityNight.ToString();
+            }
+        }
+        #endregion
+
+        #region Night Transition
+        //________________ Night Transition ________________
+        private void NightTransitionEnabledCheckedBox_CheckedChanged(object sender, EventArgs e)
+        {
+            core.nightTransitionEnabled = NightTransitionEnabledCheckedBox.Checked;
+            core.Update();
+        }
+
+        private void NightStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.nightStartHour = BoxIndexToHour(NightStartHourBox.SelectedIndex);
+            core.Update();
+        }
+
+        private void NightStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.nightStartMinute = BoxIndexToMinute(NightStartMinuteBox.SelectedIndex);
+            core.Update();
+        }
+
+        private void DayStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.dayStartHour = BoxIndexToHour(DayStartHourBox.SelectedIndex);
+            core.Update();
+        }
+
+        private void DayStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.dayStartMinute = BoxIndexToMinute(DayStartMinuteBox.SelectedIndex);
+            core.Update();
+        }
+
+        private void TransitionTimeHourBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.transitionTimeHour = BoxIndexToHour(TransitionTimeHourBox.SelectedIndex);
+            core.Update();
+        }
+
+        private void TransitionTimeMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            core.transitionTimeMinute = BoxIndexToMinute(TransitionTimeMinuteBox.SelectedIndex);
+            core.Update();
+        }
+        #endregion
+
+        #region Dimming Preview
+        //________________ Dimming Preview ________________
+        private void PreviewEnableCheckedBox_CheckedChanged(object sender, EventArgs e)
+        {
+            core.previewEnabled = PreviewEnableCheckedBox.Checked;
+            core.Update();
+        }
+
+        private void PreviewRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            core.previewSelection = PreviewDayRadioButton.Checked ? PreviewSelection.Day : PreviewSelection.Night;
+            core.Update();
+        }
+        #endregion
+
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -353,172 +545,8 @@ namespace ScreenDimmer
             this.ResumeLayout(false);
 
         }
-
-        #region General
-        //________________ General ________________
-        private void SettingsForm_Closing(object sender, EventArgs e)
-        {
-            NotifyIcon.Visible = false;
-            NotifyIcon = null;
-        }
-
-        private void SettignsFormResize(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Minimized)  // only hide if minimizing the form
-            {
-                this.ShowInTaskbar = false;
-                this.Visible = false;
-            }
-        }
-
-        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.ShowInTaskbar = true;
-            this.Visible = true;
-            WindowState = FormWindowState.Normal;
-            if (CanFocus)
-            {
-                Focus();
-            }
-        }
-        #endregion
-
-        #region Dimming
-        //________________ Dimming ________________
-        private void DimmingEnableCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (DimmingEnableCheckBox.Checked)
-            {
-                EnableDimming();
-            }
-            else
-            {
-                DisableDimming();
-            }
-
-            UpdateOverlayForms();
-        }
-
-        private void OpacityDaySlider_Scroll(object sender, EventArgs e)
-        {
-            opacityDay = OpacityDaySlider.Value;
-            OpacityDayValueBox.Text = opacityDay.ToString();
-            UpdateOverlayForms();
-        }
-
-        private void OpacityNightSlider_Scroll(object sender, EventArgs e)
-        {
-            opacityNight = OpacityNightSlider.Value;
-            OpacityNightValueBox.Text = opacityNight.ToString();
-            UpdateOverlayOpacityCurrent();
-            UpdateOverlayForms();
-        }
-
-        private void OpacityDayValueBox_TextChanged(object sender, EventArgs e)
-        {
-            int value;
-            if (Int32.TryParse(OpacityDayValueBox.Text, out value))
-            {
-                if(value < 0 || value > 100)
-                {
-                    OpacityDayValueBox.Text = opacityDay.ToString();
-                    return;
-                }
-
-                opacityDay = value;
-                OpacityDaySlider.Value = opacityDay;
-                UpdateOverlayForms();
-            }
-            else
-            {
-                if (OpacityDayValueBox.Text != "")
-                    OpacityDayValueBox.Text = opacityDay.ToString();
-            }
-        }
-
-        private void OpacityNightValueBox_TextChanged(object sender, EventArgs e)
-        {
-            int value;
-            if (Int32.TryParse(OpacityNightValueBox.Text, out value))
-            {
-                if (value < 0 || value > 100)
-                {
-                    OpacityDayValueBox.Text = opacityDay.ToString();
-                    return;
-                }
-
-                opacityNight = value;
-                OpacityNightSlider.Value = opacityNight;
-                UpdateOverlayForms();
-            }
-            else
-            {
-                if (OpacityDayValueBox.Text != "")
-                    OpacityNightValueBox.Text = opacityNight.ToString();
-            }
-        }
-        #endregion
-
-        #region Night Transition
-        //________________ Night Transition ________________
-        private void NightTransitionEnabledCheckedBox_CheckedChanged(object sender, EventArgs e)
-        {
-            nightTransitionEnabled = NightTransitionEnabledCheckedBox.Checked;
-            UpdateOverlayForms();
-        }
-
-        private void NightStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            nightStartHour = BoxIndexToHour(NightStartHourBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-
-        private void NightStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            nightStartMinute = BoxIndexToMinute(NightStartMinuteBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-
-        private void DayStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dayStartHour = BoxIndexToHour(DayStartHourBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-
-        private void DayStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dayStartMinute = BoxIndexToMinute(DayStartMinuteBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-
-        private void TransitionTimeHourBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            transitionTimeHour = BoxIndexToHour(TransitionTimeHourBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-
-        private void TransitionTimeMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            transitionTimeMinute = BoxIndexToMinute(TransitionTimeMinuteBox.SelectedIndex);
-            UpdateOverlayForms();
-        }
-        #endregion
-
-        #region Dimming Preview
-        //________________ Dimming Preview ________________
-        private void PreviewEnableCheckedBox_CheckedChanged(object sender, EventArgs e)
-        {
-            previewEnabled = PreviewEnableCheckedBox.Checked;
-            UpdateOverlayForms();
-        }
-
-        private void PreviewRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            this.previewSelection = PreviewDayRadioButton.Checked ? PreviewSelection.Day : PreviewSelection.Night;
-            UpdateOverlayForms();
-        }
-        #endregion
     }
+
 
 
 }

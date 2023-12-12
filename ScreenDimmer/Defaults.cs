@@ -8,60 +8,67 @@ using System.Windows.Forms;
 
 namespace ScreenDimmer
 {
-    partial class SettingsForm
+    public static class Default
     {
         //Default UI values
-        private bool defaultEnableDimming = true;
-        private int defaultOpacityDay = 0;
-        private int defaultOpacityNight = 40;
-        private float defaultMaxTrueOpacity = 0.8f;
+        public static bool EnableDimming = true;
+        public static int OpacityDay = 0;
+        public static int OpacityNight = 40;
+        public static float MaxTrueOpacity = 0.8f;
 
-        private bool defaultEnableTransition = false;
-        private int defaultStartHourIndex = 19;
-        private int defaultStartMinutesIndex = 0;
-        private int defaultEndHourIndex = 7;
-        private int defaultEndMinutesIndex = 0;
-        private int defaultTransitionTimeHourIndex = 1;
-        private int defaultTransitionTimeMinutesIndex = 2;
+        public static bool EnableTransition = false;
+        public static int StartHourIndex = 19;
+        public static int StartMinutesIndex = 0;
+        public static int EndHourIndex = 7;
+        public static int EndMinutesIndex = 0;
+        public static int TransitionTimeHourIndex = 1;
+        public static int TransitionTimeMinutesIndex = 2;
 
-        private bool defaultPreviewEnabled = false;
-        private PreviewSelection defaultPreviewState = PreviewSelection.Day;
+        public static bool PreviewEnabled = false;
+        public static PreviewSelection PreviewState = PreviewSelection.Day;
+    }
 
-        private void setDefaultLogicValues()
+    public partial class CoreLogic
+    {
+
+        private void SetDefaultValues()
         {
-            this.dimmingEnabled = defaultEnableDimming;
-            this.opacityDay = defaultOpacityDay;
-            this.opacityNight = defaultOpacityNight;
-            this.maxTrueOpacity = defaultMaxTrueOpacity;
+            this.dimmingEnabled = Default.EnableDimming;
+            this.opacityDay = Default.OpacityDay;
+            this.opacityNight = Default.OpacityNight;
+            this.maxTrueOpacity = Default.MaxTrueOpacity;
 
-            this.nightStartHour = BoxIndexToHour(defaultStartHourIndex);
-            this.nightStartMinute = BoxIndexToMinute(defaultStartMinutesIndex);
-            this.dayStartHour = BoxIndexToHour(defaultEndHourIndex);
-            this.dayStartMinute = BoxIndexToMinute(defaultEndMinutesIndex);
-            this.transitionTimeHour = BoxIndexToHour(defaultTransitionTimeHourIndex);
-            this.transitionTimeMinute = BoxIndexToMinute(defaultTransitionTimeMinutesIndex);
+            this.nightStartHour = SettingsForm.BoxIndexToHour(Default.StartHourIndex);
+            this.nightStartMinute = SettingsForm.BoxIndexToMinute(Default.StartMinutesIndex);
+            this.dayStartHour = SettingsForm.BoxIndexToHour(Default.EndHourIndex);
+            this.dayStartMinute = SettingsForm.BoxIndexToMinute(Default.EndMinutesIndex);
+            this.transitionTimeHour = SettingsForm.BoxIndexToHour(Default.TransitionTimeHourIndex);
+            this.transitionTimeMinute = SettingsForm.BoxIndexToMinute(Default.TransitionTimeMinutesIndex);
             this.transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
-            this.previewEnabled = defaultPreviewEnabled;
+            this.previewEnabled = Default.PreviewEnabled;
+            this.previewSelection = Default.PreviewState;
         }
+    }
 
-        private void SetDefaultUIValues()
+    public partial class SettingsForm
+    {
+        private void SetDefaultValues()
         {
-            this.DimmingEnableCheckBox.Checked = defaultEnableDimming;
-            this.OpacityDayValueBox.Text = defaultOpacityDay.ToString();
-            this.OpacityNightValueBox.Text = defaultOpacityNight.ToString();
-            this.OpacityDaySlider.Value = defaultOpacityDay;
-            this.OpacityNightSlider.Value = defaultOpacityNight;
+            this.DimmingEnableCheckBox.Checked = Default.EnableDimming;
+            this.OpacityDayValueBox.Text = Default.OpacityDay.ToString();
+            this.OpacityNightValueBox.Text = Default.OpacityNight.ToString();
+            this.OpacityDaySlider.Value = Default.OpacityDay;
+            this.OpacityNightSlider.Value = Default.OpacityNight;
 
-            this.NightTransitionEnabledCheckedBox.Checked = defaultEnableTransition;
-            this.NightStartMinuteBox.SelectedIndex = defaultStartMinutesIndex;
-            this.NightStartHourBox.SelectedIndex = defaultStartHourIndex;
-            this.DayStartMinuteBox.SelectedIndex = defaultEndMinutesIndex;
-            this.DayStartHourBox.SelectedIndex = defaultEndHourIndex;
-            this.TransitionTimeMinuteBox.SelectedIndex = defaultTransitionTimeMinutesIndex;
-            this.TransitionTimeHourBox.SelectedIndex = defaultTransitionTimeHourIndex;
+            this.NightTransitionEnabledCheckedBox.Checked = Default.EnableTransition;
+            this.NightStartMinuteBox.SelectedIndex = Default.StartMinutesIndex;
+            this.NightStartHourBox.SelectedIndex = Default.StartHourIndex;
+            this.DayStartMinuteBox.SelectedIndex = Default.EndMinutesIndex;
+            this.DayStartHourBox.SelectedIndex = Default.EndHourIndex;
+            this.TransitionTimeMinuteBox.SelectedIndex = Default.TransitionTimeMinutesIndex;
+            this.TransitionTimeHourBox.SelectedIndex = Default.TransitionTimeHourIndex;
 
-            this.PreviewEnableCheckedBox.Checked = defaultPreviewEnabled;
-            this.previewSelection = defaultPreviewState;
+            this.PreviewEnableCheckedBox.Checked = Default.PreviewEnabled;
             this.PreviewDayRadioButton.Checked = true;
             this.PreviewNightRadioButton.Checked = false;
         }

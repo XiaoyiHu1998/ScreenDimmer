@@ -12,12 +12,15 @@ namespace ScreenDimmer
     public class Program
     {
         private static SettingsForm settingsForm;
+        private static CoreLogic core;
         [STAThread]
         public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            settingsForm = new SettingsForm();
+
+            core = new CoreLogic();
+            settingsForm = new SettingsForm(core);
             Application.Run(settingsForm);
 
             //Thread thread = new Thread(() => );
@@ -27,7 +30,7 @@ namespace ScreenDimmer
         {
             while (true)
             {
-                settingsForm.UpdateOverlayForms();
+                core.Update();
                 Thread.Sleep(60000);
             }
         }

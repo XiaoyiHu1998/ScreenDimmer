@@ -10,12 +10,16 @@ namespace ScreenDimmer
 {
     public class OverlayForm : Form
     {
-        public OverlayForm(float opacity)
+        private CoreLogic core;
+
+        public OverlayForm(CoreLogic core)
         {
+            this.core = core;
+
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Black;
-            this.Opacity = opacity;
+            this.Opacity = core.overlayFormOpacity;
             this.TopMost = true;
         }
 
@@ -43,9 +47,9 @@ namespace ScreenDimmer
             }
         }
 
-        public void SetOpacity(float opacity)
+        public void UpdateOpacity()
         {
-            this.Opacity = opacity;
+            this.Opacity = core.overlayFormOpacity;
         }
 
         private void InitializeComponent()
