@@ -23,6 +23,12 @@ namespace ScreenDimmer
             this.TopMost = true;
         }
 
+        public void UpdateOpacity()
+        {
+            this.Opacity = core.overlayFormOpacity;
+            Refresh();
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -45,11 +51,6 @@ namespace ScreenDimmer
                 cp.ExStyle |= 0x20;  // WS_EX_TRANSPARENT
                 return cp;
             }
-        }
-
-        public void UpdateOpacity()
-        {
-            this.Opacity = core.overlayFormOpacity;
         }
 
         private void InitializeComponent()

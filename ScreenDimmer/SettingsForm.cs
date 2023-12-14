@@ -10,8 +10,10 @@ namespace ScreenDimmer
 {
     public partial class SettingsForm : Form
     {
-        //reference to CoreLogic
+        //reference to other forms
+        FormManager parentForm;
         CoreLogic core;
+        Action<object, EventArgs> overlayUpdateTick;
 
         //UI elements
         private TrackBar OpacityDaySlider;
@@ -40,9 +42,11 @@ namespace ScreenDimmer
         private RadioButton PreviewNightRadioButton;
         private CheckBox NightTransitionEnabledCheckedBox;
 
-        public SettingsForm(CoreLogic core)
+        public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
         {
+            this.parentForm = parentForm;
             this.core = core;
+            this.overlayUpdateTick = overlayUpdateTick;
             InitializeComponent();
             SetDefaultValues();
         }
@@ -66,6 +70,7 @@ namespace ScreenDimmer
         {
             NotifyIcon.Visible = false;
             NotifyIcon = null;
+            parentForm.Close();
         }
 
         private void SettignsFormResize(object sender, EventArgs e)
@@ -113,6 +118,7 @@ namespace ScreenDimmer
             }
 
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void OpacityDaySlider_Scroll(object sender, EventArgs e)
@@ -120,6 +126,7 @@ namespace ScreenDimmer
             core.opacityDay = OpacityDaySlider.Value;
             OpacityDayValueBox.Text = core.opacityDay.ToString();
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void OpacityNightSlider_Scroll(object sender, EventArgs e)
@@ -127,6 +134,7 @@ namespace ScreenDimmer
             core.opacityNight = OpacityNightSlider.Value;
             OpacityNightValueBox.Text = core.opacityNight.ToString();
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void OpacityDayValueBox_TextChanged(object sender, EventArgs e)
@@ -143,6 +151,7 @@ namespace ScreenDimmer
                 core.opacityDay = value;
                 OpacityDaySlider.Value = core.opacityDay;
                 core.Update();
+                overlayUpdateTick(sender, e);
             }
             else
             {
@@ -165,6 +174,7 @@ namespace ScreenDimmer
                 core.opacityNight = value;
                 OpacityNightSlider.Value = core.opacityNight;
                 core.Update();
+                overlayUpdateTick(sender, e);
             }
             else
             {
@@ -180,42 +190,49 @@ namespace ScreenDimmer
         {
             core.nightTransitionEnabled = NightTransitionEnabledCheckedBox.Checked;
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void NightStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.nightStartHour = BoxIndexToHour(NightStartHourBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void NightStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.nightStartMinute = BoxIndexToMinute(NightStartMinuteBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void DayStartHourBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.dayStartHour = BoxIndexToHour(DayStartHourBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void DayStartMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.dayStartMinute = BoxIndexToMinute(DayStartMinuteBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void TransitionTimeHourBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.transitionTimeHour = BoxIndexToHour(TransitionTimeHourBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void TransitionTimeMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             core.transitionTimeMinute = BoxIndexToMinute(TransitionTimeMinuteBox.SelectedIndex);
             core.Update();
+            overlayUpdateTick(sender, e);
         }
         #endregion
 
@@ -225,12 +242,14 @@ namespace ScreenDimmer
         {
             core.previewEnabled = PreviewEnableCheckedBox.Checked;
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void PreviewRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             core.previewSelection = PreviewDayRadioButton.Checked ? PreviewSelection.Day : PreviewSelection.Night;
             core.Update();
+            overlayUpdateTick(sender, e);
         }
         #endregion
 
@@ -269,11 +288,11 @@ namespace ScreenDimmer
             this.PreviewGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DayOpacitySlider
+            // OpacityDaySlider
             // 
-            resources.ApplyResources(this.OpacityDaySlider, "DayOpacitySlider");
+            resources.ApplyResources(this.OpacityDaySlider, "OpacityDaySlider");
             this.OpacityDaySlider.Maximum = 100;
-            this.OpacityDaySlider.Name = "DayOpacitySlider";
+            this.OpacityDaySlider.Name = "OpacityDaySlider";
             this.OpacityDaySlider.Scroll += new System.EventHandler(this.OpacityDaySlider_Scroll);
             // 
             // NightStartTimeLabel
@@ -281,11 +300,11 @@ namespace ScreenDimmer
             resources.ApplyResources(this.NightStartTimeLabel, "NightStartTimeLabel");
             this.NightStartTimeLabel.Name = "NightStartTimeLabel";
             // 
-            // NightOpacitySlider
+            // OpacityNightSlider
             // 
-            resources.ApplyResources(this.OpacityNightSlider, "NightOpacitySlider");
+            resources.ApplyResources(this.OpacityNightSlider, "OpacityNightSlider");
             this.OpacityNightSlider.Maximum = 100;
-            this.OpacityNightSlider.Name = "NightOpacitySlider";
+            this.OpacityNightSlider.Name = "OpacityNightSlider";
             this.OpacityNightSlider.Scroll += new System.EventHandler(this.OpacityNightSlider_Scroll);
             // 
             // TransitionTimeLabel
@@ -293,75 +312,75 @@ namespace ScreenDimmer
             resources.ApplyResources(this.TransitionTimeLabel, "TransitionTimeLabel");
             this.TransitionTimeLabel.Name = "TransitionTimeLabel";
             // 
-            // StartTimeHoursBox
+            // NightStartHourBox
             // 
             this.NightStartHourBox.FormattingEnabled = true;
             this.NightStartHourBox.Items.AddRange(new object[] {
-            resources.GetString("StartTimeHoursBox.Items"),
-            resources.GetString("StartTimeHoursBox.Items1"),
-            resources.GetString("StartTimeHoursBox.Items2"),
-            resources.GetString("StartTimeHoursBox.Items3"),
-            resources.GetString("StartTimeHoursBox.Items4"),
-            resources.GetString("StartTimeHoursBox.Items5"),
-            resources.GetString("StartTimeHoursBox.Items6"),
-            resources.GetString("StartTimeHoursBox.Items7"),
-            resources.GetString("StartTimeHoursBox.Items8"),
-            resources.GetString("StartTimeHoursBox.Items9"),
-            resources.GetString("StartTimeHoursBox.Items10"),
-            resources.GetString("StartTimeHoursBox.Items11"),
-            resources.GetString("StartTimeHoursBox.Items12"),
-            resources.GetString("StartTimeHoursBox.Items13"),
-            resources.GetString("StartTimeHoursBox.Items14"),
-            resources.GetString("StartTimeHoursBox.Items15"),
-            resources.GetString("StartTimeHoursBox.Items16"),
-            resources.GetString("StartTimeHoursBox.Items17"),
-            resources.GetString("StartTimeHoursBox.Items18"),
-            resources.GetString("StartTimeHoursBox.Items19"),
-            resources.GetString("StartTimeHoursBox.Items20"),
-            resources.GetString("StartTimeHoursBox.Items21"),
-            resources.GetString("StartTimeHoursBox.Items22"),
-            resources.GetString("StartTimeHoursBox.Items23")});
-            resources.ApplyResources(this.NightStartHourBox, "StartTimeHoursBox");
-            this.NightStartHourBox.Name = "StartTimeHoursBox";
+            resources.GetString("NightStartHourBox.Items"),
+            resources.GetString("NightStartHourBox.Items1"),
+            resources.GetString("NightStartHourBox.Items2"),
+            resources.GetString("NightStartHourBox.Items3"),
+            resources.GetString("NightStartHourBox.Items4"),
+            resources.GetString("NightStartHourBox.Items5"),
+            resources.GetString("NightStartHourBox.Items6"),
+            resources.GetString("NightStartHourBox.Items7"),
+            resources.GetString("NightStartHourBox.Items8"),
+            resources.GetString("NightStartHourBox.Items9"),
+            resources.GetString("NightStartHourBox.Items10"),
+            resources.GetString("NightStartHourBox.Items11"),
+            resources.GetString("NightStartHourBox.Items12"),
+            resources.GetString("NightStartHourBox.Items13"),
+            resources.GetString("NightStartHourBox.Items14"),
+            resources.GetString("NightStartHourBox.Items15"),
+            resources.GetString("NightStartHourBox.Items16"),
+            resources.GetString("NightStartHourBox.Items17"),
+            resources.GetString("NightStartHourBox.Items18"),
+            resources.GetString("NightStartHourBox.Items19"),
+            resources.GetString("NightStartHourBox.Items20"),
+            resources.GetString("NightStartHourBox.Items21"),
+            resources.GetString("NightStartHourBox.Items22"),
+            resources.GetString("NightStartHourBox.Items23")});
+            resources.ApplyResources(this.NightStartHourBox, "NightStartHourBox");
+            this.NightStartHourBox.Name = "NightStartHourBox";
             this.NightStartHourBox.SelectedIndexChanged += new System.EventHandler(this.NightStartHourBox_SelectedIndexChanged);
             // 
-            // StartTimeMinutesBox
+            // NightStartMinuteBox
             // 
             this.NightStartMinuteBox.FormattingEnabled = true;
             this.NightStartMinuteBox.Items.AddRange(new object[] {
-            resources.GetString("StartTimeMinutesBox.Items"),
-            resources.GetString("StartTimeMinutesBox.Items1"),
-            resources.GetString("StartTimeMinutesBox.Items2"),
-            resources.GetString("StartTimeMinutesBox.Items3")});
-            resources.ApplyResources(this.NightStartMinuteBox, "StartTimeMinutesBox");
-            this.NightStartMinuteBox.Name = "StartTimeMinutesBox";
+            resources.GetString("NightStartMinuteBox.Items"),
+            resources.GetString("NightStartMinuteBox.Items1"),
+            resources.GetString("NightStartMinuteBox.Items2"),
+            resources.GetString("NightStartMinuteBox.Items3")});
+            resources.ApplyResources(this.NightStartMinuteBox, "NightStartMinuteBox");
+            this.NightStartMinuteBox.Name = "NightStartMinuteBox";
             this.NightStartMinuteBox.SelectedIndexChanged += new System.EventHandler(this.NightStartMinuteBox_SelectedIndexChanged);
             // 
-            // TransitionTimeMinutesBox
+            // TransitionTimeMinuteBox
             // 
             this.TransitionTimeMinuteBox.FormattingEnabled = true;
             this.TransitionTimeMinuteBox.Items.AddRange(new object[] {
-            resources.GetString("TransitionTimeMinutesBox.Items"),
-            resources.GetString("TransitionTimeMinutesBox.Items1"),
-            resources.GetString("TransitionTimeMinutesBox.Items2"),
-            resources.GetString("TransitionTimeMinutesBox.Items3")});
-            resources.ApplyResources(this.TransitionTimeMinuteBox, "TransitionTimeMinutesBox");
-            this.TransitionTimeMinuteBox.Name = "TransitionTimeMinutesBox";
+            resources.GetString("TransitionTimeMinuteBox.Items"),
+            resources.GetString("TransitionTimeMinuteBox.Items1"),
+            resources.GetString("TransitionTimeMinuteBox.Items2"),
+            resources.GetString("TransitionTimeMinuteBox.Items3")});
+            resources.ApplyResources(this.TransitionTimeMinuteBox, "TransitionTimeMinuteBox");
+            this.TransitionTimeMinuteBox.Name = "TransitionTimeMinuteBox";
             this.TransitionTimeMinuteBox.SelectedIndexChanged += new System.EventHandler(this.TransitionTimeMinuteBox_SelectedIndexChanged);
             // 
-            // TransitionTimeHoursBox
+            // TransitionTimeHourBox
             // 
             this.TransitionTimeHourBox.FormattingEnabled = true;
             this.TransitionTimeHourBox.Items.AddRange(new object[] {
-            resources.GetString("TransitionTimeHoursBox.Items"),
-            resources.GetString("TransitionTimeHoursBox.Items1"),
-            resources.GetString("TransitionTimeHoursBox.Items2"),
-            resources.GetString("TransitionTimeHoursBox.Items3"),
-            resources.GetString("TransitionTimeHoursBox.Items4"),
-            resources.GetString("TransitionTimeHoursBox.Items5"),
-            resources.GetString("TransitionTimeHoursBox.Items6")});
-            resources.ApplyResources(this.TransitionTimeHourBox, "TransitionTimeHoursBox");
-            this.TransitionTimeHourBox.Name = "TransitionTimeHoursBox";
+            resources.GetString("TransitionTimeHourBox.Items"),
+            resources.GetString("TransitionTimeHourBox.Items1"),
+            resources.GetString("TransitionTimeHourBox.Items2"),
+            resources.GetString("TransitionTimeHourBox.Items3"),
+            resources.GetString("TransitionTimeHourBox.Items4"),
+            resources.GetString("TransitionTimeHourBox.Items5"),
+            resources.GetString("TransitionTimeHourBox.Items6")});
+            resources.ApplyResources(this.TransitionTimeHourBox, "TransitionTimeHourBox");
+            this.TransitionTimeHourBox.Name = "TransitionTimeHourBox";
             this.TransitionTimeHourBox.SelectedIndexChanged += new System.EventHandler(this.TransitionTimeHourBox_SelectedIndexChanged);
             // 
             // DimmingDayLabel
@@ -396,54 +415,54 @@ namespace ScreenDimmer
             resources.ApplyResources(this.NightEndTimeLabel, "NightEndTimeLabel");
             this.NightEndTimeLabel.Name = "NightEndTimeLabel";
             // 
-            // EndTimeHoursBox
+            // DayStartHourBox
             // 
             this.DayStartHourBox.FormattingEnabled = true;
             this.DayStartHourBox.Items.AddRange(new object[] {
-            resources.GetString("EndTimeHoursBox.Items"),
-            resources.GetString("EndTimeHoursBox.Items1"),
-            resources.GetString("EndTimeHoursBox.Items2"),
-            resources.GetString("EndTimeHoursBox.Items3"),
-            resources.GetString("EndTimeHoursBox.Items4"),
-            resources.GetString("EndTimeHoursBox.Items5"),
-            resources.GetString("EndTimeHoursBox.Items6"),
-            resources.GetString("EndTimeHoursBox.Items7"),
-            resources.GetString("EndTimeHoursBox.Items8"),
-            resources.GetString("EndTimeHoursBox.Items9"),
-            resources.GetString("EndTimeHoursBox.Items10"),
-            resources.GetString("EndTimeHoursBox.Items11"),
-            resources.GetString("EndTimeHoursBox.Items12"),
-            resources.GetString("EndTimeHoursBox.Items13"),
-            resources.GetString("EndTimeHoursBox.Items14"),
-            resources.GetString("EndTimeHoursBox.Items15"),
-            resources.GetString("EndTimeHoursBox.Items16"),
-            resources.GetString("EndTimeHoursBox.Items17"),
-            resources.GetString("EndTimeHoursBox.Items18"),
-            resources.GetString("EndTimeHoursBox.Items19"),
-            resources.GetString("EndTimeHoursBox.Items20"),
-            resources.GetString("EndTimeHoursBox.Items21"),
-            resources.GetString("EndTimeHoursBox.Items22"),
-            resources.GetString("EndTimeHoursBox.Items23")});
-            resources.ApplyResources(this.DayStartHourBox, "EndTimeHoursBox");
-            this.DayStartHourBox.Name = "EndTimeHoursBox";
+            resources.GetString("DayStartHourBox.Items"),
+            resources.GetString("DayStartHourBox.Items1"),
+            resources.GetString("DayStartHourBox.Items2"),
+            resources.GetString("DayStartHourBox.Items3"),
+            resources.GetString("DayStartHourBox.Items4"),
+            resources.GetString("DayStartHourBox.Items5"),
+            resources.GetString("DayStartHourBox.Items6"),
+            resources.GetString("DayStartHourBox.Items7"),
+            resources.GetString("DayStartHourBox.Items8"),
+            resources.GetString("DayStartHourBox.Items9"),
+            resources.GetString("DayStartHourBox.Items10"),
+            resources.GetString("DayStartHourBox.Items11"),
+            resources.GetString("DayStartHourBox.Items12"),
+            resources.GetString("DayStartHourBox.Items13"),
+            resources.GetString("DayStartHourBox.Items14"),
+            resources.GetString("DayStartHourBox.Items15"),
+            resources.GetString("DayStartHourBox.Items16"),
+            resources.GetString("DayStartHourBox.Items17"),
+            resources.GetString("DayStartHourBox.Items18"),
+            resources.GetString("DayStartHourBox.Items19"),
+            resources.GetString("DayStartHourBox.Items20"),
+            resources.GetString("DayStartHourBox.Items21"),
+            resources.GetString("DayStartHourBox.Items22"),
+            resources.GetString("DayStartHourBox.Items23")});
+            resources.ApplyResources(this.DayStartHourBox, "DayStartHourBox");
+            this.DayStartHourBox.Name = "DayStartHourBox";
             this.DayStartHourBox.SelectedIndexChanged += new System.EventHandler(this.DayStartHourBox_SelectedIndexChanged);
             // 
-            // EndTimeMinutesBox
+            // DayStartMinuteBox
             // 
             this.DayStartMinuteBox.FormattingEnabled = true;
             this.DayStartMinuteBox.Items.AddRange(new object[] {
-            resources.GetString("EndTimeMinutesBox.Items"),
-            resources.GetString("EndTimeMinutesBox.Items1"),
-            resources.GetString("EndTimeMinutesBox.Items2"),
-            resources.GetString("EndTimeMinutesBox.Items3")});
-            resources.ApplyResources(this.DayStartMinuteBox, "EndTimeMinutesBox");
-            this.DayStartMinuteBox.Name = "EndTimeMinutesBox";
+            resources.GetString("DayStartMinuteBox.Items"),
+            resources.GetString("DayStartMinuteBox.Items1"),
+            resources.GetString("DayStartMinuteBox.Items2"),
+            resources.GetString("DayStartMinuteBox.Items3")});
+            resources.ApplyResources(this.DayStartMinuteBox, "DayStartMinuteBox");
+            this.DayStartMinuteBox.Name = "DayStartMinuteBox";
             this.DayStartMinuteBox.SelectedIndexChanged += new System.EventHandler(this.DayStartMinuteBox_SelectedIndexChanged);
             // 
-            // NightTransitionEnableCheckBox
+            // NightTransitionEnabledCheckedBox
             // 
-            resources.ApplyResources(this.NightTransitionEnabledCheckedBox, "NightTransitionEnableCheckBox");
-            this.NightTransitionEnabledCheckedBox.Name = "NightTransitionEnableCheckBox";
+            resources.ApplyResources(this.NightTransitionEnabledCheckedBox, "NightTransitionEnabledCheckedBox");
+            this.NightTransitionEnabledCheckedBox.Name = "NightTransitionEnabledCheckedBox";
             this.NightTransitionEnabledCheckedBox.UseVisualStyleBackColor = true;
             this.NightTransitionEnabledCheckedBox.CheckedChanged += new System.EventHandler(this.NightTransitionEnabledCheckedBox_CheckedChanged);
             // 
@@ -461,16 +480,16 @@ namespace ScreenDimmer
             this.DimmingControlGroup.Name = "DimmingControlGroup";
             this.DimmingControlGroup.TabStop = false;
             // 
-            // NightOpacityValueBox
+            // OpacityNightValueBox
             // 
-            resources.ApplyResources(this.OpacityNightValueBox, "NightOpacityValueBox");
-            this.OpacityNightValueBox.Name = "NightOpacityValueBox";
+            resources.ApplyResources(this.OpacityNightValueBox, "OpacityNightValueBox");
+            this.OpacityNightValueBox.Name = "OpacityNightValueBox";
             this.OpacityNightValueBox.TextChanged += new System.EventHandler(this.OpacityNightValueBox_TextChanged);
             // 
-            // DayOpacityValueBox
+            // OpacityDayValueBox
             // 
-            resources.ApplyResources(this.OpacityDayValueBox, "DayOpacityValueBox");
-            this.OpacityDayValueBox.Name = "DayOpacityValueBox";
+            resources.ApplyResources(this.OpacityDayValueBox, "OpacityDayValueBox");
+            this.OpacityDayValueBox.Name = "OpacityDayValueBox";
             this.OpacityDayValueBox.TextChanged += new System.EventHandler(this.OpacityDayValueBox_TextChanged);
             // 
             // DimmingEnableCheckBox
@@ -520,7 +539,7 @@ namespace ScreenDimmer
             this.PreviewEnableCheckedBox.UseVisualStyleBackColor = true;
             this.PreviewEnableCheckedBox.CheckedChanged += new System.EventHandler(this.PreviewEnableCheckedBox_CheckedChanged);
             // 
-            // SettingsFormUI
+            // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -530,9 +549,10 @@ namespace ScreenDimmer
             this.Controls.Add(this.NightTransitionControlGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "SettingsFormUI";
+            this.Name = "SettingsForm";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_Closing);
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Resize += new System.EventHandler(this.SettignsFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
@@ -543,6 +563,16 @@ namespace ScreenDimmer
             this.PreviewGroup.ResumeLayout(false);
             this.PreviewGroup.PerformLayout();
             this.ResumeLayout(false);
+
+        }
+
+        private void SettingsForm_Closing()
+        {
+            System.Environment.Exit(0);
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
 
         }
     }

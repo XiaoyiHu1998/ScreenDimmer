@@ -11,8 +11,9 @@ namespace ScreenDimmer
 {
     public class Program
     {
-        private static SettingsForm settingsForm;
         private static CoreLogic core;
+        private static FormManager formManager;
+
         [STAThread]
         public static void Main()
         {
@@ -20,19 +21,9 @@ namespace ScreenDimmer
             Application.SetCompatibleTextRenderingDefault(false);
 
             core = new CoreLogic();
-            settingsForm = new SettingsForm(core);
-            Application.Run(settingsForm);
+            formManager = new FormManager(core);
 
-            //Thread thread = new Thread(() => );
-        }
-
-        public void UpdateThread()
-        {
-            while (true)
-            {
-                core.Update();
-                Thread.Sleep(60000);
-            }
+            Application.Run(formManager);
         }
     }
 }

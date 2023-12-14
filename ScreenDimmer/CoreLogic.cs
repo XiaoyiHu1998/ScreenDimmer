@@ -27,6 +27,7 @@ namespace ScreenDimmer
     {
         //Internal logic members;
         private readonly object updateLock = new object();
+        private readonly object overlaySyncLock = new object();
         private List<OverlayForm> overlayForms;
         private DimmingPhase dimmingPhase = DimmingPhase.Day;
         private float maxTrueOpacity;
@@ -61,19 +62,19 @@ namespace ScreenDimmer
         {
             UpdateOverlayOpacityCurrent();
 
-            overlayForms = new List<OverlayForm>();
-            for (int i = 0; i < Screen.AllScreens.Length; i++)
-            {
-                OverlayForm currentOverlayForm = new OverlayForm(this);
-                Screen currentScreen = Screen.AllScreens[i];
+            //overlayForms = new List<OverlayForm>();
+            //for (int i = 0; i < Screen.AllScreens.Length; i++)
+            //{
+            //    OverlayForm currentOverlayForm = new OverlayForm(this);
+            //    Screen currentScreen = Screen.AllScreens[i];
 
-                currentOverlayForm.StartPosition = FormStartPosition.Manual;
-                currentOverlayForm.Location = currentScreen.Bounds.Location;
-                currentOverlayForm.Bounds = currentScreen.Bounds;
+            //    currentOverlayForm.StartPosition = FormStartPosition.Manual;
+            //    currentOverlayForm.Location = currentScreen.Bounds.Location;
+            //    currentOverlayForm.Bounds = currentScreen.Bounds;
 
-                overlayForms.Add(currentOverlayForm);
-                overlayForms[i].Show();
-            }
+            //    overlayForms.Add(currentOverlayForm);
+            //    overlayForms[i].Show();
+            //}
 
             SetDefaultValues();
             Update();
@@ -190,13 +191,16 @@ namespace ScreenDimmer
         private void UpdateOverlayFormOpacity(int opacityPercentage)
         {
             Func<int, float> TrueOverlayOpacity = x => Math.Max(Math.Min((float)x / 100.0f, maxTrueOpacity), 0.0f);
-            overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
-
-            foreach (OverlayForm overlayForm in overlayForms)
+            lock (overlaySyncLock)
             {
-                overlayForm.UpdateOpacity();
-                overlayForm.Refresh();
+                overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
             }
+
+            //foreach (OverlayForm overlayForm in overlayForms)
+            //{
+            //    overlayForm.UpdateOpacity();
+            //    overlayForm.Refresh();
+            //}
         }
 
         public void EnableDimming()

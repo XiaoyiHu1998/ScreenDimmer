@@ -12,7 +12,7 @@ namespace ScreenDimmer
     {
         //Default UI values
         public static bool EnableDimming = true;
-        public static int OpacityDay = 0;
+        public static int OpacityDay = 10;
         public static int OpacityNight = 40;
         public static float MaxTrueOpacity = 0.8f;
 
@@ -30,7 +30,6 @@ namespace ScreenDimmer
 
     public partial class CoreLogic
     {
-
         private void SetDefaultValues()
         {
             this.dimmingEnabled = Default.EnableDimming;
