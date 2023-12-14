@@ -94,6 +94,17 @@ namespace ScreenDimmer
             }
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if(keyData == Keys.Enter)
+            {
+                NightTransitionControlGroup.Focus();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         public static int BoxIndexToHour(int boxIndex)
         {
             return boxIndex;
