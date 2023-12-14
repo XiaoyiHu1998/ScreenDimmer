@@ -10,7 +10,8 @@ namespace ScreenDimmer
 {
     public static class Default
     {
-        //Default UI values
+        public static float UpdateIntervalSeconds = 1.0f;
+
         public static bool EnableDimming = true;
         public static int OpacityDay = 10;
         public static int OpacityNight = 40;

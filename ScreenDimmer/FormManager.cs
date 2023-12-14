@@ -41,11 +41,6 @@ namespace ScreenDimmer
             SetTimer();
         }
 
-        ~FormManager()
-        {
-            
-        }
-
         private void SetFormManagerInvisible()
         {
             this.WindowState = FormWindowState.Minimized;
@@ -57,7 +52,7 @@ namespace ScreenDimmer
         private void SetTimer()
         {
             overlayUpdateTimer = new Timer();
-            overlayUpdateTimer.Interval = (int)Math.Floor((1f) * 1000);
+            overlayUpdateTimer.Interval = (int)Math.Floor(Default.UpdateIntervalSeconds * 1000);
             overlayUpdateTimer.Tick += new EventHandler(OverlayUpdateTick);
             overlayUpdateTimer.Start();
         }

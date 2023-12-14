@@ -530,6 +530,7 @@ namespace ScreenDimmer
             // 
             resources.ApplyResources(this.NotifyIcon, "NotifyIcon");
             this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
+            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // PreviewGroup
             // 
@@ -597,6 +598,11 @@ namespace ScreenDimmer
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
         }
