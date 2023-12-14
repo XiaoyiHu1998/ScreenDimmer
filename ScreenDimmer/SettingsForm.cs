@@ -53,6 +53,7 @@ namespace ScreenDimmer
 
         ~SettingsForm()
         {
+            NotifyIcon.Visible = false;
             NotifyIcon = null;
         }
 
@@ -100,7 +101,7 @@ namespace ScreenDimmer
 
         public static int BoxIndexToMinute(int boxIndex)
         {
-            return boxIndex * 15;
+            return boxIndex * 5;
         }
         #endregion
 
@@ -351,7 +352,15 @@ namespace ScreenDimmer
             resources.GetString("NightStartMinuteBox.Items"),
             resources.GetString("NightStartMinuteBox.Items1"),
             resources.GetString("NightStartMinuteBox.Items2"),
-            resources.GetString("NightStartMinuteBox.Items3")});
+            resources.GetString("NightStartMinuteBox.Items3"),
+            resources.GetString("NightStartMinuteBox.Items4"),
+            resources.GetString("NightStartMinuteBox.Items5"),
+            resources.GetString("NightStartMinuteBox.Items6"),
+            resources.GetString("NightStartMinuteBox.Items7"),
+            resources.GetString("NightStartMinuteBox.Items8"),
+            resources.GetString("NightStartMinuteBox.Items9"),
+            resources.GetString("NightStartMinuteBox.Items10"),
+            resources.GetString("NightStartMinuteBox.Items11")});
             resources.ApplyResources(this.NightStartMinuteBox, "NightStartMinuteBox");
             this.NightStartMinuteBox.Name = "NightStartMinuteBox";
             this.NightStartMinuteBox.SelectedIndexChanged += new System.EventHandler(this.NightStartMinuteBox_SelectedIndexChanged);
@@ -363,7 +372,15 @@ namespace ScreenDimmer
             resources.GetString("TransitionTimeMinuteBox.Items"),
             resources.GetString("TransitionTimeMinuteBox.Items1"),
             resources.GetString("TransitionTimeMinuteBox.Items2"),
-            resources.GetString("TransitionTimeMinuteBox.Items3")});
+            resources.GetString("TransitionTimeMinuteBox.Items3"),
+            resources.GetString("TransitionTimeMinuteBox.Items4"),
+            resources.GetString("TransitionTimeMinuteBox.Items5"),
+            resources.GetString("TransitionTimeMinuteBox.Items6"),
+            resources.GetString("TransitionTimeMinuteBox.Items7"),
+            resources.GetString("TransitionTimeMinuteBox.Items8"),
+            resources.GetString("TransitionTimeMinuteBox.Items9"),
+            resources.GetString("TransitionTimeMinuteBox.Items10"),
+            resources.GetString("TransitionTimeMinuteBox.Items11")});
             resources.ApplyResources(this.TransitionTimeMinuteBox, "TransitionTimeMinuteBox");
             this.TransitionTimeMinuteBox.Name = "TransitionTimeMinuteBox";
             this.TransitionTimeMinuteBox.SelectedIndexChanged += new System.EventHandler(this.TransitionTimeMinuteBox_SelectedIndexChanged);
@@ -454,7 +471,15 @@ namespace ScreenDimmer
             resources.GetString("DayStartMinuteBox.Items"),
             resources.GetString("DayStartMinuteBox.Items1"),
             resources.GetString("DayStartMinuteBox.Items2"),
-            resources.GetString("DayStartMinuteBox.Items3")});
+            resources.GetString("DayStartMinuteBox.Items3"),
+            resources.GetString("DayStartMinuteBox.Items4"),
+            resources.GetString("DayStartMinuteBox.Items5"),
+            resources.GetString("DayStartMinuteBox.Items6"),
+            resources.GetString("DayStartMinuteBox.Items7"),
+            resources.GetString("DayStartMinuteBox.Items8"),
+            resources.GetString("DayStartMinuteBox.Items9"),
+            resources.GetString("DayStartMinuteBox.Items10"),
+            resources.GetString("DayStartMinuteBox.Items11")});
             resources.ApplyResources(this.DayStartMinuteBox, "DayStartMinuteBox");
             this.DayStartMinuteBox.Name = "DayStartMinuteBox";
             this.DayStartMinuteBox.SelectedIndexChanged += new System.EventHandler(this.DayStartMinuteBox_SelectedIndexChanged);

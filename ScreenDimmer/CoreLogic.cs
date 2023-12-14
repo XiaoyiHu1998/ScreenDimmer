@@ -26,12 +26,9 @@ namespace ScreenDimmer
     public partial class CoreLogic
     {
         //Internal logic members;
-        private readonly object updateLock = new object();
-        private readonly object overlaySyncLock = new object();
-        private List<OverlayForm> overlayForms;
         private DimmingPhase dimmingPhase = DimmingPhase.Day;
         private float maxTrueOpacity;
-        private int opacityCurrent;
+        private float opacityCurrent;
 
         private DateTime now;
         private DateTime dayTransitionStart;
@@ -61,36 +58,17 @@ namespace ScreenDimmer
         public CoreLogic()
         {
             UpdateOverlayOpacityCurrent();
-
-            //overlayForms = new List<OverlayForm>();
-            //for (int i = 0; i < Screen.AllScreens.Length; i++)
-            //{
-            //    OverlayForm currentOverlayForm = new OverlayForm(this);
-            //    Screen currentScreen = Screen.AllScreens[i];
-
-            //    currentOverlayForm.StartPosition = FormStartPosition.Manual;
-            //    currentOverlayForm.Location = currentScreen.Bounds.Location;
-            //    currentOverlayForm.Bounds = currentScreen.Bounds;
-
-            //    overlayForms.Add(currentOverlayForm);
-            //    overlayForms[i].Show();
-            //}
-
             SetDefaultValues();
             Update();
-
         }
 
         public void Update()
         {
-            lock (updateLock)
-            {
-                UpdateDateTimes();
-                UpdateTotalTransitionTimeMinutes();
-                UpdateDimmingPhase();
-                UpdateOverlayOpacityCurrent();
-                UpdateOverlayFormOpacity(opacityCurrent);
-            }
+            UpdateDateTimes();
+            UpdateTotalTransitionTimeMinutes();
+            UpdateDimmingPhase();
+            UpdateOverlayOpacityCurrent();
+            UpdateOverlayFormOpacity(opacityCurrent);
         }
 
         private void UpdateDateTimes()
@@ -100,9 +78,6 @@ namespace ScreenDimmer
             now = DateTime.Now;
             nightTransitionStart = new DateTime(now.Year, now.Month, now.Day, nightStartHour, nightStartMinute, 0);
             dayTransitionStart = new DateTime(now.Year, now.Month, now.Day, dayStartHour, dayStartMinute, 0);
-
-            //if (dayTransitionStart <= nightTransitionStart)
-            //    dayTransitionStart = dayTransitionStart.AddDays(1);
 
             nightTransitionEnd = TransitionEndDateTime(nightTransitionStart);
             dayTransitionEnd = TransitionEndDateTime(dayTransitionStart);
@@ -135,17 +110,15 @@ namespace ScreenDimmer
             dimmingPhase = (nightTransitionStart <= now && now <= nightTransitionEnd) ? DimmingPhase.NightStart : DimmingPhase.Night;
         }
 
-        private int InterpolateOpacity(int transitionTimePassed)
+        private float InterpolateOpacity(int transitionTimePassed)
         {
             Func<float, float> EasingFunction = x => (float)(-(Math.Cos(Math.PI * x) - 1.0f) / 2.0f);
 
-            float interpolationPoint = (float)transitionTimePassed / (float)transitionTimeSpan.TotalMinutes;
+            float interpolationPoint = (float)transitionTimePassed / (float)transitionTimeSpan.TotalSeconds;
             if (dimmingPhase == DimmingPhase.DayStart)
                 interpolationPoint = 1.0f - interpolationPoint;
 
-            float interpolationFactor =  EasingFunction(interpolationPoint);
-
-            return (int)((opacityNight - opacityDay) * interpolationFactor + opacityDay);
+            return (float)(opacityNight - opacityDay) * EasingFunction(interpolationPoint) + opacityDay;
         }
 
         private void UpdateOverlayOpacityCurrent()
@@ -168,8 +141,8 @@ namespace ScreenDimmer
                 return;
             }
 
-            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).TotalMinutes);
-            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).TotalMinutes);
+            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).TotalSeconds);
+            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).TotalSeconds);
 
             switch (dimmingPhase)
             {
@@ -188,19 +161,10 @@ namespace ScreenDimmer
             }
         }
 
-        private void UpdateOverlayFormOpacity(int opacityPercentage)
+        private void UpdateOverlayFormOpacity(float opacityPercentage)
         {
-            Func<int, float> TrueOverlayOpacity = x => Math.Max(Math.Min((float)x / 100.0f, maxTrueOpacity), 0.0f);
-            lock (overlaySyncLock)
-            {
-                overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
-            }
-
-            //foreach (OverlayForm overlayForm in overlayForms)
-            //{
-            //    overlayForm.UpdateOpacity();
-            //    overlayForm.Refresh();
-            //}
+            Func<float, float> TrueOverlayOpacity = x => Math.Max(Math.Min(x / 100.0f, maxTrueOpacity), 0.0f);
+            overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
         }
 
         public void EnableDimming()

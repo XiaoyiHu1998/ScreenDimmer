@@ -331,13 +331,37 @@
     <value>00</value>
   </data>
   <data name="NightStartMinuteBox.Items1" xml:space="preserve">
-    <value>15</value>
+    <value>05</value>
   </data>
   <data name="NightStartMinuteBox.Items2" xml:space="preserve">
-    <value>30</value>
+    <value>10</value>
   </data>
   <data name="NightStartMinuteBox.Items3" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="NightStartMinuteBox.Items4" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="NightStartMinuteBox.Items5" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="NightStartMinuteBox.Items6" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="NightStartMinuteBox.Items7" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="NightStartMinuteBox.Items8" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="NightStartMinuteBox.Items9" xml:space="preserve">
     <value>45</value>
+  </data>
+  <data name="NightStartMinuteBox.Items10" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="NightStartMinuteBox.Items11" xml:space="preserve">
+    <value>55</value>
   </data>
   <data name="NightStartMinuteBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 54</value>
@@ -364,13 +388,37 @@
     <value>00</value>
   </data>
   <data name="TransitionTimeMinuteBox.Items1" xml:space="preserve">
-    <value>15</value>
+    <value>05</value>
   </data>
   <data name="TransitionTimeMinuteBox.Items2" xml:space="preserve">
-    <value>30</value>
+    <value>10</value>
   </data>
   <data name="TransitionTimeMinuteBox.Items3" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items4" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items5" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items6" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items7" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items8" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items9" xml:space="preserve">
     <value>45</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items10" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="TransitionTimeMinuteBox.Items11" xml:space="preserve">
+    <value>55</value>
   </data>
   <data name="TransitionTimeMinuteBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 146</value>
@@ -622,13 +670,37 @@
     <value>00</value>
   </data>
   <data name="DayStartMinuteBox.Items1" xml:space="preserve">
-    <value>15</value>
+    <value>05</value>
   </data>
   <data name="DayStartMinuteBox.Items2" xml:space="preserve">
-    <value>30</value>
+    <value>10</value>
   </data>
   <data name="DayStartMinuteBox.Items3" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="DayStartMinuteBox.Items4" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="DayStartMinuteBox.Items5" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="DayStartMinuteBox.Items6" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="DayStartMinuteBox.Items7" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="DayStartMinuteBox.Items8" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="DayStartMinuteBox.Items9" xml:space="preserve">
     <value>45</value>
+  </data>
+  <data name="DayStartMinuteBox.Items10" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="DayStartMinuteBox.Items11" xml:space="preserve">
+    <value>55</value>
   </data>
   <data name="DayStartMinuteBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 100</value>
