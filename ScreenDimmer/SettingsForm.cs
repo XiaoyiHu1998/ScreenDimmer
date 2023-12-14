@@ -530,7 +530,6 @@ namespace ScreenDimmer
             // 
             resources.ApplyResources(this.NotifyIcon, "NotifyIcon");
             this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
-            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // PreviewGroup
             // 
@@ -578,7 +577,6 @@ namespace ScreenDimmer
             this.Name = "SettingsForm";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_Closing);
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Resize += new System.EventHandler(this.SettignsFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
@@ -595,16 +593,6 @@ namespace ScreenDimmer
         private void SettingsForm_Closing()
         {
             System.Environment.Exit(0);
-        }
-
-        private void SettingsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
         }
     }
 

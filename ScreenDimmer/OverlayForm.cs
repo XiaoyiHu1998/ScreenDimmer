@@ -62,13 +62,7 @@ namespace ScreenDimmer
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(227, 433);
             this.Name = "OverlayForm";
-            this.Load += new System.EventHandler(this.OverlayForm_Load);
             this.ResumeLayout(false);
-
-        }
-
-        private void OverlayForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

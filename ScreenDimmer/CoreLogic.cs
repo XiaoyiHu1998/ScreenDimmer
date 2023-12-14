@@ -39,6 +39,7 @@ namespace ScreenDimmer
 
         //Public members
         public PreviewSelection previewSelection;
+        public TimeSpan maxTransitionTimeSpan { get; private set; }
         public float overlayFormOpacity { get; private set; }
 
         public bool dimmingEnabled;
@@ -65,7 +66,6 @@ namespace ScreenDimmer
         public void Update()
         {
             UpdateDateTimes();
-            UpdateTotalTransitionTimeMinutes();
             UpdateDimmingPhase();
             UpdateOverlayOpacityCurrent();
             UpdateOverlayFormOpacity(opacityCurrent);
@@ -73,19 +73,25 @@ namespace ScreenDimmer
 
         private void UpdateDateTimes()
         {
-            Func<DateTime, DateTime> TransitionEndDateTime = startDateTime => startDateTime.AddHours(transitionTimeHour).AddMinutes(transitionTimeMinute);
+            Func<DateTime, DateTime> TransitionEndDateTime = startDateTime => startDateTime.AddHours(transitionTimeSpan.TotalMinutes / 60).AddMinutes(transitionTimeSpan.TotalMinutes % 60);
+            Func<TimeSpan, int> TotalMinutesAbs = timeSpan => (int)Math.Abs(timeSpan.TotalMinutes);
 
             now = DateTime.Now;
             nightTransitionStart = new DateTime(now.Year, now.Month, now.Day, nightStartHour, nightStartMinute, 0);
             dayTransitionStart = new DateTime(now.Year, now.Month, now.Day, dayStartHour, dayStartMinute, 0);
+            transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
+
+            TimeSpan dayTimeSpan = dayTransitionStart - nightTransitionStart;
+            TimeSpan nightTimeSpan = nightTransitionStart - dayTransitionStart;
+            maxTransitionTimeSpan = (TotalMinutesAbs(dayTimeSpan) < TotalMinutesAbs(nightTimeSpan)) ? dayTimeSpan : nightTimeSpan;
+
+            int maxTotalMinutes = TotalMinutesAbs(maxTransitionTimeSpan);
+            if ( TotalMinutesAbs(transitionTimeSpan) > maxTotalMinutes ){
+                transitionTimeSpan = new TimeSpan(maxTotalMinutes / 60, maxTotalMinutes % 60, 0);
+            }
 
             nightTransitionEnd = TransitionEndDateTime(nightTransitionStart);
             dayTransitionEnd = TransitionEndDateTime(dayTransitionStart);
-        }
-
-        private void UpdateTotalTransitionTimeMinutes()
-        {
-            transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
         }
 
         private void UpdateDimmingPhase()
@@ -94,7 +100,7 @@ namespace ScreenDimmer
             {
                 if (dayTransitionStart <= now && now < nightTransitionStart)
                 {
-                    dimmingPhase = (now <= dayTransitionEnd) ? DimmingPhase.DayStart : DimmingPhase.Day;
+                    dimmingPhase = (dayTransitionStart <= now && now <= dayTransitionEnd) ? DimmingPhase.DayStart : DimmingPhase.Day;
                     return;
                 }
             }
@@ -102,7 +108,7 @@ namespace ScreenDimmer
             {
                 if(dayTransitionStart <= now || now < nightTransitionStart)
                 {
-                    dimmingPhase = (now <= dayTransitionEnd) ? DimmingPhase.DayStart : DimmingPhase.Day;
+                    dimmingPhase = (dayTransitionStart <= now && now <= dayTransitionEnd) ? DimmingPhase.DayStart : DimmingPhase.Day;
                     return;
                 }
             }

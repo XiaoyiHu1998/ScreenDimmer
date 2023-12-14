@@ -59,8 +59,8 @@ namespace ScreenDimmer
 
         private void OverlayUpdateTick(object sender, EventArgs e)
         {
-            core.Update();   
-            foreach(OverlayForm overlayForm in overlayForms)
+            core.Update();
+            foreach (OverlayForm overlayForm in overlayForms)
             {
                 overlayForm.UpdateOpacity();
             }
