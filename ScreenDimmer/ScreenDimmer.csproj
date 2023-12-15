@@ -84,6 +84,9 @@
     <Compile Include="CoreLogic.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormManager.resx">
+      <DependentUpon>FormManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OverlayForm.resx">
       <DependentUpon>OverlayForm.cs</DependentUpon>
     </EmbeddedResource>

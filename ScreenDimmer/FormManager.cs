@@ -43,6 +43,7 @@ namespace ScreenDimmer
 
         private void SetFormManagerInvisible()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.WindowState = FormWindowState.Minimized;
             this.Visible = false;
             this.ShowInTaskbar = false;

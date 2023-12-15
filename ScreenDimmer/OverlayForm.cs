@@ -18,6 +18,7 @@ namespace ScreenDimmer
 
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = FormBorderStyle.None;
+            this.ShowInTaskbar = false;
             this.BackColor = Color.Black;
             this.Opacity = core.overlayFormOpacity;
             this.TopMost = true;
@@ -49,6 +50,7 @@ namespace ScreenDimmer
             {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x20;  // WS_EX_TRANSPARENT
+                cp.ExStyle |= 0x80;  // turn on WS_EX_TOOLWINDOW style bit
                 return cp;
             }
         }

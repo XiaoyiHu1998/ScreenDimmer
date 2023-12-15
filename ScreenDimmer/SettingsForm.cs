@@ -64,7 +64,7 @@ namespace ScreenDimmer
             this.ShowInTaskbar = true;
         }
 
-        
+
         #region General
         //________________ General ________________
         private void SettingsForm_Closing(object sender, EventArgs e)
@@ -78,6 +78,7 @@ namespace ScreenDimmer
         {
             if (WindowState == FormWindowState.Minimized)  // only hide if minimizing the form
             {
+                this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
             }
@@ -85,6 +86,7 @@ namespace ScreenDimmer
 
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.ShowInTaskbar = true;
             this.Visible = true;
             WindowState = FormWindowState.Normal;
