@@ -51,6 +51,7 @@ namespace ScreenDimmer
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x20;  // WS_EX_TRANSPARENT
                 cp.ExStyle |= 0x80;  // turn on WS_EX_TOOLWINDOW style bit
+                cp.ExStyle |= 0x00080080; // display on all virtual desktops;
                 return cp;
             }
         }
