@@ -154,7 +154,7 @@
     <value>NoControl</value>
   </data>
   <data name="NightStartTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 38</value>
+    <value>6, 85</value>
   </data>
   <data name="NightStartTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 15</value>
@@ -175,7 +175,7 @@
     <value>NightTransitionControlGroup</value>
   </data>
   <data name="&gt;&gt;NightStartTimeLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="OpacityNightSlider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -232,7 +232,7 @@
     <value>NightTransitionControlGroup</value>
   </data>
   <data name="&gt;&gt;TransitionTimeLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="DimmingDayLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -358,7 +358,7 @@
     <value>mm</value>
   </data>
   <data name="DayStartMinuteDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 100</value>
+    <value>64, 55</value>
   </data>
   <data name="DayStartMinuteDateTimePicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>49, 22</value>
@@ -388,7 +388,7 @@
     <value>mm</value>
   </data>
   <data name="NightStartMinuteDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 54</value>
+    <value>64, 101</value>
   </data>
   <data name="NightStartMinuteDateTimePicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>49, 22</value>
@@ -414,41 +414,11 @@
   <data name="&gt;&gt;NightStartMinuteDateTimePicker.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="DayStartHourDateTimePicker.CustomFormat" xml:space="preserve">
-    <value>HH</value>
-  </data>
-  <data name="DayStartHourDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 100</value>
-  </data>
-  <data name="DayStartHourDateTimePicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>49, 22</value>
-  </data>
-  <data name="DayStartHourDateTimePicker.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>49, 23</value>
-  </data>
-  <data name="DayStartHourDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 23</value>
-  </data>
-  <data name="DayStartHourDateTimePicker.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Name" xml:space="preserve">
-    <value>DayStartHourDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="NightStartHourDateTimePicker.CustomFormat" xml:space="preserve">
     <value>HH</value>
   </data>
   <data name="NightStartHourDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 54</value>
+    <value>9, 101</value>
   </data>
   <data name="NightStartHourDateTimePicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>49, 22</value>
@@ -472,37 +442,7 @@
     <value>NightTransitionControlGroup</value>
   </data>
   <data name="&gt;&gt;NightStartHourDateTimePicker.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="NightEndTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="NightEndTimeLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="NightEndTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 84</value>
-  </data>
-  <data name="NightEndTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 15</value>
-  </data>
-  <data name="NightEndTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="NightEndTimeLabel.Text" xml:space="preserve">
-    <value>Day Start</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Name" xml:space="preserve">
-    <value>NightEndTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="NightTransitionEnabledCheckedBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -532,7 +472,67 @@
     <value>NightTransitionControlGroup</value>
   </data>
   <data name="&gt;&gt;NightTransitionEnabledCheckedBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.CustomFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 55</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>49, 22</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>49, 23</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 23</value>
+  </data>
+  <data name="DayStartHourDateTimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;DayStartHourDateTimePicker.Name" xml:space="preserve">
+    <value>DayStartHourDateTimePicker</value>
+  </data>
+  <data name="&gt;&gt;DayStartHourDateTimePicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DayStartHourDateTimePicker.Parent" xml:space="preserve">
+    <value>NightTransitionControlGroup</value>
+  </data>
+  <data name="&gt;&gt;DayStartHourDateTimePicker.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="NightEndTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="NightEndTimeLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="NightEndTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
+  </data>
+  <data name="NightEndTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 15</value>
+  </data>
+  <data name="NightEndTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="NightEndTimeLabel.Text" xml:space="preserve">
+    <value>Day Start</value>
+  </data>
+  <data name="&gt;&gt;NightEndTimeLabel.Name" xml:space="preserve">
+    <value>NightEndTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;NightEndTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NightEndTimeLabel.Parent" xml:space="preserve">
+    <value>NightTransitionControlGroup</value>
+  </data>
+  <data name="&gt;&gt;NightEndTimeLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="NightTransitionControlGroup.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 7</value>
