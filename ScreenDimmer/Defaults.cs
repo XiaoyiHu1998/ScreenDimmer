@@ -14,7 +14,7 @@ namespace ScreenDimmer
 
         public static bool EnableDimming = true;
         public static int OpacityDay = 10;
-        public static int OpacityNight = 40;
+        public static int OpacityNight = 60;
         public static float MaxTrueOpacity = 0.8f;
 
         public static bool EnableTransition = false;
