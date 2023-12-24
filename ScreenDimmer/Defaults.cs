@@ -18,10 +18,10 @@ namespace ScreenDimmer
         public static float MaxTrueOpacity = 0.8f;
 
         public static bool EnableTransition = false;
-        public static int StartHourIndex = 19;
-        public static int StartMinutesIndex = 0;
-        public static int EndHourIndex = 7;
-        public static int EndMinutesIndex = 0;
+        public static DateTime StartHour = new DateTime(DateTime.Now.Year, 1, 1, 19, 0, 0);
+        public static DateTime StartMinute = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
+        public static DateTime EndHour = new DateTime(DateTime.Now.Year, 1, 1, 6, 0, 0);
+        public static DateTime EndMinute = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
         public static int TransitionTimeHourIndex = 1;
         public static int TransitionTimeMinutesIndex = 2;
 
@@ -61,10 +61,10 @@ namespace ScreenDimmer
             this.OpacityNightSlider.Value = Default.OpacityNight;
 
             this.NightTransitionEnabledCheckedBox.Checked = Default.EnableTransition;
-            this.NightStartMinuteBox.SelectedIndex = Default.StartMinutesIndex;
-            this.NightStartHourBox.SelectedIndex = Default.StartHourIndex;
-            this.DayStartMinuteBox.SelectedIndex = Default.EndMinutesIndex;
-            this.DayStartHourBox.SelectedIndex = Default.EndHourIndex;
+            this.NightStartMinuteDateTimePicker.Value = Default.StartMinute;
+            this.NightStartHourDateTimePicker.Value = Default.StartHour;
+            this.DayStartMinuteDateTimePicker.Value = Default.EndMinute;
+            this.DayStartHourDateTimePicker.Value = Default.EndHour;
             this.TransitionTimeMinuteBox.SelectedIndex = Default.TransitionTimeMinutesIndex;
             this.TransitionTimeHourBox.SelectedIndex = Default.TransitionTimeHourIndex;
 
