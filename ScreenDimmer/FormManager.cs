@@ -18,7 +18,7 @@ namespace ScreenDimmer
 
         public FormManager(CoreLogic core)
         {
-            SetFormManagerInvisible();
+            InitializeComponent();
 
             this.core = core;
             overlayForms = new List<OverlayForm>();
@@ -41,15 +41,6 @@ namespace ScreenDimmer
             SetTimer();
         }
 
-        private void SetFormManagerInvisible()
-        {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.WindowState = FormWindowState.Minimized;
-            this.Visible = false;
-            this.ShowInTaskbar = false;
-            this.Refresh();
-        }
-
         private void SetTimer()
         {
             overlayUpdateTimer = new Timer();
@@ -65,6 +56,24 @@ namespace ScreenDimmer
             {
                 overlayForm.UpdateOpacity();
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormManager
+            // 
+            this.ClientSize = new System.Drawing.Size(10, 10);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.Name = "FormManager";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Text = "FormManager";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.ResumeLayout(false);
+
         }
     }
 }
