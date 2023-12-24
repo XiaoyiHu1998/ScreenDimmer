@@ -35,11 +35,11 @@ namespace ScreenDimmer
         private CheckBox PreviewEnableCheckedBox;
         private RadioButton PreviewNightRadioButton;
         private DateTimePicker NightStartHourDateTimePicker;
-        private ComboBox TransitionTimeHourBox;
-        private ComboBox TransitionTimeMinuteBox;
         private DateTimePicker DayStartMinuteDateTimePicker;
         private DateTimePicker NightStartMinuteDateTimePicker;
         private DateTimePicker DayStartHourDateTimePicker;
+        private DateTimePicker TransitionTimeMinuteDateTimePicker;
+        private DateTimePicker TransitionTimeHourDateTimePicker;
         private CheckBox NightTransitionEnabledCheckedBox;
 
         public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
@@ -235,16 +235,36 @@ namespace ScreenDimmer
             overlayUpdateTick(sender, e);
         }
 
-        private void TransitionTimeHourBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void TransitionTimeHourDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.transitionTimeHour = BoxIndexToHour(TransitionTimeHourBox.SelectedIndex);
+            TimeSpan newTransitionTimeSpan = new TimeSpan(TransitionTimeHourDateTimePicker.Value.Hour, 
+                                                          TransitionTimeMinuteDateTimePicker.Value.Minute,
+                                                          0);
+
+            if (newTransitionTimeSpan > core.maxTransitionTimeSpan)
+            {
+                TransitionTimeHourDateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1, core.maxTransitionTimeSpan.Hours, 0, 0);
+                TransitionTimeMinuteDateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, core.maxTransitionTimeSpan.Minutes, 0);
+            }
+
+            core.transitionTimeHour = TransitionTimeHourDateTimePicker.Value.Hour;
             core.Update();
             overlayUpdateTick(sender, e);
         }
 
-        private void TransitionTimeMinuteBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void TransitionTimeMinuteDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.transitionTimeMinute = BoxIndexToMinute(TransitionTimeMinuteBox.SelectedIndex);
+            TimeSpan newTransitionTimeSpan = new TimeSpan(TransitionTimeHourDateTimePicker.Value.Hour,
+                                                          TransitionTimeMinuteDateTimePicker.Value.Minute,
+                                                          0);
+
+            if (newTransitionTimeSpan > core.maxTransitionTimeSpan)
+            {
+                TransitionTimeHourDateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1, core.maxTransitionTimeSpan.Hours, 0, 0);
+                TransitionTimeMinuteDateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, core.maxTransitionTimeSpan.Minutes, 0);
+            }
+
+            core.transitionTimeMinute = TransitionTimeMinuteDateTimePicker.Value.Minute;
             core.Update();
             overlayUpdateTick(sender, e);
         }
@@ -278,6 +298,10 @@ namespace ScreenDimmer
             this.DimmingDayLabel = new System.Windows.Forms.Label();
             this.DimmingNightLabel = new System.Windows.Forms.Label();
             this.NightTransitionControlGroup = new System.Windows.Forms.GroupBox();
+            this.DayStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.NightStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DayStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.NightStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.NightEndTimeLabel = new System.Windows.Forms.Label();
             this.NightTransitionEnabledCheckedBox = new System.Windows.Forms.CheckBox();
             this.DimmingControlGroup = new System.Windows.Forms.GroupBox();
@@ -289,12 +313,8 @@ namespace ScreenDimmer
             this.PreviewNightRadioButton = new System.Windows.Forms.RadioButton();
             this.PreviewDayRadioButton = new System.Windows.Forms.RadioButton();
             this.PreviewEnableCheckedBox = new System.Windows.Forms.CheckBox();
-            this.NightStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.TransitionTimeHourBox = new System.Windows.Forms.ComboBox();
-            this.TransitionTimeMinuteBox = new System.Windows.Forms.ComboBox();
-            this.DayStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.NightStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.DayStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.TransitionTimeHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.TransitionTimeMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).BeginInit();
             this.NightTransitionControlGroup.SuspendLayout();
@@ -338,20 +358,52 @@ namespace ScreenDimmer
             // 
             // NightTransitionControlGroup
             // 
+            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeMinuteDateTimePicker);
+            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeHourDateTimePicker);
             this.NightTransitionControlGroup.Controls.Add(this.DayStartMinuteDateTimePicker);
             this.NightTransitionControlGroup.Controls.Add(this.NightStartMinuteDateTimePicker);
             this.NightTransitionControlGroup.Controls.Add(this.DayStartHourDateTimePicker);
             this.NightTransitionControlGroup.Controls.Add(this.NightStartHourDateTimePicker);
             this.NightTransitionControlGroup.Controls.Add(this.NightEndTimeLabel);
             this.NightTransitionControlGroup.Controls.Add(this.NightTransitionEnabledCheckedBox);
-            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeHourBox);
             this.NightTransitionControlGroup.Controls.Add(this.NightStartTimeLabel);
             this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeLabel);
-            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeMinuteBox);
             this.NightTransitionControlGroup.ForeColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.NightTransitionControlGroup, "NightTransitionControlGroup");
             this.NightTransitionControlGroup.Name = "NightTransitionControlGroup";
             this.NightTransitionControlGroup.TabStop = false;
+            // 
+            // DayStartMinuteDateTimePicker
+            // 
+            resources.ApplyResources(this.DayStartMinuteDateTimePicker, "DayStartMinuteDateTimePicker");
+            this.DayStartMinuteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DayStartMinuteDateTimePicker.Name = "DayStartMinuteDateTimePicker";
+            this.DayStartMinuteDateTimePicker.ShowUpDown = true;
+            this.DayStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartMinuteDateTimePicker_ValueChanged);
+            // 
+            // NightStartMinuteDateTimePicker
+            // 
+            resources.ApplyResources(this.NightStartMinuteDateTimePicker, "NightStartMinuteDateTimePicker");
+            this.NightStartMinuteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.NightStartMinuteDateTimePicker.Name = "NightStartMinuteDateTimePicker";
+            this.NightStartMinuteDateTimePicker.ShowUpDown = true;
+            this.NightStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartMinuteDateTimePicker_ValueChanged);
+            // 
+            // DayStartHourDateTimePicker
+            // 
+            resources.ApplyResources(this.DayStartHourDateTimePicker, "DayStartHourDateTimePicker");
+            this.DayStartHourDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DayStartHourDateTimePicker.Name = "DayStartHourDateTimePicker";
+            this.DayStartHourDateTimePicker.ShowUpDown = true;
+            this.DayStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartHourDateTimePicker_ValueChanged);
+            // 
+            // NightStartHourDateTimePicker
+            // 
+            resources.ApplyResources(this.NightStartHourDateTimePicker, "NightStartHourDateTimePicker");
+            this.NightStartHourDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.NightStartHourDateTimePicker.Name = "NightStartHourDateTimePicker";
+            this.NightStartHourDateTimePicker.ShowUpDown = true;
+            this.NightStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartHourDateTimePicker_ValueChanged);
             // 
             // NightEndTimeLabel
             // 
@@ -438,74 +490,21 @@ namespace ScreenDimmer
             this.PreviewEnableCheckedBox.UseVisualStyleBackColor = true;
             this.PreviewEnableCheckedBox.CheckedChanged += new System.EventHandler(this.PreviewEnableCheckedBox_CheckedChanged);
             // 
-            // TransitionTimeHourBox
+            // TransitionTimeHourDateTimePicker
             // 
-            this.TransitionTimeHourBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TransitionTimeHourBox.FormattingEnabled = true;
-            this.TransitionTimeHourBox.Items.AddRange(new object[] {
-            resources.GetString("TransitionTimeHourBox.Items"),
-            resources.GetString("TransitionTimeHourBox.Items1"),
-            resources.GetString("TransitionTimeHourBox.Items2"),
-            resources.GetString("TransitionTimeHourBox.Items3"),
-            resources.GetString("TransitionTimeHourBox.Items4"),
-            resources.GetString("TransitionTimeHourBox.Items5"),
-            resources.GetString("TransitionTimeHourBox.Items6")});
-            resources.ApplyResources(this.TransitionTimeHourBox, "TransitionTimeHourBox");
-            this.TransitionTimeHourBox.Name = "TransitionTimeHourBox";
-            this.TransitionTimeHourBox.SelectedIndexChanged += new System.EventHandler(this.TransitionTimeHourBox_SelectedIndexChanged);
+            resources.ApplyResources(this.TransitionTimeHourDateTimePicker, "TransitionTimeHourDateTimePicker");
+            this.TransitionTimeHourDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TransitionTimeHourDateTimePicker.Name = "TransitionTimeHourDateTimePicker";
+            this.TransitionTimeHourDateTimePicker.ShowUpDown = true;
+            this.TransitionTimeHourDateTimePicker.ValueChanged += new EventHandler(this.TransitionTimeHourDateTimePicker_ValueChanged);
             // 
-            // TransitionTimeMinuteBox
+            // TransitionTimeMinuteDateTimePicker
             // 
-            this.TransitionTimeMinuteBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TransitionTimeMinuteBox.FormattingEnabled = true;
-            this.TransitionTimeMinuteBox.Items.AddRange(new object[] {
-            resources.GetString("TransitionTimeMinuteBox.Items"),
-            resources.GetString("TransitionTimeMinuteBox.Items1"),
-            resources.GetString("TransitionTimeMinuteBox.Items2"),
-            resources.GetString("TransitionTimeMinuteBox.Items3"),
-            resources.GetString("TransitionTimeMinuteBox.Items4"),
-            resources.GetString("TransitionTimeMinuteBox.Items5"),
-            resources.GetString("TransitionTimeMinuteBox.Items6"),
-            resources.GetString("TransitionTimeMinuteBox.Items7"),
-            resources.GetString("TransitionTimeMinuteBox.Items8"),
-            resources.GetString("TransitionTimeMinuteBox.Items9"),
-            resources.GetString("TransitionTimeMinuteBox.Items10"),
-            resources.GetString("TransitionTimeMinuteBox.Items11")});
-            resources.ApplyResources(this.TransitionTimeMinuteBox, "TransitionTimeMinuteBox");
-            this.TransitionTimeMinuteBox.Name = "TransitionTimeMinuteBox";
-            this.TransitionTimeMinuteBox.SelectedIndexChanged += new System.EventHandler(this.TransitionTimeMinuteBox_SelectedIndexChanged);
-            // 
-            // DayStartHourDateTimePicker
-            // 
-            resources.ApplyResources(this.DayStartHourDateTimePicker, "DayStartHourDateTimePicker");
-            this.DayStartHourDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DayStartHourDateTimePicker.Name = "DayStartHourDateTimePicker";
-            this.DayStartHourDateTimePicker.ShowUpDown = true;
-            this.DayStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartHourDateTimePicker_ValueChanged);
-            // 
-            // DayStartMinuteDateTimePicker
-            // 
-            resources.ApplyResources(this.DayStartMinuteDateTimePicker, "DayStartMinuteDateTimePicker");
-            this.DayStartMinuteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DayStartMinuteDateTimePicker.Name = "DayStartMinuteDateTimePicker";
-            this.DayStartMinuteDateTimePicker.ShowUpDown = true;
-            this.DayStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartMinuteDateTimePicker_ValueChanged);
-            // 
-            // NightStartHourDateTimePicker
-            // 
-            resources.ApplyResources(this.NightStartHourDateTimePicker, "NightStartHourDateTimePicker");
-            this.NightStartHourDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.NightStartHourDateTimePicker.Name = "NightStartHourDateTimePicker";
-            this.NightStartHourDateTimePicker.ShowUpDown = true;
-            this.NightStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartHourDateTimePicker_ValueChanged);
-            // 
-            // NightStartMinuteDateTimePicker
-            // 
-            resources.ApplyResources(this.NightStartMinuteDateTimePicker, "NightStartMinuteDateTimePicker");
-            this.NightStartMinuteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.NightStartMinuteDateTimePicker.Name = "NightStartMinuteDateTimePicker";
-            this.NightStartMinuteDateTimePicker.ShowUpDown = true;
-            this.NightStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartMinuteDateTimePicker_ValueChanged);
+            resources.ApplyResources(this.TransitionTimeMinuteDateTimePicker, "TransitionTimeMinuteDateTimePicker");
+            this.TransitionTimeMinuteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TransitionTimeMinuteDateTimePicker.Name = "TransitionTimeMinuteDateTimePicker";
+            this.TransitionTimeMinuteDateTimePicker.ShowUpDown = true;
+            this.TransitionTimeMinuteDateTimePicker.ValueChanged += new EventHandler(this.TransitionTimeMinuteDateTimePicker_ValueChanged);
             // 
             // SettingsForm
             // 

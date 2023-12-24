@@ -74,19 +74,18 @@ namespace ScreenDimmer
         private void UpdateDateTimes()
         {
             Func<DateTime, DateTime> TransitionEndDateTime = startDateTime => startDateTime.AddHours(transitionTimeSpan.TotalMinutes / 60).AddMinutes(transitionTimeSpan.TotalMinutes % 60);
-            Func<TimeSpan, int> TotalMinutesAbs = timeSpan => (int)Math.Abs(timeSpan.TotalMinutes);
 
             now = DateTime.Now;
             nightTransitionStart = new DateTime(now.Year, now.Month, now.Day, nightStartHour, nightStartMinute, 0);
             dayTransitionStart = new DateTime(now.Year, now.Month, now.Day, dayStartHour, dayStartMinute, 0);
             transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
 
-            TimeSpan dayTimeSpan = dayTransitionStart - nightTransitionStart;
-            TimeSpan nightTimeSpan = nightTransitionStart - dayTransitionStart;
-            maxTransitionTimeSpan = (TotalMinutesAbs(dayTimeSpan) < TotalMinutesAbs(nightTimeSpan)) ? dayTimeSpan : nightTimeSpan;
+            TimeSpan dayTimeSpan = (dayTransitionStart - nightTransitionStart).Duration();
+            TimeSpan nightTimeSpan = (nightTransitionStart - dayTransitionStart).Duration();
+            maxTransitionTimeSpan = (dayTimeSpan < nightTimeSpan) ? dayTimeSpan : nightTimeSpan;
 
-            int maxTotalMinutes = TotalMinutesAbs(maxTransitionTimeSpan);
-            if ( TotalMinutesAbs(transitionTimeSpan) > maxTotalMinutes ){
+            int maxTotalMinutes = (int)maxTransitionTimeSpan.TotalMinutes;
+            if (transitionTimeSpan > maxTransitionTimeSpan){
                 transitionTimeSpan = new TimeSpan(maxTotalMinutes / 60, maxTotalMinutes % 60, 0);
             }
 
@@ -96,7 +95,7 @@ namespace ScreenDimmer
 
         private void UpdateDimmingPhase()
         {
-            if(dayTransitionStart <= nightTransitionStart)
+            if(dayTransitionStart < nightTransitionStart)
             {
                 if (dayTransitionStart <= now && now < nightTransitionStart)
                 {
@@ -120,7 +119,7 @@ namespace ScreenDimmer
         {
             Func<float, float> EasingFunction = x => (float)(-(Math.Cos(Math.PI * x) - 1.0f) / 2.0f);
 
-            float interpolationPoint = (float)transitionTimePassed / (float)transitionTimeSpan.TotalSeconds;
+            float interpolationPoint = Math.Min(Math.Max((float)transitionTimePassed / (float)transitionTimeSpan.TotalSeconds, 0), 1);
             if (dimmingPhase == DimmingPhase.DayStart)
                 interpolationPoint = 1.0f - interpolationPoint;
 
@@ -147,8 +146,8 @@ namespace ScreenDimmer
                 return;
             }
 
-            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).TotalSeconds);
-            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).TotalSeconds);
+            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).Duration().TotalSeconds);
+            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).Duration().TotalSeconds);
 
             switch (dimmingPhase)
             {

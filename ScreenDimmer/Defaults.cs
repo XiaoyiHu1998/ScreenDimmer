@@ -18,10 +18,13 @@ namespace ScreenDimmer
         public static float MaxTrueOpacity = 0.8f;
 
         public static bool EnableTransition = false;
-        public static DateTime StartHour = new DateTime(DateTime.Now.Year, 1, 1, 19, 0, 0);
-        public static DateTime StartMinute = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
-        public static DateTime EndHour = new DateTime(DateTime.Now.Year, 1, 1, 6, 0, 0);
-        public static DateTime EndMinute = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+        public static DateTime TransitionStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
+        public static DateTime TransitionEnd = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
+        public static DateTime TransitionTime = new DateTime(DateTime.Now.Year, 1, 1, 1, 30, 0);
+        //public static DateTime StartHour = new DateTime(DateTime.Now.Year, 1, 1, 19, 0, 0);
+        //public static DateTime StartMinute = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
+        //public static DateTime EndHour = new DateTime(DateTime.Now.Year, 1, 1, 6, 0, 0);
+        //public static DateTime EndMinute = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
         public static int TransitionTimeHourIndex = 1;
         public static int TransitionTimeMinutesIndex = 2;
 
@@ -38,10 +41,10 @@ namespace ScreenDimmer
             this.opacityNight = Default.OpacityNight;
             this.maxTrueOpacity = Default.MaxTrueOpacity;
 
-            this.nightStartHour = SettingsForm.BoxIndexToHour(Default.StartHourIndex);
-            this.nightStartMinute = SettingsForm.BoxIndexToMinute(Default.StartMinutesIndex);
-            this.dayStartHour = SettingsForm.BoxIndexToHour(Default.EndHourIndex);
-            this.dayStartMinute = SettingsForm.BoxIndexToMinute(Default.EndMinutesIndex);
+            this.nightStartHour = Default.TransitionStart.Hour;
+            this.nightStartMinute = Default.TransitionStart.Minute;
+            this.dayStartHour = Default.TransitionEnd.Hour;
+            this.dayStartMinute = Default.TransitionEnd.Minute;
             this.transitionTimeHour = SettingsForm.BoxIndexToHour(Default.TransitionTimeHourIndex);
             this.transitionTimeMinute = SettingsForm.BoxIndexToMinute(Default.TransitionTimeMinutesIndex);
             this.transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
@@ -61,12 +64,12 @@ namespace ScreenDimmer
             this.OpacityNightSlider.Value = Default.OpacityNight;
 
             this.NightTransitionEnabledCheckedBox.Checked = Default.EnableTransition;
-            this.NightStartMinuteDateTimePicker.Value = Default.StartMinute;
-            this.NightStartHourDateTimePicker.Value = Default.StartHour;
-            this.DayStartMinuteDateTimePicker.Value = Default.EndMinute;
-            this.DayStartHourDateTimePicker.Value = Default.EndHour;
-            this.TransitionTimeMinuteBox.SelectedIndex = Default.TransitionTimeMinutesIndex;
-            this.TransitionTimeHourBox.SelectedIndex = Default.TransitionTimeHourIndex;
+            this.NightStartMinuteDateTimePicker.Value = Default.TransitionStart;
+            this.NightStartHourDateTimePicker.Value = Default.TransitionStart;
+            this.DayStartMinuteDateTimePicker.Value = Default.TransitionEnd;
+            this.DayStartHourDateTimePicker.Value = Default.TransitionEnd;
+            this.TransitionTimeMinuteDateTimePicker.Value = Default.TransitionTime;
+            this.TransitionTimeHourDateTimePicker.Value = Default.TransitionTime;
 
             this.PreviewEnableCheckedBox.Checked = Default.PreviewEnabled;
             this.PreviewDayRadioButton.Checked = true;
