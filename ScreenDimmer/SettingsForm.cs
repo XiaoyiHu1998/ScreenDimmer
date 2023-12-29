@@ -90,6 +90,9 @@ namespace ScreenDimmer
             this.ShowInTaskbar = true;
             this.Visible = true;
             WindowState = FormWindowState.Normal;
+
+            this.TopMost = true;
+            this.TopMost = false;
             if (CanFocus)
             {
                 Focus();
