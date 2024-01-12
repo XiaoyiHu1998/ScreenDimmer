@@ -97,6 +97,7 @@ namespace ScreenDimmer
             this.Visible = true;
             WindowState = FormWindowState.Normal;
 
+            this.TopMost = true;
             this.TopMost = !dimSettingsForm;
 
             if (CanFocus)
