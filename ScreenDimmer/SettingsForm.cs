@@ -311,7 +311,7 @@ namespace ScreenDimmer
 
             if (RunOnStartUpCheckBox.Checked)
             {
-                registryKey.SetValue("ScreenDimmer", true);
+                registryKey.SetValue("ScreenDimmer", Application.ExecutablePath);
             }
             else
             {
