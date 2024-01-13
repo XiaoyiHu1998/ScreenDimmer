@@ -16,7 +16,7 @@ namespace ScreenDimmer
         CoreLogic core;
         Action<object, EventArgs> overlayUpdateTick;
 
-        private bool dimSettingsForm = true;
+        private bool dimSettingsForm;
 
         //UI elements
         private TrackBar OpacityDaySlider;
@@ -55,6 +55,7 @@ namespace ScreenDimmer
             this.overlayUpdateTick = overlayUpdateTick;
             InitializeComponent();
             SetDefaultValues();
+            this.TopMost = !dimSettingsForm;
         }
 
         ~SettingsForm()

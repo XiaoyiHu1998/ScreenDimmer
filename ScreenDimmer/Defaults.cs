@@ -16,6 +16,8 @@ namespace ScreenDimmer
         public static int OpacityDay = 10;
         public static int OpacityNight = 60;
         public static float MaxTrueOpacity = 0.8f;
+        public static bool dimSettingsForm = false;
+        public static bool RunOnStartup = true;
 
         public static bool EnableTransition = false;
         public static DateTime TransitionStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
@@ -62,6 +64,10 @@ namespace ScreenDimmer
             this.OpacityNightValueBox.Text = Default.OpacityNight.ToString();
             this.OpacityDaySlider.Value = Default.OpacityDay;
             this.OpacityNightSlider.Value = Default.OpacityNight;
+            this.dimSettingsForm = Default.dimSettingsForm;
+            this.DimWindowCheckBox.Checked = Default.dimSettingsForm;
+            this.RunOnStartUpCheckBox.Checked = Default.RunOnStartup;
+
 
             this.NightTransitionEnabledCheckedBox.Checked = Default.EnableTransition;
             this.NightStartMinuteDateTimePicker.Value = Default.TransitionStart;
