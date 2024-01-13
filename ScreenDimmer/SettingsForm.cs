@@ -25,17 +25,17 @@ namespace ScreenDimmer
         private Label TransitionTimeLabel;
         private Label DimmingDayLabel;
         private Label DimmingNightLabel;
-        private GroupBox NightTransitionControlGroup;
-        private GroupBox DimmingControlGroup;
+        private GroupBox DayNightCycleGroupBox;
+        private GroupBox DimmingGroupBox;
         private CheckBox DimmingEnableCheckBox;
         private NotifyIcon NotifyIcon;
         private System.ComponentModel.IContainer components;
         private TextBox OpacityNightValueBox;
         private TextBox OpacityDayValueBox;
         private Label NightEndTimeLabel;
-        private GroupBox PreviewGroup;
+        private GroupBox PreviewGroupBox;
         private RadioButton PreviewDayRadioButton;
-        private CheckBox PreviewEnableCheckedBox;
+        private CheckBox PreviewEnableCheckBox;
         private RadioButton PreviewNightRadioButton;
         private DateTimePicker NightStartHourDateTimePicker;
         private DateTimePicker DayStartMinuteDateTimePicker;
@@ -43,10 +43,10 @@ namespace ScreenDimmer
         private DateTimePicker DayStartHourDateTimePicker;
         private DateTimePicker TransitionTimeMinuteDateTimePicker;
         private DateTimePicker TransitionTimeHourDateTimePicker;
-        private GroupBox groupBox1;
+        private GroupBox OptionsGroupBox;
         private CheckBox DimWindowCheckBox;
         private CheckBox RunOnStartUpCheckBox;
-        private CheckBox NightTransitionEnabledCheckedBox;
+        private CheckBox NightTransitionEnabledCheckBox;
 
         public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
         {
@@ -111,7 +111,7 @@ namespace ScreenDimmer
         {
             if(keyData == Keys.Enter)
             {
-                NightTransitionControlGroup.Focus();
+                DayNightCycleGroupBox.Focus();
                 return true;
             }
 
@@ -211,9 +211,9 @@ namespace ScreenDimmer
 
         #region Night Transition
         //________________ Night Transition ________________
-        private void NightTransitionEnabledCheckedBox_CheckedChanged(object sender, EventArgs e)
+        private void NightTransitionEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            core.nightTransitionEnabled = NightTransitionEnabledCheckedBox.Checked;
+            core.nightTransitionEnabled = NightTransitionEnabledCheckBox.Checked;
             core.Update();
             overlayUpdateTick(sender, e);
         }
@@ -283,9 +283,9 @@ namespace ScreenDimmer
 
         #region Dimming Preview
         //________________ Dimming Preview ________________
-        private void PreviewEnableCheckedBox_CheckedChanged(object sender, EventArgs e)
+        private void PreviewEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            core.previewEnabled = PreviewEnableCheckedBox.Checked;
+            core.previewEnabled = PreviewEnableCheckBox.Checked;
             core.Update();
             overlayUpdateTick(sender, e);
         }
@@ -331,33 +331,33 @@ namespace ScreenDimmer
             this.TransitionTimeLabel = new System.Windows.Forms.Label();
             this.DimmingDayLabel = new System.Windows.Forms.Label();
             this.DimmingNightLabel = new System.Windows.Forms.Label();
-            this.NightTransitionControlGroup = new System.Windows.Forms.GroupBox();
+            this.DayNightCycleGroupBox = new System.Windows.Forms.GroupBox();
             this.TransitionTimeMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.TransitionTimeHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.DayStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.NightStartMinuteDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.NightStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.NightTransitionEnabledCheckedBox = new System.Windows.Forms.CheckBox();
+            this.NightTransitionEnabledCheckBox = new System.Windows.Forms.CheckBox();
             this.DayStartHourDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.NightEndTimeLabel = new System.Windows.Forms.Label();
-            this.DimmingControlGroup = new System.Windows.Forms.GroupBox();
+            this.DimmingGroupBox = new System.Windows.Forms.GroupBox();
             this.OpacityNightValueBox = new System.Windows.Forms.TextBox();
             this.OpacityDayValueBox = new System.Windows.Forms.TextBox();
             this.DimmingEnableCheckBox = new System.Windows.Forms.CheckBox();
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.PreviewGroup = new System.Windows.Forms.GroupBox();
+            this.PreviewGroupBox = new System.Windows.Forms.GroupBox();
             this.PreviewNightRadioButton = new System.Windows.Forms.RadioButton();
             this.PreviewDayRadioButton = new System.Windows.Forms.RadioButton();
-            this.PreviewEnableCheckedBox = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PreviewEnableCheckBox = new System.Windows.Forms.CheckBox();
+            this.OptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.DimWindowCheckBox = new System.Windows.Forms.CheckBox();
             this.RunOnStartUpCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).BeginInit();
-            this.NightTransitionControlGroup.SuspendLayout();
-            this.DimmingControlGroup.SuspendLayout();
-            this.PreviewGroup.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.DayNightCycleGroupBox.SuspendLayout();
+            this.DimmingGroupBox.SuspendLayout();
+            this.PreviewGroupBox.SuspendLayout();
+            this.OptionsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpacityDaySlider
@@ -394,22 +394,22 @@ namespace ScreenDimmer
             resources.ApplyResources(this.DimmingNightLabel, "DimmingNightLabel");
             this.DimmingNightLabel.Name = "DimmingNightLabel";
             // 
-            // NightTransitionControlGroup
+            // DayNightCycleGroupBox
             // 
-            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeMinuteDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeHourDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.DayStartMinuteDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.NightStartMinuteDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.NightStartHourDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.NightTransitionEnabledCheckedBox);
-            this.NightTransitionControlGroup.Controls.Add(this.DayStartHourDateTimePicker);
-            this.NightTransitionControlGroup.Controls.Add(this.NightStartTimeLabel);
-            this.NightTransitionControlGroup.Controls.Add(this.TransitionTimeLabel);
-            this.NightTransitionControlGroup.Controls.Add(this.NightEndTimeLabel);
-            this.NightTransitionControlGroup.ForeColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.NightTransitionControlGroup, "NightTransitionControlGroup");
-            this.NightTransitionControlGroup.Name = "NightTransitionControlGroup";
-            this.NightTransitionControlGroup.TabStop = false;
+            this.DayNightCycleGroupBox.Controls.Add(this.TransitionTimeMinuteDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.TransitionTimeHourDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.DayStartMinuteDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.NightStartMinuteDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.NightStartHourDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.NightTransitionEnabledCheckBox);
+            this.DayNightCycleGroupBox.Controls.Add(this.DayStartHourDateTimePicker);
+            this.DayNightCycleGroupBox.Controls.Add(this.NightStartTimeLabel);
+            this.DayNightCycleGroupBox.Controls.Add(this.TransitionTimeLabel);
+            this.DayNightCycleGroupBox.Controls.Add(this.NightEndTimeLabel);
+            this.DayNightCycleGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.DayNightCycleGroupBox, "DayNightCycleGroupBox");
+            this.DayNightCycleGroupBox.Name = "DayNightCycleGroupBox";
+            this.DayNightCycleGroupBox.TabStop = false;
             // 
             // TransitionTimeMinuteDateTimePicker
             // 
@@ -451,12 +451,12 @@ namespace ScreenDimmer
             this.NightStartHourDateTimePicker.ShowUpDown = true;
             this.NightStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartHourDateTimePicker_ValueChanged);
             // 
-            // NightTransitionEnabledCheckedBox
+            // NightTransitionEnabledCheckBox
             // 
-            resources.ApplyResources(this.NightTransitionEnabledCheckedBox, "NightTransitionEnabledCheckedBox");
-            this.NightTransitionEnabledCheckedBox.Name = "NightTransitionEnabledCheckedBox";
-            this.NightTransitionEnabledCheckedBox.UseVisualStyleBackColor = true;
-            this.NightTransitionEnabledCheckedBox.CheckedChanged += new System.EventHandler(this.NightTransitionEnabledCheckedBox_CheckedChanged);
+            resources.ApplyResources(this.NightTransitionEnabledCheckBox, "NightTransitionEnabledCheckBox");
+            this.NightTransitionEnabledCheckBox.Name = "NightTransitionEnabledCheckBox";
+            this.NightTransitionEnabledCheckBox.UseVisualStyleBackColor = true;
+            this.NightTransitionEnabledCheckBox.CheckedChanged += new System.EventHandler(this.NightTransitionEnabledCheckBox_CheckedChanged);
             // 
             // DayStartHourDateTimePicker
             // 
@@ -471,19 +471,19 @@ namespace ScreenDimmer
             resources.ApplyResources(this.NightEndTimeLabel, "NightEndTimeLabel");
             this.NightEndTimeLabel.Name = "NightEndTimeLabel";
             // 
-            // DimmingControlGroup
+            // DimmingGroupBox
             // 
-            this.DimmingControlGroup.Controls.Add(this.OpacityNightValueBox);
-            this.DimmingControlGroup.Controls.Add(this.OpacityDayValueBox);
-            this.DimmingControlGroup.Controls.Add(this.OpacityNightSlider);
-            this.DimmingControlGroup.Controls.Add(this.DimmingNightLabel);
-            this.DimmingControlGroup.Controls.Add(this.DimmingEnableCheckBox);
-            this.DimmingControlGroup.Controls.Add(this.DimmingDayLabel);
-            this.DimmingControlGroup.Controls.Add(this.OpacityDaySlider);
-            this.DimmingControlGroup.ForeColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.DimmingControlGroup, "DimmingControlGroup");
-            this.DimmingControlGroup.Name = "DimmingControlGroup";
-            this.DimmingControlGroup.TabStop = false;
+            this.DimmingGroupBox.Controls.Add(this.OpacityNightValueBox);
+            this.DimmingGroupBox.Controls.Add(this.OpacityDayValueBox);
+            this.DimmingGroupBox.Controls.Add(this.OpacityNightSlider);
+            this.DimmingGroupBox.Controls.Add(this.DimmingNightLabel);
+            this.DimmingGroupBox.Controls.Add(this.DimmingEnableCheckBox);
+            this.DimmingGroupBox.Controls.Add(this.DimmingDayLabel);
+            this.DimmingGroupBox.Controls.Add(this.OpacityDaySlider);
+            this.DimmingGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.DimmingGroupBox, "DimmingGroupBox");
+            this.DimmingGroupBox.Name = "DimmingGroupBox";
+            this.DimmingGroupBox.TabStop = false;
             // 
             // OpacityNightValueBox
             // 
@@ -511,15 +511,15 @@ namespace ScreenDimmer
             resources.ApplyResources(this.NotifyIcon, "NotifyIcon");
             this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
             // 
-            // PreviewGroup
+            // PreviewGroupBox
             // 
-            this.PreviewGroup.Controls.Add(this.PreviewNightRadioButton);
-            this.PreviewGroup.Controls.Add(this.PreviewDayRadioButton);
-            this.PreviewGroup.Controls.Add(this.PreviewEnableCheckedBox);
-            this.PreviewGroup.ForeColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.PreviewGroup, "PreviewGroup");
-            this.PreviewGroup.Name = "PreviewGroup";
-            this.PreviewGroup.TabStop = false;
+            this.PreviewGroupBox.Controls.Add(this.PreviewNightRadioButton);
+            this.PreviewGroupBox.Controls.Add(this.PreviewDayRadioButton);
+            this.PreviewGroupBox.Controls.Add(this.PreviewEnableCheckBox);
+            this.PreviewGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.PreviewGroupBox, "PreviewGroupBox");
+            this.PreviewGroupBox.Name = "PreviewGroupBox";
+            this.PreviewGroupBox.TabStop = false;
             // 
             // PreviewNightRadioButton
             // 
@@ -537,21 +537,21 @@ namespace ScreenDimmer
             this.PreviewDayRadioButton.UseVisualStyleBackColor = true;
             this.PreviewDayRadioButton.CheckedChanged += new System.EventHandler(this.PreviewRadioButton_CheckedChanged);
             // 
-            // PreviewEnableCheckedBox
+            // PreviewEnableCheckBox
             // 
-            resources.ApplyResources(this.PreviewEnableCheckedBox, "PreviewEnableCheckedBox");
-            this.PreviewEnableCheckedBox.Name = "PreviewEnableCheckedBox";
-            this.PreviewEnableCheckedBox.UseVisualStyleBackColor = true;
-            this.PreviewEnableCheckedBox.CheckedChanged += new System.EventHandler(this.PreviewEnableCheckedBox_CheckedChanged);
+            resources.ApplyResources(this.PreviewEnableCheckBox, "PreviewEnableCheckBox");
+            this.PreviewEnableCheckBox.Name = "PreviewEnableCheckBox";
+            this.PreviewEnableCheckBox.UseVisualStyleBackColor = true;
+            this.PreviewEnableCheckBox.CheckedChanged += new System.EventHandler(this.PreviewEnableCheckBox_CheckedChanged);
             // 
-            // groupBox1
+            // OptionsGroupBox
             // 
-            this.groupBox1.Controls.Add(this.DimWindowCheckBox);
-            this.groupBox1.Controls.Add(this.RunOnStartUpCheckBox);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.OptionsGroupBox.Controls.Add(this.DimWindowCheckBox);
+            this.OptionsGroupBox.Controls.Add(this.RunOnStartUpCheckBox);
+            this.OptionsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.OptionsGroupBox, "OptionsGroupBox");
+            this.OptionsGroupBox.Name = "OptionsGroupBox";
+            this.OptionsGroupBox.TabStop = false;
             // 
             // DimWindowCheckBox
             // 
@@ -572,10 +572,10 @@ namespace ScreenDimmer
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.PreviewGroup);
-            this.Controls.Add(this.DimmingControlGroup);
-            this.Controls.Add(this.NightTransitionControlGroup);
+            this.Controls.Add(this.OptionsGroupBox);
+            this.Controls.Add(this.PreviewGroupBox);
+            this.Controls.Add(this.DimmingGroupBox);
+            this.Controls.Add(this.DayNightCycleGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
@@ -583,14 +583,14 @@ namespace ScreenDimmer
             this.Resize += new System.EventHandler(this.SettignsFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
-            this.NightTransitionControlGroup.ResumeLayout(false);
-            this.NightTransitionControlGroup.PerformLayout();
-            this.DimmingControlGroup.ResumeLayout(false);
-            this.DimmingControlGroup.PerformLayout();
-            this.PreviewGroup.ResumeLayout(false);
-            this.PreviewGroup.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.DayNightCycleGroupBox.ResumeLayout(false);
+            this.DayNightCycleGroupBox.PerformLayout();
+            this.DimmingGroupBox.ResumeLayout(false);
+            this.DimmingGroupBox.PerformLayout();
+            this.PreviewGroupBox.ResumeLayout(false);
+            this.PreviewGroupBox.PerformLayout();
+            this.OptionsGroupBox.ResumeLayout(false);
+            this.OptionsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }

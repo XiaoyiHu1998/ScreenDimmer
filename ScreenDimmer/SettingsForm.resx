@@ -142,7 +142,7 @@
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityDaySlider.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityDaySlider.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -172,7 +172,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NightStartTimeLabel.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;NightStartTimeLabel.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -199,7 +199,7 @@
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityNightSlider.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityNightSlider.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -229,7 +229,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;TransitionTimeLabel.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;TransitionTimeLabel.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -259,7 +259,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DimmingDayLabel.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;DimmingDayLabel.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -289,129 +289,9 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DimmingNightLabel.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;DimmingNightLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.Name" xml:space="preserve">
-    <value>TransitionTimeMinuteDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeHourDateTimePicker.Name" xml:space="preserve">
-    <value>TransitionTimeHourDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeHourDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;TransitionTimeHourDateTimePicker.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;DayStartMinuteDateTimePicker.Name" xml:space="preserve">
-    <value>DayStartMinuteDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;DayStartMinuteDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DayStartMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;DayStartMinuteDateTimePicker.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;NightStartMinuteDateTimePicker.Name" xml:space="preserve">
-    <value>NightStartMinuteDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;NightStartMinuteDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightStartMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightStartMinuteDateTimePicker.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;NightStartHourDateTimePicker.Name" xml:space="preserve">
-    <value>NightStartHourDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;NightStartHourDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightStartHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightStartHourDateTimePicker.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Name" xml:space="preserve">
-    <value>NightTransitionEnabledCheckedBox</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Name" xml:space="preserve">
-    <value>DayStartHourDateTimePicker</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;DayStartHourDateTimePicker.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Name" xml:space="preserve">
-    <value>NightEndTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightEndTimeLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="NightTransitionControlGroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 7</value>
-  </data>
-  <data name="NightTransitionControlGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 179</value>
-  </data>
-  <data name="NightTransitionControlGroup.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="NightTransitionControlGroup.Text" xml:space="preserve">
-    <value>Day Night Cycle</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionControlGroup.Name" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionControlGroup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionControlGroup.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;NightTransitionControlGroup.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="TransitionTimeMinuteDateTimePicker.CustomFormat" xml:space="preserve">
@@ -439,7 +319,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;TransitionTimeMinuteDateTimePicker.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -469,7 +349,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;TransitionTimeHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;TransitionTimeHourDateTimePicker.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -499,7 +379,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DayStartMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;DayStartMinuteDateTimePicker.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -529,7 +409,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NightStartMinuteDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;NightStartMinuteDateTimePicker.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -559,39 +439,39 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NightStartHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;NightStartHourDateTimePicker.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.AutoSize" type="System.Boolean, mscorlib">
+  <data name="NightTransitionEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="NightTransitionEnabledCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="NightTransitionEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 17</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="NightTransitionEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 19</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="NightTransitionEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="NightTransitionEnabledCheckedBox.Text" xml:space="preserve">
+  <data name="NightTransitionEnabledCheckBox.Text" xml:space="preserve">
     <value>Enable</value>
   </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Name" xml:space="preserve">
-    <value>NightTransitionEnabledCheckedBox</value>
+  <data name="&gt;&gt;NightTransitionEnabledCheckBox.Name" xml:space="preserve">
+    <value>NightTransitionEnabledCheckBox</value>
   </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;NightTransitionEnabledCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+  <data name="&gt;&gt;NightTransitionEnabledCheckBox.Parent" xml:space="preserve">
+    <value>DayNightCycleGroupBox</value>
   </data>
-  <data name="&gt;&gt;NightTransitionEnabledCheckedBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;NightTransitionEnabledCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="DayStartHourDateTimePicker.CustomFormat" xml:space="preserve">
@@ -619,7 +499,7 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DayStartHourDateTimePicker.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;DayStartHourDateTimePicker.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -649,10 +529,34 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NightEndTimeLabel.Parent" xml:space="preserve">
-    <value>NightTransitionControlGroup</value>
+    <value>DayNightCycleGroupBox</value>
   </data>
   <data name="&gt;&gt;NightEndTimeLabel.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="DayNightCycleGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 7</value>
+  </data>
+  <data name="DayNightCycleGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 179</value>
+  </data>
+  <data name="DayNightCycleGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="DayNightCycleGroupBox.Text" xml:space="preserve">
+    <value>Day Night Cycle</value>
+  </data>
+  <data name="&gt;&gt;DayNightCycleGroupBox.Name" xml:space="preserve">
+    <value>DayNightCycleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;DayNightCycleGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DayNightCycleGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DayNightCycleGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;OpacityNightValueBox.Name" xml:space="preserve">
     <value>OpacityNightValueBox</value>
@@ -661,7 +565,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityNightValueBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityNightValueBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -673,7 +577,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityDayValueBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityDayValueBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -685,33 +589,33 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DimmingEnableCheckBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;DimmingEnableCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="DimmingControlGroup.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="DimmingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 7</value>
   </data>
-  <data name="DimmingControlGroup.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="DimmingGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 257</value>
   </data>
-  <data name="DimmingControlGroup.TabIndex" type="System.Int32, mscorlib">
+  <data name="DimmingGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="DimmingControlGroup.Text" xml:space="preserve">
+  <data name="DimmingGroupBox.Text" xml:space="preserve">
     <value>Dimming</value>
   </data>
-  <data name="&gt;&gt;DimmingControlGroup.Name" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+  <data name="&gt;&gt;DimmingGroupBox.Name" xml:space="preserve">
+    <value>DimmingGroupBox</value>
   </data>
-  <data name="&gt;&gt;DimmingControlGroup.Type" xml:space="preserve">
+  <data name="&gt;&gt;DimmingGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;DimmingControlGroup.Parent" xml:space="preserve">
+  <data name="&gt;&gt;DimmingGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;DimmingControlGroup.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;DimmingGroupBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="OpacityNightValueBox.Location" type="System.Drawing.Point, System.Drawing">
@@ -730,7 +634,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityNightValueBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityNightValueBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -751,7 +655,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpacityDayValueBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;OpacityDayValueBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -781,7 +685,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DimmingEnableCheckBox.Parent" xml:space="preserve">
-    <value>DimmingControlGroup</value>
+    <value>DimmingGroupBox</value>
   </data>
   <data name="&gt;&gt;DimmingEnableCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -884,7 +788,7 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PreviewNightRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+    <value>PreviewGroupBox</value>
   </data>
   <data name="&gt;&gt;PreviewNightRadioButton.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -896,45 +800,45 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PreviewDayRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+    <value>PreviewGroupBox</value>
   </data>
   <data name="&gt;&gt;PreviewDayRadioButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Name" xml:space="preserve">
-    <value>PreviewEnableCheckedBox</value>
+  <data name="&gt;&gt;PreviewEnableCheckBox.Name" xml:space="preserve">
+    <value>PreviewEnableCheckBox</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;PreviewEnableCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+  <data name="&gt;&gt;PreviewEnableCheckBox.Parent" xml:space="preserve">
+    <value>PreviewGroupBox</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="PreviewGroup.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="PreviewGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 193</value>
   </data>
-  <data name="PreviewGroup.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="PreviewGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 71</value>
   </data>
-  <data name="PreviewGroup.TabIndex" type="System.Int32, mscorlib">
+  <data name="PreviewGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="PreviewGroup.Text" xml:space="preserve">
+  <data name="PreviewGroupBox.Text" xml:space="preserve">
     <value>Preview Dimming</value>
   </data>
-  <data name="&gt;&gt;PreviewGroup.Name" xml:space="preserve">
-    <value>PreviewGroup</value>
+  <data name="&gt;&gt;PreviewGroupBox.Name" xml:space="preserve">
+    <value>PreviewGroupBox</value>
   </data>
-  <data name="&gt;&gt;PreviewGroup.Type" xml:space="preserve">
+  <data name="&gt;&gt;PreviewGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PreviewGroup.Parent" xml:space="preserve">
+  <data name="&gt;&gt;PreviewGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;PreviewGroup.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;PreviewGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="PreviewNightRadioButton.AutoSize" type="System.Boolean, mscorlib">
@@ -962,7 +866,7 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PreviewNightRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+    <value>PreviewGroupBox</value>
   </data>
   <data name="&gt;&gt;PreviewNightRadioButton.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -989,40 +893,88 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PreviewDayRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+    <value>PreviewGroupBox</value>
   </data>
   <data name="&gt;&gt;PreviewDayRadioButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="PreviewEnableCheckedBox.AutoSize" type="System.Boolean, mscorlib">
+  <data name="PreviewEnableCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="PreviewEnableCheckedBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="PreviewEnableCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="PreviewEnableCheckedBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="PreviewEnableCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
   </data>
-  <data name="PreviewEnableCheckedBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="PreviewEnableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 19</value>
   </data>
-  <data name="PreviewEnableCheckedBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="PreviewEnableCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
-  <data name="PreviewEnableCheckedBox.Text" xml:space="preserve">
+  <data name="PreviewEnableCheckBox.Text" xml:space="preserve">
     <value>Enable</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Name" xml:space="preserve">
-    <value>PreviewEnableCheckedBox</value>
+  <data name="&gt;&gt;PreviewEnableCheckBox.Name" xml:space="preserve">
+    <value>PreviewEnableCheckBox</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;PreviewEnableCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.Parent" xml:space="preserve">
-    <value>PreviewGroup</value>
+  <data name="&gt;&gt;PreviewEnableCheckBox.Parent" xml:space="preserve">
+    <value>PreviewGroupBox</value>
   </data>
-  <data name="&gt;&gt;PreviewEnableCheckedBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Name" xml:space="preserve">
+    <value>DimWindowCheckBox</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Name" xml:space="preserve">
+    <value>RunOnStartUpCheckBox</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="OptionsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 270</value>
+  </data>
+  <data name="OptionsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 41</value>
+  </data>
+  <data name="OptionsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="OptionsGroupBox.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Name" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="DimWindowCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1049,7 +1001,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DimWindowCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>OptionsGroupBox</value>
   </data>
   <data name="&gt;&gt;DimWindowCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1076,34 +1028,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;RunOnStartUpCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>OptionsGroupBox</value>
   </data>
   <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 270</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 41</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Options</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

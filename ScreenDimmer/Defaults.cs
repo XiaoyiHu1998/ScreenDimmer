@@ -22,11 +22,7 @@ namespace ScreenDimmer
         public static bool EnableTransition = false;
         public static DateTime TransitionStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
         public static DateTime TransitionEnd = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
-        public static DateTime TransitionTime = new DateTime(DateTime.Now.Year, 1, 1, 1, 30, 0);
-        //public static DateTime StartHour = new DateTime(DateTime.Now.Year, 1, 1, 19, 0, 0);
-        //public static DateTime StartMinute = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
-        //public static DateTime EndHour = new DateTime(DateTime.Now.Year, 1, 1, 6, 0, 0);
-        //public static DateTime EndMinute = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+        public static DateTime TransitionTime = new DateTime(DateTime.Now.Year, 1, 1, 2, 30, 0);
         public static int TransitionTimeHourIndex = 1;
         public static int TransitionTimeMinutesIndex = 2;
 
