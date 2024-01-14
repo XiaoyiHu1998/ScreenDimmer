@@ -19,6 +19,7 @@ namespace ScreenDimmer
         public FormManager(CoreLogic core)
         {
             InitializeComponent();
+            SetTimer();
 
             this.core = core;
             overlayForms = new List<OverlayForm>();
@@ -37,14 +38,12 @@ namespace ScreenDimmer
 
             settingsForm = new SettingsForm(core, this, OverlayUpdateTick);
             settingsForm.Show();
-
-            SetTimer();
         }
 
         private void SetTimer()
         {
             overlayUpdateTimer = new Timer();
-            overlayUpdateTimer.Interval = (int)Math.Floor(Default.UpdateIntervalSeconds * 1000);
+            overlayUpdateTimer.Interval = (int)Math.Floor(Default.MaxTransitionUpdateIntervalSeconds * 1000);
             overlayUpdateTimer.Tick += new EventHandler(OverlayUpdateTick);
             overlayUpdateTimer.Start();
         }
@@ -52,6 +51,10 @@ namespace ScreenDimmer
         private void OverlayUpdateTick(object sender, EventArgs e)
         {
             core.Update();
+            overlayUpdateTimer.Stop();
+            overlayUpdateTimer.Interval = core.GetUpdateTimerInterval();
+            overlayUpdateTimer.Start();
+
             foreach (OverlayForm overlayForm in overlayForms)
             {
                 overlayForm.UpdateOpacity();
@@ -73,7 +76,6 @@ namespace ScreenDimmer
             this.Text = "FormManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.ResumeLayout(false);
-
         }
     }
 }

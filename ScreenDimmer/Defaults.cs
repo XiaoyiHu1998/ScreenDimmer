@@ -10,7 +10,7 @@ namespace ScreenDimmer
 {
     public static class Default
     {
-        public static float UpdateIntervalSeconds = 1.0f;
+        public static float MaxTransitionUpdateIntervalSeconds = 1.0f;
 
         public static bool EnableDimming = true;
         public static int OpacityDay = 10;
@@ -19,6 +19,7 @@ namespace ScreenDimmer
         public static bool dimSettingsForm = false;
         public static bool RunOnStartup = true;
 
+        public static int MinTransitionSteps = 60 * 30;
         public static bool EnableTransition = false;
         public static DateTime TransitionStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
         public static DateTime TransitionEnd = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
@@ -39,6 +40,7 @@ namespace ScreenDimmer
             this.opacityNight = Default.OpacityNight;
             this.maxTrueOpacity = Default.MaxTrueOpacity;
 
+            this.minTransitionSteps = Default.MinTransitionSteps;
             this.nightStartHour = Default.TransitionStart.Hour;
             this.nightStartMinute = Default.TransitionStart.Minute;
             this.dayStartHour = Default.TransitionEnd.Hour;

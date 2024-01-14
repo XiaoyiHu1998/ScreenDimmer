@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
@@ -36,6 +35,7 @@ namespace ScreenDimmer
         private DateTime nightTransitionStart;
         private DateTime nightTransitionEnd;
         private TimeSpan transitionTimeSpan;
+        private int minTransitionSteps;
 
         //Public members
         public PreviewSelection previewSelection;
@@ -119,7 +119,7 @@ namespace ScreenDimmer
         {
             Func<float, float> EasingFunction = x => (float)(-(Math.Cos(Math.PI * x) - 1.0f) / 2.0f);
 
-            float interpolationPoint = Math.Min(Math.Max((float)transitionTimePassed / (float)transitionTimeSpan.TotalSeconds, 0), 1);
+            float interpolationPoint = Math.Min(Math.Max(transitionTimePassed / (float)transitionTimeSpan.TotalMilliseconds, 0.0f), 1.0f);
             if (dimmingPhase == DimmingPhase.DayStart)
                 interpolationPoint = 1.0f - interpolationPoint;
 
@@ -146,8 +146,8 @@ namespace ScreenDimmer
                 return;
             }
 
-            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).Duration().TotalSeconds);
-            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).Duration().TotalSeconds);
+            int dayStartDelta = (int)Math.Abs(dayTransitionStart.Subtract(now).Duration().TotalMilliseconds);
+            int nightStartDelta = (int)Math.Abs(nightTransitionStart.Subtract(now).Duration().TotalMilliseconds);
 
             switch (dimmingPhase)
             {
@@ -170,6 +170,22 @@ namespace ScreenDimmer
         {
             Func<float, float> TrueOverlayOpacity = x => Math.Max(Math.Min(x / 100.0f, maxTrueOpacity), 0.0f);
             overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
+        }
+
+        public int GetUpdateTimerInterval()
+        {
+            if(dimmingPhase == DimmingPhase.DayStart || dimmingPhase == DimmingPhase.NightStart)
+            {
+                return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / minTransitionSteps), Default.MaxTransitionUpdateIntervalSeconds * 1000f);
+            }
+
+            DateTime nextTransitionDateTime = (dimmingPhase == DimmingPhase.Day) ? nightTransitionStart : dayTransitionStart;
+            if (now > nextTransitionDateTime)
+            {
+                nextTransitionDateTime = nextTransitionDateTime.AddDays(1);
+            }
+
+            return (int)Math.Floor(Math.Abs(nextTransitionDateTime.Subtract(now).Duration().TotalMilliseconds));
         }
 
         public void EnableDimming()
