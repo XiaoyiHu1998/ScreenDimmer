@@ -48,6 +48,9 @@ namespace ScreenDimmer
         private CheckBox RunOnStartUpCheckBox;
         private CheckBox NightTransitionEnabledCheckBox;
 
+        private ContextMenu NotifyContextMenu;
+        private MenuItem NotifyContextMenuQuit;
+
         public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
         {
             this.parentForm = parentForm;
@@ -56,6 +59,16 @@ namespace ScreenDimmer
             InitializeComponent();
             SetDefaultValues();
             this.TopMost = !dimSettingsForm;
+
+            //context menu setup for NotifyIcon
+            NotifyContextMenu = new ContextMenu();
+            NotifyContextMenuQuit = new MenuItem();
+
+            NotifyContextMenu.MenuItems.Add(NotifyContextMenuQuit);
+            NotifyContextMenuQuit.Index = 0;
+            NotifyContextMenuQuit.Text = "Exit";
+            NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormClose);
+            NotifyIcon.ContextMenu = NotifyContextMenu;
         }
 
         ~SettingsForm()
@@ -74,18 +87,19 @@ namespace ScreenDimmer
 
         #region General
         //________________ General ________________
-        private void SettingsForm_Closing(object sender, EventArgs e)
+        private void SettingsFormClose(object sender, EventArgs e)
         {
             NotifyIcon.Visible = false;
             NotifyIcon = null;
             parentForm.Close();
         }
 
-        private void SettignsFormResize(object sender, EventArgs e)
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized)  // only hide if minimizing the form
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                e.Cancel = true;
+                this.WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
             }
@@ -94,9 +108,9 @@ namespace ScreenDimmer
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
             this.Visible = true;
-            WindowState = FormWindowState.Normal;
 
             this.TopMost = true;
             this.TopMost = !dimSettingsForm;
@@ -579,8 +593,7 @@ namespace ScreenDimmer
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_Closing);
-            this.Resize += new System.EventHandler(this.SettignsFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
             this.DayNightCycleGroupBox.ResumeLayout(false);
@@ -593,11 +606,6 @@ namespace ScreenDimmer
             this.OptionsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
-        }
-
-        private void SettingsForm_Closing()
-        {
-            System.Environment.Exit(0);
         }
     }
 

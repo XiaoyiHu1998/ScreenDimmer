@@ -558,66 +558,6 @@
   <data name="&gt;&gt;DayNightCycleGroupBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;OpacityNightValueBox.Name" xml:space="preserve">
-    <value>OpacityNightValueBox</value>
-  </data>
-  <data name="&gt;&gt;OpacityNightValueBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OpacityNightValueBox.Parent" xml:space="preserve">
-    <value>DimmingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;OpacityNightValueBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;OpacityDayValueBox.Name" xml:space="preserve">
-    <value>OpacityDayValueBox</value>
-  </data>
-  <data name="&gt;&gt;OpacityDayValueBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OpacityDayValueBox.Parent" xml:space="preserve">
-    <value>DimmingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;OpacityDayValueBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;DimmingEnableCheckBox.Name" xml:space="preserve">
-    <value>DimmingEnableCheckBox</value>
-  </data>
-  <data name="&gt;&gt;DimmingEnableCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DimmingEnableCheckBox.Parent" xml:space="preserve">
-    <value>DimmingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;DimmingEnableCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="DimmingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
-  </data>
-  <data name="DimmingGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 257</value>
-  </data>
-  <data name="DimmingGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="DimmingGroupBox.Text" xml:space="preserve">
-    <value>Dimming</value>
-  </data>
-  <data name="&gt;&gt;DimmingGroupBox.Name" xml:space="preserve">
-    <value>DimmingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;DimmingGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DimmingGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;DimmingGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="OpacityNightValueBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 207</value>
   </data>
@@ -689,6 +629,30 @@
   </data>
   <data name="&gt;&gt;DimmingEnableCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="DimmingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 7</value>
+  </data>
+  <data name="DimmingGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 257</value>
+  </data>
+  <data name="DimmingGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="DimmingGroupBox.Text" xml:space="preserve">
+    <value>Dimming</value>
+  </data>
+  <data name="&gt;&gt;DimmingGroupBox.Name" xml:space="preserve">
+    <value>DimmingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;DimmingGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DimmingGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DimmingGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="NotifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -781,66 +745,6 @@
   <data name="NotifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Name" xml:space="preserve">
-    <value>PreviewNightRadioButton</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Name" xml:space="preserve">
-    <value>PreviewDayRadioButton</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Name" xml:space="preserve">
-    <value>PreviewEnableCheckBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="PreviewGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 193</value>
-  </data>
-  <data name="PreviewGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 71</value>
-  </data>
-  <data name="PreviewGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="PreviewGroupBox.Text" xml:space="preserve">
-    <value>Preview Dimming</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Name" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="PreviewNightRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -928,53 +832,29 @@
   <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;DimWindowCheckBox.Name" xml:space="preserve">
-    <value>DimWindowCheckBox</value>
+  <data name="PreviewGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 193</value>
   </data>
-  <data name="&gt;&gt;DimWindowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="PreviewGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 71</value>
   </data>
-  <data name="&gt;&gt;DimWindowCheckBox.Parent" xml:space="preserve">
-    <value>OptionsGroupBox</value>
+  <data name="PreviewGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="&gt;&gt;DimWindowCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="PreviewGroupBox.Text" xml:space="preserve">
+    <value>Preview Dimming</value>
   </data>
-  <data name="&gt;&gt;RunOnStartUpCheckBox.Name" xml:space="preserve">
-    <value>RunOnStartUpCheckBox</value>
+  <data name="&gt;&gt;PreviewGroupBox.Name" xml:space="preserve">
+    <value>PreviewGroupBox</value>
   </data>
-  <data name="&gt;&gt;RunOnStartUpCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RunOnStartUpCheckBox.Parent" xml:space="preserve">
-    <value>OptionsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="OptionsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 270</value>
-  </data>
-  <data name="OptionsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 41</value>
-  </data>
-  <data name="OptionsGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="OptionsGroupBox.Text" xml:space="preserve">
-    <value>Options</value>
-  </data>
-  <data name="&gt;&gt;OptionsGroupBox.Name" xml:space="preserve">
-    <value>OptionsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;OptionsGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;PreviewGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;PreviewGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;PreviewGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="DimWindowCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1032,6 +912,30 @@
   </data>
   <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="OptionsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 270</value>
+  </data>
+  <data name="OptionsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 41</value>
+  </data>
+  <data name="OptionsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="OptionsGroupBox.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Name" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

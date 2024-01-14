@@ -65,7 +65,7 @@ namespace ScreenDimmer
             this.RunOnStartUpCheckBox.Checked = Default.RunOnStartup;
 
 
-            this.NightTransitionEnabledCheckedBox.Checked = Default.EnableTransition;
+            this.NightTransitionEnabledCheckBox.Checked = Default.EnableTransition;
             this.NightStartMinuteDateTimePicker.Value = Default.TransitionStart;
             this.NightStartHourDateTimePicker.Value = Default.TransitionStart;
             this.DayStartMinuteDateTimePicker.Value = Default.TransitionEnd;
@@ -73,7 +73,7 @@ namespace ScreenDimmer
             this.TransitionTimeMinuteDateTimePicker.Value = Default.TransitionTime;
             this.TransitionTimeHourDateTimePicker.Value = Default.TransitionTime;
 
-            this.PreviewEnableCheckedBox.Checked = Default.PreviewEnabled;
+            this.PreviewEnableCheckBox.Checked = Default.PreviewEnabled;
             this.PreviewDayRadioButton.Checked = true;
             this.PreviewNightRadioButton.Checked = false;
         }
