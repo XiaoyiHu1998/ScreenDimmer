@@ -9,6 +9,7 @@ using Microsoft.Win32;
 
 namespace ScreenDimmer
 {
+
     public partial class SettingsForm : Form
     {
         //reference to other forms
@@ -107,18 +108,24 @@ namespace ScreenDimmer
 
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
-            this.Visible = true;
-
-            this.TopMost = true;
-            this.TopMost = !dimSettingsForm;
-
-            if (CanFocus)
+            if (this.WindowState == FormWindowState.Minimized)
             {
-                Focus();
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                WindowState = FormWindowState.Normal;
+                this.ShowInTaskbar = true;
+                this.Visible = true;
+
+                this.TopMost = true;
+                this.TopMost = !dimSettingsForm;
             }
+
+            this.BringToFront();
+            this.Activate();
+        }
+
+        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            NotifyIcon_MouseClick(sender, e);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -524,6 +531,7 @@ namespace ScreenDimmer
             // 
             resources.ApplyResources(this.NotifyIcon, "NotifyIcon");
             this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
+            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // PreviewGroupBox
             // 
@@ -608,7 +616,5 @@ namespace ScreenDimmer
 
         }
     }
-
-
 
 }
