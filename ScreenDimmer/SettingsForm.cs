@@ -100,6 +100,16 @@ namespace ScreenDimmer
                 this.WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
+
+                ExportSettingsJson();
+            }
+        }
+
+        private void SettingsForm_Resize(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Minimized)
+            {
+                ExportSettingsJson();
             }
         }
 
@@ -601,6 +611,7 @@ namespace ScreenDimmer
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
+            this.Resize += new System.EventHandler(this.SettingsForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
             this.DayNightCycleGroupBox.ResumeLayout(false);
