@@ -68,14 +68,26 @@ namespace ScreenDimmer
             // FormManager
             // 
             this.ClientSize = new System.Drawing.Size(10, 10);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "FormManager";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FormManager";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.ResumeLayout(false);
+            this.Visible = false;
+            this.Opacity = 0;
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x20;  // WS_EX_TRANSPARENT
+                return cp;
+            }
         }
     }
 }
