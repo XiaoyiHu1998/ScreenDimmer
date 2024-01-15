@@ -9,7 +9,6 @@ using Microsoft.Win32;
 
 namespace ScreenDimmer
 {
-
     public partial class SettingsForm : Form
     {
         //reference to other forms
@@ -57,23 +56,20 @@ namespace ScreenDimmer
             this.parentForm = parentForm;
             this.core = core;
             this.overlayUpdateTick = overlayUpdateTick;
+
             InitializeComponent();
-            SetDefaultValues();
+            SetNotifyIconContextMenu();
             this.TopMost = !dimSettingsForm;
 
-            //context menu setup for NotifyIcon
-            NotifyContextMenu = new ContextMenu();
-            NotifyContextMenuQuit = new MenuItem();
-
-            NotifyContextMenu.MenuItems.Add(NotifyContextMenuQuit);
-            NotifyContextMenuQuit.Index = 0;
-            NotifyContextMenuQuit.Text = "Exit";
-            NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormClose);
-            NotifyIcon.ContextMenu = NotifyContextMenu;
+            if (!ImportSettingsJson())
+            {
+                SetDefaultSettings();
+            }
         }
 
         ~SettingsForm()
         {
+            ExportSettingsJson();
             NotifyIcon.Visible = false;
             NotifyIcon = null;
         }
@@ -90,6 +86,7 @@ namespace ScreenDimmer
         //________________ General ________________
         private void SettingsFormClose(object sender, EventArgs e)
         {
+            ExportSettingsJson();
             NotifyIcon.Visible = false;
             NotifyIcon = null;
             parentForm.Close();
@@ -139,14 +136,16 @@ namespace ScreenDimmer
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        public static int BoxIndexToHour(int boxIndex)
+        private void SetNotifyIconContextMenu()
         {
-            return boxIndex;
-        }
+            NotifyContextMenu = new ContextMenu();
+            NotifyContextMenuQuit = new MenuItem();
 
-        public static int BoxIndexToMinute(int boxIndex)
-        {
-            return boxIndex * 5;
+            NotifyContextMenu.MenuItems.Add(NotifyContextMenuQuit);
+            NotifyContextMenuQuit.Index = 0;
+            NotifyContextMenuQuit.Text = "Exit";
+            NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormClose);
+            NotifyIcon.ContextMenu = NotifyContextMenu;
         }
         #endregion
 

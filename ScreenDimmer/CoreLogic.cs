@@ -59,7 +59,7 @@ namespace ScreenDimmer
         public CoreLogic()
         {
             UpdateOverlayOpacityCurrent();
-            SetDefaultValues();
+            SetDefaultSettings();
             Update();
         }
 
@@ -176,7 +176,7 @@ namespace ScreenDimmer
         {
             if(dimmingPhase == DimmingPhase.DayStart || dimmingPhase == DimmingPhase.NightStart)
             {
-                return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / minTransitionSteps), Default.MaxTransitionUpdateIntervalSeconds * 1000f);
+                return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / minTransitionSteps), DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000f);
             }
 
             DateTime nextTransitionDateTime = (dimmingPhase == DimmingPhase.Day) ? nightTransitionStart : dayTransitionStart;

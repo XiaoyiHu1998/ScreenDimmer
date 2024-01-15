@@ -43,7 +43,7 @@ namespace ScreenDimmer
         private void SetTimer()
         {
             overlayUpdateTimer = new Timer();
-            overlayUpdateTimer.Interval = (int)Math.Floor(Default.MaxTransitionUpdateIntervalSeconds * 1000);
+            overlayUpdateTimer.Interval = (int)Math.Floor(DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000);
             overlayUpdateTimer.Tick += new EventHandler(OverlayUpdateTick);
             overlayUpdateTimer.Start();
         }
