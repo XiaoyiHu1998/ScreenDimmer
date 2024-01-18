@@ -15,6 +15,8 @@ namespace ScreenDimmer
         FormManager parentForm;
         CoreLogic core;
         Action<object, EventArgs> overlayUpdateTick;
+        public float northDegrees { get; set; }
+        public float eastDegrees { get; set; }
 
         private bool dimSettingsForm;
 
@@ -49,6 +51,8 @@ namespace ScreenDimmer
         private CheckBox NightTransitionEnabledCheckBox;
 
         private ContextMenu NotifyContextMenu;
+        private CheckBox UseSunPositionButton;
+        private Button LocationButton;
         private MenuItem NotifyContextMenuQuit;
 
         public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
@@ -349,6 +353,27 @@ namespace ScreenDimmer
                 registryKey.DeleteValue("ScreenDimmer", false);
             }
         }
+
+        private void UseSunPositionButton_CheckedChanged(object sender, EventArgs e)
+        {
+            Action<bool> toggleTransitionTimePickers = (disable) =>
+            {
+                DayStartHourDateTimePicker.Enabled = !disable;
+                DayStartMinuteDateTimePicker.Enabled = !disable;
+                NightStartHourDateTimePicker.Enabled = !disable;
+                NightStartMinuteDateTimePicker.Enabled = !disable;
+            };
+
+            toggleTransitionTimePickers(UseSunPositionButton.Checked);
+            core.sunBasedDimming = UseSunPositionButton.Checked;
+        }
+
+        private void LocationButton_Click(object sender, EventArgs e)
+        {
+            LocationForm locationForm = new LocationForm(core, this);
+            locationForm.Show();
+            locationForm.Location = this.Location;
+        }
         #endregion
 
         private void InitializeComponent()
@@ -382,6 +407,8 @@ namespace ScreenDimmer
             this.OptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.DimWindowCheckBox = new System.Windows.Forms.CheckBox();
             this.RunOnStartUpCheckBox = new System.Windows.Forms.CheckBox();
+            this.UseSunPositionButton = new System.Windows.Forms.CheckBox();
+            this.LocationButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).BeginInit();
             this.DayNightCycleGroupBox.SuspendLayout();
@@ -577,6 +604,8 @@ namespace ScreenDimmer
             // 
             // OptionsGroupBox
             // 
+            this.OptionsGroupBox.Controls.Add(this.LocationButton);
+            this.OptionsGroupBox.Controls.Add(this.UseSunPositionButton);
             this.OptionsGroupBox.Controls.Add(this.DimWindowCheckBox);
             this.OptionsGroupBox.Controls.Add(this.RunOnStartUpCheckBox);
             this.OptionsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
@@ -597,6 +626,21 @@ namespace ScreenDimmer
             this.RunOnStartUpCheckBox.Name = "RunOnStartUpCheckBox";
             this.RunOnStartUpCheckBox.UseVisualStyleBackColor = true;
             this.RunOnStartUpCheckBox.CheckedChanged += new System.EventHandler(this.RunOnStartupCheckBox_CheckedChanged);
+            // 
+            // UseSunPositionButton
+            // 
+            resources.ApplyResources(this.UseSunPositionButton, "UseSunPositionButton");
+            this.UseSunPositionButton.Name = "UseSunPositionButton";
+            this.UseSunPositionButton.UseVisualStyleBackColor = true;
+            this.UseSunPositionButton.CheckedChanged += new System.EventHandler(this.UseSunPositionButton_CheckedChanged);
+            // 
+            // LocationButton
+            // 
+            resources.ApplyResources(this.LocationButton, "LocationButton");
+            this.LocationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LocationButton.Name = "LocationButton";
+            this.LocationButton.UseVisualStyleBackColor = true;
+            this.LocationButton.Click += new System.EventHandler(this.LocationButton_Click);
             // 
             // SettingsForm
             // 

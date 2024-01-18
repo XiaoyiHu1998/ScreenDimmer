@@ -23,6 +23,8 @@ namespace ScreenDimmer
         public static DateTime NightStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
         public static DateTime DayStart = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
         public static DateTime TransitionTime = new DateTime(DateTime.Now.Year, 1, 1, 2, 30, 0);
+        public static float Latitude = 0.0f;
+        public static float Longitude = 0.0f;
 
         public static bool PreviewEnabled = false;
         public static PreviewSelection PreviewState = PreviewSelection.Day;
@@ -48,8 +50,10 @@ namespace ScreenDimmer
         public int NightStartHour {get; set;}
         public int DayStartMinute {get; set;}
         public int DayStartHour {get; set;}
-        public int TransitionTimeMinute {get; set;}
-        public int TransitionTimeHour {get; set;}
+        public int TransitionTimeMinute {get; set; }
+        public int TransitionTimeHour { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
 
         public bool PreviewEnabled {get; set;}
         public bool PreviewDay {get; set;}
@@ -76,6 +80,9 @@ namespace ScreenDimmer
             this.transitionTimeHour = DefaultSettings.TransitionTime.Hour;
             this.transitionTimeMinute = DefaultSettings.TransitionTime.Minute;
             this.transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
+            this.latitude = DefaultSettings.Latitude;
+            this.longitude = DefaultSettings.Longitude;
+
             this.previewEnabled = DefaultSettings.PreviewEnabled;
             this.previewSelection = DefaultSettings.PreviewState;
         }
@@ -102,6 +109,8 @@ namespace ScreenDimmer
             this.DayStartHourDateTimePicker.Value = DefaultSettings.DayStart;
             this.TransitionTimeMinuteDateTimePicker.Value = DefaultSettings.TransitionTime;
             this.TransitionTimeHourDateTimePicker.Value = DefaultSettings.TransitionTime;
+            this.northDegrees = DefaultSettings.Latitude;
+            this.eastDegrees = DefaultSettings.Longitude;
 
             this.PreviewEnableCheckBox.Checked = DefaultSettings.PreviewEnabled;
             this.PreviewDayRadioButton.Checked = DefaultSettings.PreviewDay;
@@ -130,6 +139,8 @@ namespace ScreenDimmer
                 DayStartHour = this.DayStartMinuteDateTimePicker.Value.Hour,
                 TransitionTimeMinute = this.TransitionTimeMinuteDateTimePicker.Value.Minute,
                 TransitionTimeHour = this.TransitionTimeHourDateTimePicker.Value.Hour,
+                Latitude = this.northDegrees,
+                Longitude = this.eastDegrees,
 
                 PreviewEnabled = this.PreviewEnableCheckBox.Checked,
                 PreviewDay = this.PreviewDayRadioButton.Checked,
@@ -169,6 +180,8 @@ namespace ScreenDimmer
                 this.DayStartHourDateTimePicker.Value = DayStart;
                 this.TransitionTimeMinuteDateTimePicker.Value = TransitionTime;
                 this.TransitionTimeHourDateTimePicker.Value = TransitionTime;
+                this.core.latitude = this.northDegrees = settingsValues.Latitude;
+                this.core.longitude = this.eastDegrees = settingsValues.Longitude;
 
                 this.PreviewEnableCheckBox.Checked = settingsValues.PreviewEnabled;
                 this.PreviewDayRadioButton.Checked = settingsValues.PreviewDay;

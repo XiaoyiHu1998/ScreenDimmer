@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using Innovative.SolarCalculator;
 
 namespace ScreenDimmer
 {
@@ -55,6 +56,9 @@ namespace ScreenDimmer
         public int transitionTimeMinute;
 
         public bool previewEnabled;
+        public bool sunBasedDimming;
+        public float latitude;
+        public float longitude;
 
         public CoreLogic()
         {
