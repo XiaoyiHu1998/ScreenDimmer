@@ -148,7 +148,7 @@ namespace ScreenDimmer
                 PreviewNight = this.PreviewNightRadioButton.Checked,
 
                 dimSettingsForm = this.DimWindowCheckBox.Checked,
-                RunOnStartup = this.RunOnStartUpCheckBox.Checked,,
+                RunOnStartup = this.RunOnStartUpCheckBox.Checked,
                 SunBasedDimming = this.SunBasedDimmingCheckBox.Checked,
                 Latitude = this.northDegrees,
                 Longitude = this.eastDegrees,
