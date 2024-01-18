@@ -131,8 +131,8 @@ namespace ScreenDimmer
         {
             SettingsFormValues settingValues = new SettingsFormValues
             {
-                FormLocationX = this.RestoreBounds.X,
-                FormLocationY = this.RestoreBounds.Y,
+                FormLocationX = (WindowState == FormWindowState.Minimized) ? this.RestoreBounds.X : this.Location.X,
+                FormLocationY = (WindowState == FormWindowState.Minimized) ? this.RestoreBounds.Y : this.Location.Y,
 
                 EnableDimming = this.DimmingEnableCheckBox.Checked,
                 OpacityDay = Int32.Parse(this.OpacityDayValueBox.Text),
