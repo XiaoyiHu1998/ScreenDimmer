@@ -203,8 +203,7 @@ namespace ScreenDimmer
                 this.core.SetSunUpdateTime(settingsValues.SunUpdateHour, settingsValues.SunUpdateMinute, 0);
                 this.latitude = settingsValues.Latitude;
                 this.longitude = settingsValues.Longitude;
-                this.core.latitude = latitude;
-                this.core.longitude = longitude;
+                this.core.UpdateGeoLocation(this.latitude, this.longitude);
 
                 return true;
             }

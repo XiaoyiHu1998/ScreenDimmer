@@ -158,6 +158,7 @@ namespace ScreenDimmer
             NotifyContextMenuQuit.Index = 0;
             NotifyContextMenuQuit.Text = "Exit";
             NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormClose);
+
             NotifyIcon.ContextMenu = NotifyContextMenu;
         }
         #endregion
