@@ -82,7 +82,7 @@ namespace ScreenDimmer
             UpdateOverlayFormOpacity(opacityCurrent);
         }
 
-        private DateTime GetNextSunUpdateTime()
+        private DateTime GetNextSunUpdateDateTime()
         {
             DateTime nextUpdate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, sunUpdateTime.Hour, sunUpdateTime.Minute, sunUpdateTime.Second);
             while (nextUpdate < DateTime.Now)
@@ -104,7 +104,7 @@ namespace ScreenDimmer
         {
             UpdateSun();
             sunUpdateTimer.Stop();
-            sunUpdateTimer.Interval = (int)GetNextSunUpdateTime().Subtract(now).TotalMilliseconds;
+            sunUpdateTimer.Interval = (int)GetNextSunUpdateDateTime().Subtract(now).TotalMilliseconds;
             sunUpdateTimer.Start();
         }
             
@@ -116,7 +116,7 @@ namespace ScreenDimmer
 
             sunUpdateTimer = new System.Timers.Timer();
             sunUpdateTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.SunUpdateTimer_Elapsed);
-            sunUpdateTimer.Interval = (int)GetNextSunUpdateTime().Subtract(DateTime.Now).TotalMilliseconds;
+            sunUpdateTimer.Interval = (int)GetNextSunUpdateDateTime().Subtract(DateTime.Now).TotalMilliseconds;
             sunUpdateTimer.Start();
         }
 
@@ -249,6 +249,19 @@ namespace ScreenDimmer
             this.longitude = longitude;
             UpdateSun();
             Update();
+        }
+
+        public void SetSunUpdateTime(int hour = 0, int minute = 0, int second = 0)
+        {
+            int updateHour = Math.Max(Math.Min(hour, 60), 0);
+            int updateMinute = Math.Max(Math.Min(hour, 60), 0);
+            int updateSecond = Math.Max(Math.Min(hour, 60), 0);
+            sunUpdateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, updateHour, updateMinute, updateSecond);
+        }
+
+        public Tuple<int,int> GetSunUpdateTime()
+        {
+            return new Tuple<int, int>(sunUpdateTime.Hour, sunUpdateTime.Minute);
         }
     }
 }

@@ -62,6 +62,8 @@ namespace ScreenDimmer
         public bool dimSettingsForm { get; set; }
         public bool RunOnStartup { get; set; }
         public bool SunBasedDimming { get; set; }
+        public int SunUpdateHour { get; set; }
+        public int SunUpdateMinute { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
     }
@@ -152,6 +154,8 @@ namespace ScreenDimmer
                 dimSettingsForm = this.DimWindowCheckBox.Checked,
                 RunOnStartup = this.RunOnStartUpCheckBox.Checked,
                 SunBasedDimming = this.SunBasedDimmingCheckBox.Checked,
+                SunUpdateHour = this.core.GetSunUpdateTime().Item1,
+                SunUpdateMinute = this.core.GetSunUpdateTime().Item2,
                 Latitude = this.latitude,
                 Longitude = this.longitude,
             };
@@ -196,6 +200,7 @@ namespace ScreenDimmer
                 this.DimWindowCheckBox.Checked = settingsValues.dimSettingsForm;
                 this.RunOnStartUpCheckBox.Checked = settingsValues.RunOnStartup;
                 this.SunBasedDimmingCheckBox.Checked = settingsValues.SunBasedDimming;
+                this.core.SetSunUpdateTime(settingsValues.SunUpdateHour, settingsValues.SunUpdateMinute, 0);
                 this.latitude = settingsValues.Latitude;
                 this.longitude = settingsValues.Longitude;
                 this.core.latitude = latitude;
