@@ -51,7 +51,7 @@ namespace ScreenDimmer
         private CheckBox NightTransitionEnabledCheckBox;
 
         private ContextMenu NotifyContextMenu;
-        private CheckBox UseSunPositionButton;
+        private CheckBox SunBasedDimmingCheckBox;
         private Button LocationButton;
         private MenuItem NotifyContextMenuQuit;
 
@@ -354,7 +354,7 @@ namespace ScreenDimmer
             }
         }
 
-        private void UseSunPositionButton_CheckedChanged(object sender, EventArgs e)
+        private void SunBasedDimmingCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Action<bool> toggleTransitionTimePickers = (disable) =>
             {
@@ -364,8 +364,8 @@ namespace ScreenDimmer
                 NightStartMinuteDateTimePicker.Enabled = !disable;
             };
 
-            toggleTransitionTimePickers(UseSunPositionButton.Checked);
-            core.sunBasedDimming = UseSunPositionButton.Checked;
+            toggleTransitionTimePickers(SunBasedDimmingCheckBox.Checked);
+            core.sunBasedDimming = SunBasedDimmingCheckBox.Checked;
         }
 
         private void LocationButton_Click(object sender, EventArgs e)
@@ -407,7 +407,7 @@ namespace ScreenDimmer
             this.OptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.DimWindowCheckBox = new System.Windows.Forms.CheckBox();
             this.RunOnStartUpCheckBox = new System.Windows.Forms.CheckBox();
-            this.UseSunPositionButton = new System.Windows.Forms.CheckBox();
+            this.SunBasedDimmingCheckBox = new System.Windows.Forms.CheckBox();
             this.LocationButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).BeginInit();
@@ -605,7 +605,7 @@ namespace ScreenDimmer
             // OptionsGroupBox
             // 
             this.OptionsGroupBox.Controls.Add(this.LocationButton);
-            this.OptionsGroupBox.Controls.Add(this.UseSunPositionButton);
+            this.OptionsGroupBox.Controls.Add(this.SunBasedDimmingCheckBox);
             this.OptionsGroupBox.Controls.Add(this.DimWindowCheckBox);
             this.OptionsGroupBox.Controls.Add(this.RunOnStartUpCheckBox);
             this.OptionsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
@@ -629,10 +629,10 @@ namespace ScreenDimmer
             // 
             // UseSunPositionButton
             // 
-            resources.ApplyResources(this.UseSunPositionButton, "UseSunPositionButton");
-            this.UseSunPositionButton.Name = "UseSunPositionButton";
-            this.UseSunPositionButton.UseVisualStyleBackColor = true;
-            this.UseSunPositionButton.CheckedChanged += new System.EventHandler(this.UseSunPositionButton_CheckedChanged);
+            resources.ApplyResources(this.SunBasedDimmingCheckBox, "UseSunPositionButton");
+            this.SunBasedDimmingCheckBox.Name = "UseSunPositionButton";
+            this.SunBasedDimmingCheckBox.UseVisualStyleBackColor = true;
+            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.SunBasedDimmingCheckBox_CheckedChanged);
             // 
             // LocationButton
             // 

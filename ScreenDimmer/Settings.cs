@@ -23,8 +23,6 @@ namespace ScreenDimmer
         public static DateTime NightStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
         public static DateTime DayStart = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
         public static DateTime TransitionTime = new DateTime(DateTime.Now.Year, 1, 1, 2, 30, 0);
-        public static float Latitude = 0.0f;
-        public static float Longitude = 0.0f;
 
         public static bool PreviewEnabled = false;
         public static PreviewSelection PreviewState = PreviewSelection.Day;
@@ -33,6 +31,9 @@ namespace ScreenDimmer
 
         public static bool dimSettingsForm = false;
         public static bool RunOnStartup = true;
+        public static bool SunBasedDimming = false;
+        public static float Latitude = 0.0f;
+        public static float Longitude = 0.0f;
     }
 
     public struct SettingsFormValues
@@ -41,26 +42,27 @@ namespace ScreenDimmer
         public int FormLocationY { get; set; }
 
         public bool EnableDimming { get; set; }
-        public int OpacityDay {get; set;}
-        public int OpacityNight {get; set;}
-        public float MaxTrueOpacity {get; set;}
+        public int OpacityDay { get; set; }
+        public int OpacityNight { get; set; }
+        public float MaxTrueOpacity { get; set; }
 
-        public bool EnableTransition {get; set;}
-        public int NightStartMinute {get; set;}
-        public int NightStartHour {get; set;}
-        public int DayStartMinute {get; set;}
-        public int DayStartHour {get; set;}
-        public int TransitionTimeMinute {get; set; }
+        public bool EnableTransition { get; set; }
+        public int NightStartMinute { get; set; }
+        public int NightStartHour { get; set; }
+        public int DayStartMinute { get; set; }
+        public int DayStartHour { get; set; }
+        public int TransitionTimeMinute { get; set; }
         public int TransitionTimeHour { get; set; }
+
+        public bool PreviewEnabled { get; set; }
+        public bool PreviewDay { get; set; }
+        public bool PreviewNight { get; set; }
+
+        public bool dimSettingsForm { get; set; }
+        public bool RunOnStartup { get; set; }
+        public bool SunBasedDimming { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
-
-        public bool PreviewEnabled {get; set;}
-        public bool PreviewDay {get; set;}
-        public bool PreviewNight {get; set;}
-
-        public bool dimSettingsForm {get; set;}
-        public bool RunOnStartup {get; set;}
     }
 
     public partial class CoreLogic
@@ -109,8 +111,6 @@ namespace ScreenDimmer
             this.DayStartHourDateTimePicker.Value = DefaultSettings.DayStart;
             this.TransitionTimeMinuteDateTimePicker.Value = DefaultSettings.TransitionTime;
             this.TransitionTimeHourDateTimePicker.Value = DefaultSettings.TransitionTime;
-            this.northDegrees = DefaultSettings.Latitude;
-            this.eastDegrees = DefaultSettings.Longitude;
 
             this.PreviewEnableCheckBox.Checked = DefaultSettings.PreviewEnabled;
             this.PreviewDayRadioButton.Checked = DefaultSettings.PreviewDay;
@@ -118,6 +118,9 @@ namespace ScreenDimmer
 
             this.DimWindowCheckBox.Checked = DefaultSettings.dimSettingsForm;
             this.RunOnStartUpCheckBox.Checked = DefaultSettings.RunOnStartup;
+            this.SunBasedDimmingCheckBox.Checked = DefaultSettings.SunBasedDimming;
+            this.northDegrees = DefaultSettings.Latitude;
+            this.eastDegrees = DefaultSettings.Longitude;
         }
 
         private void ExportSettingsJson()
@@ -139,15 +142,16 @@ namespace ScreenDimmer
                 DayStartHour = this.DayStartMinuteDateTimePicker.Value.Hour,
                 TransitionTimeMinute = this.TransitionTimeMinuteDateTimePicker.Value.Minute,
                 TransitionTimeHour = this.TransitionTimeHourDateTimePicker.Value.Hour,
-                Latitude = this.northDegrees,
-                Longitude = this.eastDegrees,
 
                 PreviewEnabled = this.PreviewEnableCheckBox.Checked,
                 PreviewDay = this.PreviewDayRadioButton.Checked,
                 PreviewNight = this.PreviewNightRadioButton.Checked,
 
                 dimSettingsForm = this.DimWindowCheckBox.Checked,
-                RunOnStartup = this.RunOnStartUpCheckBox.Checked,
+                RunOnStartup = this.RunOnStartUpCheckBox.Checked,,
+                SunBasedDimming = this.SunBasedDimmingCheckBox.Checked,
+                Latitude = this.northDegrees,
+                Longitude = this.eastDegrees,
             };
 
             string jsonString = JsonSerializer.Serialize(settingValues, serializerOptions);
@@ -180,8 +184,6 @@ namespace ScreenDimmer
                 this.DayStartHourDateTimePicker.Value = DayStart;
                 this.TransitionTimeMinuteDateTimePicker.Value = TransitionTime;
                 this.TransitionTimeHourDateTimePicker.Value = TransitionTime;
-                this.core.latitude = this.northDegrees = settingsValues.Latitude;
-                this.core.longitude = this.eastDegrees = settingsValues.Longitude;
 
                 this.PreviewEnableCheckBox.Checked = settingsValues.PreviewEnabled;
                 this.PreviewDayRadioButton.Checked = settingsValues.PreviewDay;
@@ -189,6 +191,9 @@ namespace ScreenDimmer
 
                 this.DimWindowCheckBox.Checked = settingsValues.dimSettingsForm;
                 this.RunOnStartUpCheckBox.Checked = settingsValues.RunOnStartup;
+                this.SunBasedDimmingCheckBox.Checked = settingsValues.SunBasedDimming;
+                this.core.latitude = this.northDegrees = settingsValues.Latitude;
+                this.core.longitude = this.eastDegrees = settingsValues.Longitude;
 
                 return true;
             }
