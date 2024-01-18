@@ -32,8 +32,8 @@ namespace ScreenDimmer
             this.settingsForm = settingsForm;
             this.TopMost = settingsForm.TopMost;
 
-            northDegrees = settingsForm.northDegrees;
-            eastDegrees = settingsForm.eastDegrees;
+            northDegrees = settingsForm.latitude;
+            eastDegrees = settingsForm.longitude;
 
             NorthDegreeBox.Text = northDegrees.ToString();
             EastDegreeBox.Text = eastDegrees.ToString();
@@ -62,10 +62,11 @@ namespace ScreenDimmer
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            core.latitude = northDegrees;
-            core.longitude = eastDegrees;
-            settingsForm.northDegrees = northDegrees;
-            settingsForm.eastDegrees = eastDegrees;
+            core.UpdateGeoLocation(northDegrees, eastDegrees);
+
+            settingsForm.latitude = northDegrees;
+            settingsForm.longitude = eastDegrees;
+
             this.Close();
         }
 
@@ -114,8 +115,8 @@ namespace ScreenDimmer
             this.NorthDegreeBox.Name = "NorthDegreeBox";
             this.NorthDegreeBox.Size = new System.Drawing.Size(54, 20);
             this.NorthDegreeBox.TabIndex = 1;
+            this.NorthDegreeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             this.NorthDegreeBox.LostFocus += new System.EventHandler(this.TextBoxCheck_LostFocus);
-            this.NorthDegreeBox.KeyPress += new KeyPressEventHandler(this.NextControl_KeyPress);
             // 
             // NorthLabel
             // 
@@ -147,7 +148,7 @@ namespace ScreenDimmer
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            this.SaveButton.KeyPress += new KeyPressEventHandler(this.NextControl_KeyPress);
+            this.SaveButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             // 
             // DegreeEastLabel
             // 
@@ -176,8 +177,8 @@ namespace ScreenDimmer
             this.EastDegreeBox.Name = "EastDegreeBox";
             this.EastDegreeBox.Size = new System.Drawing.Size(54, 20);
             this.EastDegreeBox.TabIndex = 2;
+            this.EastDegreeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             this.EastDegreeBox.LostFocus += new System.EventHandler(this.TextBoxCheck_LostFocus);
-            this.EastDegreeBox.KeyPress += new KeyPressEventHandler(this.NextControl_KeyPress);
             // 
             // CancelLocationButton
             // 
@@ -188,7 +189,7 @@ namespace ScreenDimmer
             this.CancelLocationButton.Text = "Cancel";
             this.CancelLocationButton.UseVisualStyleBackColor = true;
             this.CancelLocationButton.Click += new System.EventHandler(this.CancelButton_Click);
-            this.CancelLocationButton.KeyPress += new KeyPressEventHandler(this.NextControl_KeyPress);
+            this.CancelLocationButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             // 
             // LocationForm
             // 

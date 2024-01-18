@@ -32,6 +32,7 @@ namespace ScreenDimmer
         public static bool dimSettingsForm = false;
         public static bool RunOnStartup = true;
         public static bool SunBasedDimming = false;
+        public static DateTime SunUpdateTime = new DateTime(DateTime.Now.Year, 1, 1, 12, 0, 0);
         public static float Latitude = 0.0f;
         public static float Longitude = 0.0f;
     }
@@ -84,6 +85,7 @@ namespace ScreenDimmer
             this.transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
             this.latitude = DefaultSettings.Latitude;
             this.longitude = DefaultSettings.Longitude;
+            this.sunUpdateTime = DefaultSettings.SunUpdateTime;
 
             this.previewEnabled = DefaultSettings.PreviewEnabled;
             this.previewSelection = DefaultSettings.PreviewState;
@@ -119,8 +121,8 @@ namespace ScreenDimmer
             this.DimWindowCheckBox.Checked = DefaultSettings.dimSettingsForm;
             this.RunOnStartUpCheckBox.Checked = DefaultSettings.RunOnStartup;
             this.SunBasedDimmingCheckBox.Checked = DefaultSettings.SunBasedDimming;
-            this.northDegrees = DefaultSettings.Latitude;
-            this.eastDegrees = DefaultSettings.Longitude;
+            this.latitude = DefaultSettings.Latitude;
+            this.longitude = DefaultSettings.Longitude;
         }
 
         private void ExportSettingsJson()
@@ -150,8 +152,8 @@ namespace ScreenDimmer
                 dimSettingsForm = this.DimWindowCheckBox.Checked,
                 RunOnStartup = this.RunOnStartUpCheckBox.Checked,
                 SunBasedDimming = this.SunBasedDimmingCheckBox.Checked,
-                Latitude = this.northDegrees,
-                Longitude = this.eastDegrees,
+                Latitude = this.latitude,
+                Longitude = this.longitude,
             };
 
             string jsonString = JsonSerializer.Serialize(settingValues, serializerOptions);
@@ -192,8 +194,10 @@ namespace ScreenDimmer
                 this.DimWindowCheckBox.Checked = settingsValues.dimSettingsForm;
                 this.RunOnStartUpCheckBox.Checked = settingsValues.RunOnStartup;
                 this.SunBasedDimmingCheckBox.Checked = settingsValues.SunBasedDimming;
-                this.core.latitude = this.northDegrees = settingsValues.Latitude;
-                this.core.longitude = this.eastDegrees = settingsValues.Longitude;
+                this.latitude = settingsValues.Latitude;
+                this.longitude = settingsValues.Longitude;
+                this.core.latitude = latitude;
+                this.core.longitude = longitude;
 
                 return true;
             }

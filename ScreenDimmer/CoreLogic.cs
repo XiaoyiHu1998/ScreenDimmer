@@ -38,6 +38,12 @@ namespace ScreenDimmer
         private TimeSpan transitionTimeSpan;
         private int minTransitionSteps;
 
+        private SolarTimes solarTimes;
+        private System.Timers.Timer sunUpdateTimer;
+        private DateTime sunUpdateTime;
+        private DateTime sunRise;
+        private DateTime sunSet;
+
         //Public members
         public PreviewSelection previewSelection;
         public TimeSpan maxTransitionTimeSpan { get; private set; }
@@ -64,6 +70,7 @@ namespace ScreenDimmer
         {
             UpdateOverlayOpacityCurrent();
             SetDefaultSettings();
+            SetupSunUpdateTimer();
             Update();
         }
 
@@ -75,6 +82,44 @@ namespace ScreenDimmer
             UpdateOverlayFormOpacity(opacityCurrent);
         }
 
+        private DateTime GetNextSunUpdateTime()
+        {
+            DateTime nextUpdate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, sunUpdateTime.Hour, sunUpdateTime.Minute, sunUpdateTime.Second);
+            while (nextUpdate < DateTime.Now)
+            {
+                nextUpdate = nextUpdate.AddDays(1);
+            }
+
+            return nextUpdate;
+        }
+
+        private void UpdateSun()
+        {
+            solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
+            sunRise = solarTimes.Sunrise;
+            sunSet = solarTimes.Sunset;
+        }
+
+        private void SunUpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            UpdateSun();
+            sunUpdateTimer.Stop();
+            sunUpdateTimer.Interval = (int)GetNextSunUpdateTime().Subtract(now).TotalMilliseconds;
+            sunUpdateTimer.Start();
+        }
+            
+        private void SetupSunUpdateTimer()
+        {
+            solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
+            sunRise = solarTimes.Sunrise.ToLocalTime();
+            sunSet = solarTimes.Sunset.ToLocalTime();
+
+            sunUpdateTimer = new System.Timers.Timer();
+            sunUpdateTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.SunUpdateTimer_Elapsed);
+            sunUpdateTimer.Interval = (int)GetNextSunUpdateTime().Subtract(DateTime.Now).TotalMilliseconds;
+            sunUpdateTimer.Start();
+        }
+
         private void UpdateDateTimes()
         {
             Func<DateTime, DateTime> TransitionEndDateTime = startDateTime => startDateTime.AddHours(transitionTimeSpan.TotalMinutes / 60).AddMinutes(transitionTimeSpan.TotalMinutes % 60);
@@ -83,6 +128,12 @@ namespace ScreenDimmer
             nightTransitionStart = new DateTime(now.Year, now.Month, now.Day, nightStartHour, nightStartMinute, 0);
             dayTransitionStart = new DateTime(now.Year, now.Month, now.Day, dayStartHour, dayStartMinute, 0);
             transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
+
+            if (sunBasedDimming)
+            {
+                nightTransitionStart = sunSet;
+                dayTransitionStart = sunRise;
+            }
 
             TimeSpan dayTimeSpan = (dayTransitionStart - nightTransitionStart).Duration();
             TimeSpan nightTimeSpan = (nightTransitionStart - dayTransitionStart).Duration();
@@ -192,15 +243,11 @@ namespace ScreenDimmer
             return (int)Math.Floor(Math.Abs(nextTransitionDateTime.Subtract(now).Duration().TotalMilliseconds));
         }
 
-        public void EnableDimming()
+        public void UpdateGeoLocation(float latitude, float longitude)
         {
-            dimmingEnabled = true;
-            Update();
-        }
-
-        public void DisableDimming()
-        {
-            dimmingEnabled = false;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            UpdateSun();
             Update();
         }
     }

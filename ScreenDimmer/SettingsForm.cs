@@ -15,8 +15,8 @@ namespace ScreenDimmer
         FormManager parentForm;
         CoreLogic core;
         Action<object, EventArgs> overlayUpdateTick;
-        public float northDegrees { get; set; }
-        public float eastDegrees { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
 
         private bool dimSettingsForm;
 
@@ -167,15 +167,7 @@ namespace ScreenDimmer
         //________________ Dimming ________________
         private void DimmingEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (DimmingEnableCheckBox.Checked)
-            {
-                core.EnableDimming();
-            }
-            else
-            {
-                core.DisableDimming();
-            }
-
+            core.dimmingEnabled = DimmingEnableCheckBox.Checked;
             core.Update();
             overlayUpdateTick(sender, e);
         }
@@ -366,6 +358,7 @@ namespace ScreenDimmer
 
             toggleTransitionTimePickers(SunBasedDimmingCheckBox.Checked);
             core.sunBasedDimming = SunBasedDimmingCheckBox.Checked;
+            core.Update();
         }
 
         private void LocationButton_Click(object sender, EventArgs e)
