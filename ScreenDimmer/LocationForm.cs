@@ -113,7 +113,7 @@ namespace ScreenDimmer
             // 
             this.NorthDegreeBox.Location = new System.Drawing.Point(52, 29);
             this.NorthDegreeBox.Name = "NorthDegreeBox";
-            this.NorthDegreeBox.Size = new System.Drawing.Size(54, 20);
+            this.NorthDegreeBox.Size = new System.Drawing.Size(35, 20);
             this.NorthDegreeBox.TabIndex = 1;
             this.NorthDegreeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             this.NorthDegreeBox.LostFocus += new System.EventHandler(this.TextBoxCheck_LostFocus);
@@ -133,7 +133,7 @@ namespace ScreenDimmer
             this.DegreeNorthLabel.AutoSize = true;
             this.DegreeNorthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.DegreeNorthLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.DegreeNorthLabel.Location = new System.Drawing.Point(106, 28);
+            this.DegreeNorthLabel.Location = new System.Drawing.Point(86, 28);
             this.DegreeNorthLabel.Name = "DegreeNorthLabel";
             this.DegreeNorthLabel.Size = new System.Drawing.Size(14, 17);
             this.DegreeNorthLabel.TabIndex = 6;
@@ -141,7 +141,7 @@ namespace ScreenDimmer
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(94, 60);
+            this.SaveButton.Location = new System.Drawing.Point(45, 66);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(52, 23);
             this.SaveButton.TabIndex = 3;
@@ -155,7 +155,7 @@ namespace ScreenDimmer
             this.DegreeEastLabel.AutoSize = true;
             this.DegreeEastLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.DegreeEastLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.DegreeEastLabel.Location = new System.Drawing.Point(207, 26);
+            this.DegreeEastLabel.Location = new System.Drawing.Point(168, 28);
             this.DegreeEastLabel.Name = "DegreeEastLabel";
             this.DegreeEastLabel.Size = new System.Drawing.Size(14, 17);
             this.DegreeEastLabel.TabIndex = 8;
@@ -165,7 +165,7 @@ namespace ScreenDimmer
             // 
             this.EastLabel.AutoSize = true;
             this.EastLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.EastLabel.Location = new System.Drawing.Point(120, 32);
+            this.EastLabel.Location = new System.Drawing.Point(101, 32);
             this.EastLabel.Name = "EastLabel";
             this.EastLabel.Size = new System.Drawing.Size(31, 13);
             this.EastLabel.TabIndex = 7;
@@ -173,16 +173,16 @@ namespace ScreenDimmer
             // 
             // EastDegreeBox
             // 
-            this.EastDegreeBox.Location = new System.Drawing.Point(152, 29);
+            this.EastDegreeBox.Location = new System.Drawing.Point(133, 29);
             this.EastDegreeBox.Name = "EastDegreeBox";
-            this.EastDegreeBox.Size = new System.Drawing.Size(54, 20);
+            this.EastDegreeBox.Size = new System.Drawing.Size(35, 20);
             this.EastDegreeBox.TabIndex = 2;
             this.EastDegreeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NextControl_KeyPress);
             this.EastDegreeBox.LostFocus += new System.EventHandler(this.TextBoxCheck_LostFocus);
             // 
             // CancelLocationButton
             // 
-            this.CancelLocationButton.Location = new System.Drawing.Point(152, 60);
+            this.CancelLocationButton.Location = new System.Drawing.Point(105, 66);
             this.CancelLocationButton.Name = "CancelLocationButton";
             this.CancelLocationButton.Size = new System.Drawing.Size(54, 23);
             this.CancelLocationButton.TabIndex = 4;
@@ -194,7 +194,7 @@ namespace ScreenDimmer
             // LocationForm
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(224, 95);
+            this.ClientSize = new System.Drawing.Size(194, 101);
             this.Controls.Add(this.CancelLocationButton);
             this.Controls.Add(this.DegreeEastLabel);
             this.Controls.Add(this.EastLabel);
