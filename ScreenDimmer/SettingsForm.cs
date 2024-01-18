@@ -100,12 +100,11 @@ namespace ScreenDimmer
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                ExportSettingsJson();
                 e.Cancel = true;
-                this.WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
-
-                ExportSettingsJson();
+                this.WindowState = FormWindowState.Minimized;
             }
         }
 

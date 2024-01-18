@@ -129,8 +129,8 @@ namespace ScreenDimmer
         {
             SettingsFormValues settingValues = new SettingsFormValues
             {
-                FormLocationX = this.Location.X,
-                FormLocationY = this.Location.Y,
+                FormLocationX = this.RestoreBounds.X,
+                FormLocationY = this.RestoreBounds.Y,
 
                 EnableDimming = this.DimmingEnableCheckBox.Checked,
                 OpacityDay = Int32.Parse(this.OpacityDayValueBox.Text),
@@ -167,7 +167,9 @@ namespace ScreenDimmer
                 string jsonContent = System.IO.File.ReadAllText(settingsFileName);
                 SettingsFormValues settingsValues = JsonSerializer.Deserialize<SettingsFormValues>(jsonContent, serializerOptions);
 
-                this.Location = new Point(settingsValues.FormLocationX, settingsValues.FormLocationY);
+                int FormLocationX = Math.Max(settingsValues.FormLocationX, 0);
+                int FormLocationY = Math.Max(settingsValues.FormLocationY, 0);
+                this.Location = new Point(FormLocationX, FormLocationY);
 
                 this.DimmingEnableCheckBox.Checked = settingsValues.EnableDimming;
                 this.OpacityDayValueBox.Text = settingsValues.OpacityDay.ToString();
