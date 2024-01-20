@@ -88,7 +88,7 @@ namespace ScreenDimmer
 
         #region General
         //________________ General ________________
-        private void SettingsFormClose(object sender, EventArgs e)
+        private void SettingsFormExit(object sender, EventArgs e)
         {
             NotifyIcon.Visible = false;
             NotifyIcon = null;
@@ -100,9 +100,9 @@ namespace ScreenDimmer
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                this.WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
-                this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
                 ExportSettingsJson();
             }
@@ -120,17 +120,17 @@ namespace ScreenDimmer
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 WindowState = FormWindowState.Normal;
                 this.ShowInTaskbar = true;
                 this.Visible = true;
-
                 this.TopMost = true;
                 this.TopMost = !dimSettingsForm;
             }
-
-            this.BringToFront();
-            this.Activate();
+            else
+            {
+                this.BringToFront();
+                this.Activate();
+            }
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -157,7 +157,7 @@ namespace ScreenDimmer
             NotifyContextMenu.MenuItems.Add(NotifyContextMenuQuit);
             NotifyContextMenuQuit.Index = 0;
             NotifyContextMenuQuit.Text = "Exit";
-            NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormClose);
+            NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormExit);
 
             NotifyIcon.ContextMenu = NotifyContextMenu;
         }
