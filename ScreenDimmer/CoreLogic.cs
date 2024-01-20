@@ -96,8 +96,8 @@ namespace ScreenDimmer
         private void UpdateSun()
         {
             solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
-            sunRise = solarTimes.Sunrise.ToLocalTime();
-            sunSet = solarTimes.Sunset.ToLocalTime();
+            sunRise = TimeZoneInfo.ConvertTimeFromUtc(solarTimes.Sunrise.ToUniversalTime(), TimeZoneInfo.Local);
+            sunSet = TimeZoneInfo.ConvertTimeFromUtc(solarTimes.Sunset.ToUniversalTime(), TimeZoneInfo.Local);
         }
 
         private void SunUpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
