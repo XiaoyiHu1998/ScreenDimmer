@@ -11,6 +11,7 @@ namespace ScreenDimmer
     {
         private CoreLogic core;
         private SettingsForm settingsForm;
+        private Action<object, EventArgs> overlayUpdateTick;
 
         float northDegrees;
         float eastDegrees;
@@ -25,11 +26,12 @@ namespace ScreenDimmer
         private TextBox EastDegreeBox;
         private Button CancelLocationButton;
 
-        public LocationForm(CoreLogic core, SettingsForm settingsForm)
+        public LocationForm(CoreLogic core, SettingsForm settingsForm, Action<object, EventArgs> overlayUpdateTick)
         {
             InitializeComponent();
             this.core = core;
             this.settingsForm = settingsForm;
+            this.overlayUpdateTick = overlayUpdateTick;
             this.TopMost = settingsForm.TopMost;
 
             northDegrees = settingsForm.latitude;
@@ -67,6 +69,8 @@ namespace ScreenDimmer
             settingsForm.latitude = northDegrees;
             settingsForm.longitude = eastDegrees;
 
+            core.Update();
+            overlayUpdateTick(sender, e);
             this.Close();
         }
 

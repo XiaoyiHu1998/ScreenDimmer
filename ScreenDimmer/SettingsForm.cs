@@ -90,9 +90,9 @@ namespace ScreenDimmer
         //________________ General ________________
         private void SettingsFormClose(object sender, EventArgs e)
         {
-            ExportSettingsJson();
             NotifyIcon.Visible = false;
             NotifyIcon = null;
+            ExportSettingsJson();
             parentForm.Close();
         }
 
@@ -100,11 +100,11 @@ namespace ScreenDimmer
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                ExportSettingsJson();
-                e.Cancel = true;
                 this.ShowInTaskbar = false;
                 this.Visible = false;
                 this.WindowState = FormWindowState.Minimized;
+                e.Cancel = true;
+                ExportSettingsJson();
             }
         }
 
@@ -359,13 +359,14 @@ namespace ScreenDimmer
             toggleTransitionTimePickers(SunBasedDimmingCheckBox.Checked);
             core.sunBasedDimming = SunBasedDimmingCheckBox.Checked;
             core.Update();
+            overlayUpdateTick(sender, e);
         }
 
         private void LocationButton_Click(object sender, EventArgs e)
         {
-            LocationForm locationForm = new LocationForm(core, this);
-            locationForm.Show();
+            LocationForm locationForm = new LocationForm(core, this, overlayUpdateTick);
             locationForm.Location = this.Location;
+            locationForm.Show();
         }
         #endregion
 
