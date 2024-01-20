@@ -65,12 +65,11 @@ namespace ScreenDimmer
         private void SaveButton_Click(object sender, EventArgs e)
         {
             core.UpdateGeoLocation(northDegrees, eastDegrees);
+            overlayUpdateTick(sender, e);
 
             settingsForm.latitude = northDegrees;
             settingsForm.longitude = eastDegrees;
-
-            core.Update();
-            overlayUpdateTick(sender, e);
+            settingsForm.UpdateSunriseSunsetTimes();
             this.Close();
         }
 

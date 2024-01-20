@@ -410,6 +410,18 @@ namespace ScreenDimmer
             overlayUpdateTick(sender, e);
         }
 
+        public void UpdateSunriseSunsetTimes()
+        {
+            DateTime now = DateTime.Now;
+            if (SunBasedDimmingCheckBox.Checked)
+            {
+                NightStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.sunSet.Hour, core.sunSet.Minute, core.sunSet.Second);
+                NightStartMinuteDateTimePicker.Value = NightStartHourDateTimePicker.Value;
+                DayStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.sunRise.Hour, core.sunRise.Minute, core.sunRise.Second);
+                DayStartMinuteDateTimePicker.Value = DayStartHourDateTimePicker.Value;
+            }
+        }
+
         private void LocationButton_Click(object sender, EventArgs e)
         {
             LocationForm locationForm = new LocationForm(core, this, overlayUpdateTick);
