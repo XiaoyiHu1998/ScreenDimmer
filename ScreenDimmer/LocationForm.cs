@@ -109,9 +109,9 @@ namespace ScreenDimmer
             this.LocationLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.LocationLabel.Location = new System.Drawing.Point(12, 9);
             this.LocationLabel.Name = "LocationLabel";
-            this.LocationLabel.Size = new System.Drawing.Size(51, 13);
+            this.LocationLabel.Size = new System.Drawing.Size(140, 13);
             this.LocationLabel.TabIndex = 0;
-            this.LocationLabel.Text = "Location:";
+            this.LocationLabel.Text = "Geo-coordinates in degrees:";
             // 
             // NorthDegreeBox
             // 
