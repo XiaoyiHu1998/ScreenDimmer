@@ -101,6 +101,8 @@ namespace ScreenDimmer
     {
         private void SetDefaultSettings()
         {
+            this.CenterToScreen();
+
             this.DimmingEnableCheckBox.Checked = DefaultSettings.EnableDimming;
             this.OpacityDayValueBox.Text = DefaultSettings.OpacityDay.ToString();
             this.OpacityNightValueBox.Text = DefaultSettings.OpacityNight.ToString();
