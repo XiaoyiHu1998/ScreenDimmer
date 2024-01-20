@@ -11,6 +11,8 @@ namespace ScreenDimmer
 {
     public static class DefaultSettings
     {
+        public static string settingsFileName = "settings.json";
+        public static JsonSerializerOptions serializerOptions = new JsonSerializerOptions { WriteIndented = true };
         public static float MaxTransitionUpdateIntervalSeconds = 1.0f;
 
         public static bool EnableDimming = true;
@@ -96,9 +98,6 @@ namespace ScreenDimmer
 
     public partial class SettingsForm
     {
-        private static string settingsFileName = "settings.json";
-        private static JsonSerializerOptions serializerOptions = new JsonSerializerOptions { WriteIndented = true };
-
         private void SetDefaultSettings()
         {
             this.DimmingEnableCheckBox.Checked = DefaultSettings.EnableDimming;
@@ -160,16 +159,16 @@ namespace ScreenDimmer
                 Longitude = this.longitude,
             };
 
-            string jsonString = JsonSerializer.Serialize(settingValues, serializerOptions);
-            System.IO.File.WriteAllText(settingsFileName, jsonString);
+            string jsonString = JsonSerializer.Serialize(settingValues, DefaultSettings.serializerOptions);
+            System.IO.File.WriteAllText(DefaultSettings.settingsFileName, jsonString);
         }
 
         private bool ImportSettingsJson()
         {
-            if (System.IO.File.Exists("settings.json"))
+            if (System.IO.File.Exists(DefaultSettings.settingsFileName))
             {
-                string jsonContent = System.IO.File.ReadAllText(settingsFileName);
-                SettingsFormValues settingsValues = JsonSerializer.Deserialize<SettingsFormValues>(jsonContent, serializerOptions);
+                string jsonContent = System.IO.File.ReadAllText(DefaultSettings.settingsFileName);
+                SettingsFormValues settingsValues = JsonSerializer.Deserialize<SettingsFormValues>(jsonContent, DefaultSettings.serializerOptions);
 
                 int FormLocationX = Math.Max(settingsValues.FormLocationX, 0);
                 int FormLocationY = Math.Max(settingsValues.FormLocationY, 0);
