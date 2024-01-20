@@ -19,6 +19,7 @@ namespace ScreenDimmer
         public float longitude { get; set; }
 
         private bool dimSettingsForm;
+        private Timer jsonExportTimer;
 
         //UI elements
         private TrackBar OpacityDaySlider;
@@ -61,6 +62,7 @@ namespace ScreenDimmer
             this.core = core;
             this.overlayUpdateTick = overlayUpdateTick;
 
+            SetupJsonExportTimer();
             InitializeComponent();
             SetNotifyIconContextMenu();
             this.TopMost = !dimSettingsForm;
@@ -104,15 +106,6 @@ namespace ScreenDimmer
                 this.ShowInTaskbar = false;
                 this.Visible = false;
                 e.Cancel = true;
-                ExportSettingsJson();
-            }
-        }
-
-        private void SettingsForm_Resize(object sender, EventArgs e)
-        {
-            if(WindowState == FormWindowState.Minimized)
-            {
-                ExportSettingsJson();
             }
         }
 
@@ -160,6 +153,25 @@ namespace ScreenDimmer
             NotifyContextMenuQuit.Click += new EventHandler(this.SettingsFormExit);
 
             NotifyIcon.ContextMenu = NotifyContextMenu;
+        }
+
+        private void jsonExportTimerReset_FormUpdated(object sender, EventArgs e)
+        {
+            jsonExportTimer.Stop();
+            jsonExportTimer.Interval = (int)(DefaultSettings.JsonExportTimerIntervalSeconds * 1000f);
+            jsonExportTimer.Start();
+        }
+
+        private void jsonExportTimer_Tick(object sender, EventArgs e)
+        {
+            ExportSettingsJson();
+            jsonExportTimer.Stop();
+        }
+
+        private void SetupJsonExportTimer()
+        {
+            jsonExportTimer = new Timer();
+            jsonExportTimer.Tick += new EventHandler(this.jsonExportTimer_Tick);
         }
         #endregion
 
@@ -446,6 +458,7 @@ namespace ScreenDimmer
             this.OpacityDaySlider.Maximum = 100;
             this.OpacityDaySlider.Name = "OpacityDaySlider";
             this.OpacityDaySlider.Scroll += new System.EventHandler(this.OpacityDaySlider_Scroll);
+            this.OpacityDaySlider.Scroll += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NightStartTimeLabel
             // 
@@ -458,6 +471,7 @@ namespace ScreenDimmer
             this.OpacityNightSlider.Maximum = 100;
             this.OpacityNightSlider.Name = "OpacityNightSlider";
             this.OpacityNightSlider.Scroll += new System.EventHandler(this.OpacityNightSlider_Scroll);
+            this.OpacityNightSlider.Scroll += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // TransitionTimeLabel
             // 
@@ -498,6 +512,7 @@ namespace ScreenDimmer
             this.TransitionTimeMinuteDateTimePicker.Name = "TransitionTimeMinuteDateTimePicker";
             this.TransitionTimeMinuteDateTimePicker.ShowUpDown = true;
             this.TransitionTimeMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.TransitionTimeMinuteDateTimePicker_ValueChanged);
+            this.TransitionTimeMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // TransitionTimeHourDateTimePicker
             // 
@@ -506,6 +521,7 @@ namespace ScreenDimmer
             this.TransitionTimeHourDateTimePicker.Name = "TransitionTimeHourDateTimePicker";
             this.TransitionTimeHourDateTimePicker.ShowUpDown = true;
             this.TransitionTimeHourDateTimePicker.ValueChanged += new System.EventHandler(this.TransitionTimeHourDateTimePicker_ValueChanged);
+            this.TransitionTimeHourDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // DayStartMinuteDateTimePicker
             // 
@@ -514,6 +530,7 @@ namespace ScreenDimmer
             this.DayStartMinuteDateTimePicker.Name = "DayStartMinuteDateTimePicker";
             this.DayStartMinuteDateTimePicker.ShowUpDown = true;
             this.DayStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartMinuteDateTimePicker_ValueChanged);
+            this.DayStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NightStartMinuteDateTimePicker
             // 
@@ -522,6 +539,7 @@ namespace ScreenDimmer
             this.NightStartMinuteDateTimePicker.Name = "NightStartMinuteDateTimePicker";
             this.NightStartMinuteDateTimePicker.ShowUpDown = true;
             this.NightStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartMinuteDateTimePicker_ValueChanged);
+            this.NightStartMinuteDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NightStartHourDateTimePicker
             // 
@@ -530,6 +548,7 @@ namespace ScreenDimmer
             this.NightStartHourDateTimePicker.Name = "NightStartHourDateTimePicker";
             this.NightStartHourDateTimePicker.ShowUpDown = true;
             this.NightStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.NightStartHourDateTimePicker_ValueChanged);
+            this.NightStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NightTransitionEnabledCheckBox
             // 
@@ -537,6 +556,7 @@ namespace ScreenDimmer
             this.NightTransitionEnabledCheckBox.Name = "NightTransitionEnabledCheckBox";
             this.NightTransitionEnabledCheckBox.UseVisualStyleBackColor = true;
             this.NightTransitionEnabledCheckBox.CheckedChanged += new System.EventHandler(this.NightTransitionEnabledCheckBox_CheckedChanged);
+            this.NightTransitionEnabledCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // DayStartHourDateTimePicker
             // 
@@ -545,6 +565,7 @@ namespace ScreenDimmer
             this.DayStartHourDateTimePicker.Name = "DayStartHourDateTimePicker";
             this.DayStartHourDateTimePicker.ShowUpDown = true;
             this.DayStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.DayStartHourDateTimePicker_ValueChanged);
+            this.DayStartHourDateTimePicker.ValueChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NightEndTimeLabel
             // 
@@ -570,12 +591,14 @@ namespace ScreenDimmer
             resources.ApplyResources(this.OpacityNightValueBox, "OpacityNightValueBox");
             this.OpacityNightValueBox.Name = "OpacityNightValueBox";
             this.OpacityNightValueBox.TextChanged += new System.EventHandler(this.OpacityNightValueBox_TextChanged);
+            this.OpacityNightValueBox.TextChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // OpacityDayValueBox
             // 
             resources.ApplyResources(this.OpacityDayValueBox, "OpacityDayValueBox");
             this.OpacityDayValueBox.Name = "OpacityDayValueBox";
             this.OpacityDayValueBox.TextChanged += new System.EventHandler(this.OpacityDayValueBox_TextChanged);
+            this.OpacityDayValueBox.TextChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // DimmingEnableCheckBox
             // 
@@ -585,6 +608,7 @@ namespace ScreenDimmer
             this.DimmingEnableCheckBox.Name = "DimmingEnableCheckBox";
             this.DimmingEnableCheckBox.UseVisualStyleBackColor = true;
             this.DimmingEnableCheckBox.CheckedChanged += new System.EventHandler(this.DimmingEnableCheckBox_CheckedChanged);
+            this.DimmingEnableCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // NotifyIcon
             // 
@@ -609,6 +633,7 @@ namespace ScreenDimmer
             this.PreviewNightRadioButton.TabStop = true;
             this.PreviewNightRadioButton.UseVisualStyleBackColor = true;
             this.PreviewNightRadioButton.CheckedChanged += new System.EventHandler(this.PreviewRadioButton_CheckedChanged);
+            this.PreviewNightRadioButton.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // PreviewDayRadioButton
             // 
@@ -617,6 +642,7 @@ namespace ScreenDimmer
             this.PreviewDayRadioButton.TabStop = true;
             this.PreviewDayRadioButton.UseVisualStyleBackColor = true;
             this.PreviewDayRadioButton.CheckedChanged += new System.EventHandler(this.PreviewRadioButton_CheckedChanged);
+            this.PreviewDayRadioButton.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // PreviewEnableCheckBox
             // 
@@ -624,6 +650,7 @@ namespace ScreenDimmer
             this.PreviewEnableCheckBox.Name = "PreviewEnableCheckBox";
             this.PreviewEnableCheckBox.UseVisualStyleBackColor = true;
             this.PreviewEnableCheckBox.CheckedChanged += new System.EventHandler(this.PreviewEnableCheckBox_CheckedChanged);
+            this.PreviewEnableCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // OptionsGroupBox
             // 
@@ -642,6 +669,7 @@ namespace ScreenDimmer
             this.DimWindowCheckBox.Name = "DimWindowCheckBox";
             this.DimWindowCheckBox.UseVisualStyleBackColor = true;
             this.DimWindowCheckBox.CheckedChanged += new System.EventHandler(this.DimWindowCheckBox_CheckedChanged);
+            this.DimWindowCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // RunOnStartUpCheckBox
             // 
@@ -649,6 +677,7 @@ namespace ScreenDimmer
             this.RunOnStartUpCheckBox.Name = "RunOnStartUpCheckBox";
             this.RunOnStartUpCheckBox.UseVisualStyleBackColor = true;
             this.RunOnStartUpCheckBox.CheckedChanged += new System.EventHandler(this.RunOnStartupCheckBox_CheckedChanged);
+            this.RunOnStartUpCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // UseSunPositionButton
             // 
@@ -656,6 +685,7 @@ namespace ScreenDimmer
             this.SunBasedDimmingCheckBox.Name = "UseSunPositionButton";
             this.SunBasedDimmingCheckBox.UseVisualStyleBackColor = true;
             this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.SunBasedDimmingCheckBox_CheckedChanged);
+            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
             // LocationButton
             // 
@@ -678,7 +708,7 @@ namespace ScreenDimmer
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
-            this.Resize += new System.EventHandler(this.SettingsForm_Resize);
+            this.LocationChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).EndInit();
             this.DayNightCycleGroupBox.ResumeLayout(false);
