@@ -199,11 +199,11 @@ namespace ScreenDimmer
 
                 this.DimWindowCheckBox.Checked = settingsValues.dimSettingsForm;
                 this.RunOnStartUpCheckBox.Checked = settingsValues.RunOnStartup;
-                this.SunBasedDimmingCheckBox.Checked = settingsValues.SunBasedDimming;
-                this.core.SetSunUpdateTime(settingsValues.SunUpdateHour, settingsValues.SunUpdateMinute, 0);
                 this.latitude = settingsValues.Latitude;
                 this.longitude = settingsValues.Longitude;
                 this.core.UpdateGeoLocation(this.latitude, this.longitude);
+                this.core.SetSunUpdateTime(settingsValues.SunUpdateHour, settingsValues.SunUpdateMinute, 0);
+                this.SunBasedDimmingCheckBox.Checked = settingsValues.SunBasedDimming; //MUST be called after UpdateGeoLocation() to display correct data in settingsForm.
 
                 return true;
             }
