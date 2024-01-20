@@ -12,13 +12,14 @@ namespace ScreenDimmer
         private Label TitleLabel;
         private Label VersionLabel;
         private Label VersionNumberLabel;
-        private Label label1;
+        private Label MainLabel;
         private Label CopyrightLabel;
 
         public AboutForm(SettingsForm settingsForm)
         {
             InitializeComponent();
             this.TopMost = settingsForm.TopMost;
+            VersionNumberLabel.Text = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
         }
 
 
@@ -29,7 +30,7 @@ namespace ScreenDimmer
             this.CopyrightLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.VersionNumberLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MainLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -47,9 +48,8 @@ namespace ScreenDimmer
             this.CopyrightLabel.AutoSize = true;
             this.CopyrightLabel.Location = new System.Drawing.Point(16, 46);
             this.CopyrightLabel.Name = "CopyrightLabel";
-            this.CopyrightLabel.Size = new System.Drawing.Size(138, 13);
+            this.CopyrightLabel.Size = new System.Drawing.Size(0, 13);
             this.CopyrightLabel.TabIndex = 1;
-            this.CopyrightLabel.Text = "Copyright © 2023 Xiaoyi Hu";
             // 
             // VersionLabel
             // 
@@ -69,22 +69,22 @@ namespace ScreenDimmer
             this.VersionNumberLabel.TabIndex = 3;
             this.VersionNumberLabel.Text = "0.0.0.0";
             // 
-            // label1
+            // MainLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 81);
-            this.label1.MaximumSize = new System.Drawing.Size(220, 300);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 156);
-            this.label1.TabIndex = 5;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.MainLabel.AutoSize = true;
+            this.MainLabel.Location = new System.Drawing.Point(16, 81);
+            this.MainLabel.MaximumSize = new System.Drawing.Size(220, 300);
+            this.MainLabel.Name = "MainLabel";
+            this.MainLabel.Size = new System.Drawing.Size(218, 156);
+            this.MainLabel.TabIndex = 5;
+            this.MainLabel.Text = resources.GetString("MainLabel.Text");
             // 
             // AboutForm
             // 
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(255, 261);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MainLabel);
             this.Controls.Add(this.VersionNumberLabel);
             this.Controls.Add(this.VersionLabel);
             this.Controls.Add(this.CopyrightLabel);
