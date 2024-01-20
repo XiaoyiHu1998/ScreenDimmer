@@ -11,6 +11,7 @@ namespace ScreenDimmer
 {
     public static class DefaultSettings
     {
+        public static string DonationLink = "https://www.paypal.com/donate/?hosted_button_id=SLD955KCBDGQC";
         public static string settingsFileName = "settings.json";
         public static JsonSerializerOptions serializerOptions = new JsonSerializerOptions { WriteIndented = true };
         public static float MaxTransitionUpdateIntervalSeconds = 1.0f;

@@ -412,7 +412,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DayNightCycleGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="TransitionTimeMinuteDateTimePicker.CustomFormat" xml:space="preserve">
     <value>mm</value>
@@ -712,7 +712,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DimmingGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="OpacityNightValueBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 207</value>
@@ -877,66 +877,6 @@
   <data name="NotifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Name" xml:space="preserve">
-    <value>PreviewNightRadioButton</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewNightRadioButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Name" xml:space="preserve">
-    <value>PreviewDayRadioButton</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewDayRadioButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Name" xml:space="preserve">
-    <value>PreviewEnableCheckBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.Parent" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="PreviewGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 193</value>
-  </data>
-  <data name="PreviewGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 71</value>
-  </data>
-  <data name="PreviewGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="PreviewGroupBox.Text" xml:space="preserve">
-    <value>Preview Dimming</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Name" xml:space="preserve">
-    <value>PreviewGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PreviewGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="PreviewNightRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1024,6 +964,102 @@
   <data name="&gt;&gt;PreviewEnableCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="PreviewGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 193</value>
+  </data>
+  <data name="PreviewGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 71</value>
+  </data>
+  <data name="PreviewGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="PreviewGroupBox.Text" xml:space="preserve">
+    <value>Preview Dimming</value>
+  </data>
+  <data name="&gt;&gt;PreviewGroupBox.Name" xml:space="preserve">
+    <value>PreviewGroupBox</value>
+  </data>
+  <data name="&gt;&gt;PreviewGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PreviewGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PreviewGroupBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;LocationButton.Name" xml:space="preserve">
+    <value>LocationButton</value>
+  </data>
+  <data name="&gt;&gt;LocationButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LocationButton.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;LocationButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Name" xml:space="preserve">
+    <value>SunBasedDimmingCheckBox</value>
+  </data>
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Name" xml:space="preserve">
+    <value>DimWindowCheckBox</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;DimWindowCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Name" xml:space="preserve">
+    <value>RunOnStartUpCheckBox</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.Parent" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="OptionsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 270</value>
+  </data>
+  <data name="OptionsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 69</value>
+  </data>
+  <data name="OptionsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="OptionsGroupBox.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Name" xml:space="preserve">
+    <value>OptionsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OptionsGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="LocationButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
@@ -1057,34 +1093,34 @@
   <data name="&gt;&gt;LocationButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="UseSunPositionButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="SunBasedDimmingCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="UseSunPositionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="SunBasedDimmingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="UseSunPositionButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="SunBasedDimmingCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 41</value>
   </data>
-  <data name="UseSunPositionButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="SunBasedDimmingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 19</value>
   </data>
-  <data name="UseSunPositionButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="SunBasedDimmingCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="UseSunPositionButton.Text" xml:space="preserve">
+  <data name="SunBasedDimmingCheckBox.Text" xml:space="preserve">
     <value>Use sunset and sunrise</value>
   </data>
-  <data name="&gt;&gt;UseSunPositionButton.Name" xml:space="preserve">
-    <value>UseSunPositionButton</value>
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Name" xml:space="preserve">
+    <value>SunBasedDimmingCheckBox</value>
   </data>
-  <data name="&gt;&gt;UseSunPositionButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;UseSunPositionButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.Parent" xml:space="preserve">
     <value>OptionsGroupBox</value>
   </data>
-  <data name="&gt;&gt;UseSunPositionButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;SunBasedDimmingCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="DimWindowCheckBox.AutoSize" type="System.Boolean, mscorlib">
@@ -1144,28 +1180,154 @@
   <data name="&gt;&gt;RunOnStartUpCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="OptionsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 270</value>
+  <data name="DonateLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="OptionsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 69</value>
+  <data name="DonateLinkLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="OptionsGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="DonateLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 342</value>
   </data>
-  <data name="OptionsGroupBox.Text" xml:space="preserve">
-    <value>Options</value>
+  <data name="DonateLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 15</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.Name" xml:space="preserve">
-    <value>OptionsGroupBox</value>
+  <data name="DonateLinkLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DonateLinkLabel.Text" xml:space="preserve">
+    <value>Donate</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;DonateLinkLabel.Name" xml:space="preserve">
+    <value>DonateLinkLabel</value>
+  </data>
+  <data name="&gt;&gt;DonateLinkLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DonateLinkLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;OptionsGroupBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;DonateLinkLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="AboutLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AboutLinkLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="AboutLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 342</value>
+  </data>
+  <data name="AboutLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="AboutLinkLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="AboutLinkLabel.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="&gt;&gt;AboutLinkLabel.Name" xml:space="preserve">
+    <value>AboutLinkLabel</value>
+  </data>
+  <data name="&gt;&gt;AboutLinkLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AboutLinkLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AboutLinkLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="VersionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VersionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 342</value>
+  </data>
+  <data name="VersionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 15</value>
+  </data>
+  <data name="VersionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.Name" xml:space="preserve">
+    <value>VersionLabel</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;VersionLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="VersionNumberLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VersionNumberLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="VersionNumberLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>54, 342</value>
+  </data>
+  <data name="VersionNumberLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 15</value>
+  </data>
+  <data name="VersionNumberLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="VersionNumberLabel.Text" xml:space="preserve">
+    <value>0.0.0.0</value>
+  </data>
+  <data name="&gt;&gt;VersionNumberLabel.Name" xml:space="preserve">
+    <value>VersionNumberLabel</value>
+  </data>
+  <data name="&gt;&gt;VersionNumberLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VersionNumberLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;VersionNumberLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SeperatorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SeperatorLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SeperatorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 342</value>
+  </data>
+  <data name="SeperatorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 15</value>
+  </data>
+  <data name="SeperatorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="SeperatorLabel.Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="SeperatorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;SeperatorLabel.Name" xml:space="preserve">
+    <value>SeperatorLabel</value>
+  </data>
+  <data name="&gt;&gt;SeperatorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SeperatorLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SeperatorLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1178,7 +1340,7 @@
     <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>247, 351</value>
+    <value>248, 361</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -1260,10 +1422,10 @@
 </value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>263, 390</value>
+    <value>264, 400</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>263, 390</value>
+    <value>264, 400</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>Manual</value>

@@ -54,6 +54,11 @@ namespace ScreenDimmer
         private ContextMenu NotifyContextMenu;
         private CheckBox SunBasedDimmingCheckBox;
         private Button LocationButton;
+        private Label VersionLabel;
+        private LinkLabel AboutLinkLabel;
+        private LinkLabel DonateLinkLabel;
+        private Label VersionNumberLabel;
+        private Label SeperatorLabel;
         private MenuItem NotifyContextMenuQuit;
 
         public SettingsForm(CoreLogic core, FormManager parentForm, Action<object, EventArgs> overlayUpdateTick)
@@ -65,12 +70,14 @@ namespace ScreenDimmer
             SetupJsonExportTimer();
             InitializeComponent();
             SetNotifyIconContextMenu();
-            this.TopMost = !dimSettingsForm;
+            SetVersionLabel();
 
             if (!ImportSettingsJson())
             {
                 SetDefaultSettings();
             }
+
+            this.TopMost = !dimSettingsForm;
         }
 
         ~SettingsForm()
@@ -411,6 +418,26 @@ namespace ScreenDimmer
         }
         #endregion
 
+        #region Links
+        //________________ Links ________________
+        private void SetVersionLabel()
+        {
+            VersionNumberLabel.Text = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
+        }
+
+        private void AboutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm(this);
+            aboutForm.Location = this.Location;
+            aboutForm.Show();
+        }
+
+        private void DonateLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(DefaultSettings.DonationLink);
+        }
+        #endregion
+
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -440,10 +467,15 @@ namespace ScreenDimmer
             this.PreviewDayRadioButton = new System.Windows.Forms.RadioButton();
             this.PreviewEnableCheckBox = new System.Windows.Forms.CheckBox();
             this.OptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.LocationButton = new System.Windows.Forms.Button();
+            this.SunBasedDimmingCheckBox = new System.Windows.Forms.CheckBox();
             this.DimWindowCheckBox = new System.Windows.Forms.CheckBox();
             this.RunOnStartUpCheckBox = new System.Windows.Forms.CheckBox();
-            this.SunBasedDimmingCheckBox = new System.Windows.Forms.CheckBox();
-            this.LocationButton = new System.Windows.Forms.Button();
+            this.DonateLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.AboutLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.VersionLabel = new System.Windows.Forms.Label();
+            this.VersionNumberLabel = new System.Windows.Forms.Label();
+            this.SeperatorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityDaySlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpacityNightSlider)).BeginInit();
             this.DayNightCycleGroupBox.SuspendLayout();
@@ -663,6 +695,22 @@ namespace ScreenDimmer
             this.OptionsGroupBox.Name = "OptionsGroupBox";
             this.OptionsGroupBox.TabStop = false;
             // 
+            // LocationButton
+            // 
+            resources.ApplyResources(this.LocationButton, "LocationButton");
+            this.LocationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LocationButton.Name = "LocationButton";
+            this.LocationButton.UseVisualStyleBackColor = true;
+            this.LocationButton.Click += new System.EventHandler(this.LocationButton_Click);
+            // 
+            // SunBasedDimmingCheckBox
+            // 
+            resources.ApplyResources(this.SunBasedDimmingCheckBox, "SunBasedDimmingCheckBox");
+            this.SunBasedDimmingCheckBox.Name = "SunBasedDimmingCheckBox";
+            this.SunBasedDimmingCheckBox.UseVisualStyleBackColor = true;
+            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.SunBasedDimmingCheckBox_CheckedChanged);
+            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
+            // 
             // DimWindowCheckBox
             // 
             resources.ApplyResources(this.DimWindowCheckBox, "DimWindowCheckBox");
@@ -679,29 +727,56 @@ namespace ScreenDimmer
             this.RunOnStartUpCheckBox.CheckedChanged += new System.EventHandler(this.RunOnStartupCheckBox_CheckedChanged);
             this.RunOnStartUpCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
             // 
-            // UseSunPositionButton
+            // DonateLinkLabel
             // 
-            resources.ApplyResources(this.SunBasedDimmingCheckBox, "UseSunPositionButton");
-            this.SunBasedDimmingCheckBox.Name = "UseSunPositionButton";
-            this.SunBasedDimmingCheckBox.UseVisualStyleBackColor = true;
-            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.SunBasedDimmingCheckBox_CheckedChanged);
-            this.SunBasedDimmingCheckBox.CheckedChanged += new System.EventHandler(this.jsonExportTimerReset_FormUpdated);
+            this.DonateLinkLabel.ActiveLinkColor = System.Drawing.Color.Gainsboro;
+            resources.ApplyResources(this.DonateLinkLabel, "DonateLinkLabel");
+            this.DonateLinkLabel.LinkColor = System.Drawing.SystemColors.AppWorkspace;
+            this.DonateLinkLabel.Name = "DonateLinkLabel";
+            this.DonateLinkLabel.TabStop = true;
+            this.DonateLinkLabel.VisitedLinkColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DonateLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DonateLinkLabel_LinkClicked);
             // 
-            // LocationButton
+            // AboutLinkLabel
             // 
-            resources.ApplyResources(this.LocationButton, "LocationButton");
-            this.LocationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LocationButton.Name = "LocationButton";
-            this.LocationButton.UseVisualStyleBackColor = true;
-            this.LocationButton.Click += new System.EventHandler(this.LocationButton_Click);
+            this.AboutLinkLabel.ActiveLinkColor = System.Drawing.Color.Gainsboro;
+            resources.ApplyResources(this.AboutLinkLabel, "AboutLinkLabel");
+            this.AboutLinkLabel.LinkColor = System.Drawing.SystemColors.AppWorkspace;
+            this.AboutLinkLabel.Name = "AboutLinkLabel";
+            this.AboutLinkLabel.TabStop = true;
+            this.AboutLinkLabel.VisitedLinkColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.AboutLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AboutLinkLabel_LinkClicked);
+            // 
+            // VersionLabel
+            // 
+            resources.ApplyResources(this.VersionLabel, "VersionLabel");
+            this.VersionLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.VersionLabel.Name = "VersionLabel";
+            // 
+            // VersionNumberLabel
+            // 
+            resources.ApplyResources(this.VersionNumberLabel, "VersionNumberLabel");
+            this.VersionNumberLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.VersionNumberLabel.Name = "VersionNumberLabel";
+            // 
+            // SeperatorLabel
+            // 
+            resources.ApplyResources(this.SeperatorLabel, "SeperatorLabel");
+            this.SeperatorLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.SeperatorLabel.Name = "SeperatorLabel";
             // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.Controls.Add(this.SeperatorLabel);
+            this.Controls.Add(this.VersionNumberLabel);
             this.Controls.Add(this.OptionsGroupBox);
+            this.Controls.Add(this.VersionLabel);
+            this.Controls.Add(this.DonateLinkLabel);
             this.Controls.Add(this.PreviewGroupBox);
+            this.Controls.Add(this.AboutLinkLabel);
             this.Controls.Add(this.DimmingGroupBox);
             this.Controls.Add(this.DayNightCycleGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -720,6 +795,7 @@ namespace ScreenDimmer
             this.OptionsGroupBox.ResumeLayout(false);
             this.OptionsGroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
     }
