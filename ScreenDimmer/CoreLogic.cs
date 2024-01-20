@@ -41,8 +41,6 @@ namespace ScreenDimmer
         private SolarTimes solarTimes;
         private System.Timers.Timer sunUpdateTimer;
         private DateTime sunUpdateTime;
-        private DateTime sunRise;
-        private DateTime sunSet;
 
         //Public members
         public PreviewSelection previewSelection;
@@ -65,6 +63,8 @@ namespace ScreenDimmer
         public bool sunBasedDimming;
         public float latitude;
         public float longitude;
+        public DateTime sunRise { get; private set; }
+        public DateTime sunSet { get; private set; }
 
         public CoreLogic()
         {

@@ -246,30 +246,42 @@ namespace ScreenDimmer
 
         private void NightStartHourDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.nightStartHour = NightStartHourDateTimePicker.Value.Hour;
-            core.Update();
-            overlayUpdateTick(sender, e);
+            if (!SunBasedDimmingCheckBox.Checked)
+            {
+                core.nightStartHour = NightStartHourDateTimePicker.Value.Hour;
+                core.Update();
+                overlayUpdateTick(sender, e);
+            }
         }
 
         private void NightStartMinuteDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.nightStartMinute = NightStartMinuteDateTimePicker.Value.Minute;
-            core.Update();
-            overlayUpdateTick(sender, e);
+            if (!SunBasedDimmingCheckBox.Checked)
+            {
+                core.nightStartMinute = NightStartMinuteDateTimePicker.Value.Minute;
+                core.Update();
+                overlayUpdateTick(sender, e);
+            }
         }
 
         private void DayStartHourDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.dayStartHour = DayStartHourDateTimePicker.Value.Hour;
-            core.Update();
-            overlayUpdateTick(sender, e);
+            if (!SunBasedDimmingCheckBox.Checked)
+            {
+                core.dayStartHour = DayStartHourDateTimePicker.Value.Hour;
+                core.Update();
+                overlayUpdateTick(sender, e);
+            }
         }
 
         private void DayStartMinuteDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            core.dayStartMinute = DayStartMinuteDateTimePicker.Value.Minute;
-            core.Update();
-            overlayUpdateTick(sender, e);
+            if (!SunBasedDimmingCheckBox.Checked)
+            {
+                core.dayStartMinute = DayStartMinuteDateTimePicker.Value.Minute;
+                core.Update();
+                overlayUpdateTick(sender, e);
+            }
         }
 
         private void TransitionTimeHourDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -350,6 +362,23 @@ namespace ScreenDimmer
         {
             Action<bool> toggleTransitionTimePickers = (disable) =>
             {
+                DateTime now = DateTime.Now;
+
+                if (disable)
+                {
+                    NightStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.sunSet.Hour, core.sunSet.Minute, core.sunSet.Second);
+                    NightStartMinuteDateTimePicker.Value = NightStartHourDateTimePicker.Value;
+                    DayStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.sunRise.Hour, core.sunRise.Minute, core.sunRise.Second);
+                    DayStartMinuteDateTimePicker.Value = DayStartHourDateTimePicker.Value;
+                }
+                else
+                {
+                    NightStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.nightStartHour, core.nightStartMinute, 0);
+                    NightStartMinuteDateTimePicker.Value = NightStartHourDateTimePicker.Value;
+                    DayStartHourDateTimePicker.Value = new DateTime(now.Year, now.Month, now.Day, core.dayStartHour, core.dayStartMinute, 0);
+                    DayStartMinuteDateTimePicker.Value = DayStartHourDateTimePicker.Value;
+                }
+
                 DayStartHourDateTimePicker.Enabled = !disable;
                 DayStartMinuteDateTimePicker.Enabled = !disable;
                 NightStartHourDateTimePicker.Enabled = !disable;
