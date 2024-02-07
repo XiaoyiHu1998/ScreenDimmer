@@ -78,6 +78,7 @@ namespace ScreenDimmer
             }
 
             this.TopMost = !dimSettingsForm;
+            this.DoubleBuffered = true;
         }
 
         ~SettingsForm()

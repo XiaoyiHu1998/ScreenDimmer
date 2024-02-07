@@ -22,6 +22,7 @@ namespace ScreenDimmer
             this.BackColor = Color.Black;
             this.Opacity = core.overlayFormOpacity;
             this.TopMost = true;
+            this.DoubleBuffered = true;
         }
 
         public void UpdateOpacity()
