@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,12 +15,13 @@ namespace ScreenDimmer
         SettingsForm settingsForm;
         List<OverlayForm> overlayForms;
 
-        Timer overlayUpdateTimer;
+        System.Windows.Forms.Timer overlayUpdateTimer;
 
         public FormManager(CoreLogic core)
         {
             InitializeComponent();
-            SetTimer();
+            SetOverlayUpdateTimer();
+            SystemEvents.PowerModeChanged += OverlayUpdateTimer_PowerModeChanged;
 
             this.core = core;
             overlayForms = new List<OverlayForm>();
@@ -40,7 +42,7 @@ namespace ScreenDimmer
             settingsForm.Show();
         }
 
-        private void SetTimer()
+        private void SetOverlayUpdateTimer()
         {
             overlayUpdateTimer = new Timer();
             overlayUpdateTimer.Interval = (int)Math.Floor(DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000);
@@ -49,6 +51,11 @@ namespace ScreenDimmer
         }
 
         private void OverlayUpdateTick(object sender, EventArgs e)
+        {
+            OverlayUpdate();
+        }
+
+        private void OverlayUpdate()
         {
             core.Update();
             overlayUpdateTimer.Stop();
@@ -59,6 +66,19 @@ namespace ScreenDimmer
             {
                 overlayForm.UpdateOpacity();
             }
+        }
+
+        private void OverlayUpdateTimer_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            if (e.Mode == PowerModes.Resume)
+            {
+                OverlayUpdate();
+            }
+        }
+
+        private void FormManager_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemEvents.PowerModeChanged -= OverlayUpdateTimer_PowerModeChanged;
         }
 
         private void InitializeComponent()
@@ -78,6 +98,7 @@ namespace ScreenDimmer
             this.Visible = false;
             this.Opacity = 0;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.FormClosing += new FormClosingEventHandler(this.FormManager_FormClosing);
         }
 
         protected override CreateParams CreateParams
