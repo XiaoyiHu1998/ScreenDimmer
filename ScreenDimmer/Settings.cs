@@ -15,7 +15,7 @@ namespace ScreenDimmer
         public static string CopyrightInfo = "Copyright © 2023 Xiaoyi Hu";
         public static string settingsFileName = "settings.json";
         public static JsonSerializerOptions serializerOptions = new JsonSerializerOptions { WriteIndented = true };
-        public static float MaxTransitionUpdateIntervalSeconds = 1.0f;
+        public static float MaxTransitionUpdateIntervalSeconds = 5.0f;
         public static float JsonExportTimerIntervalSeconds = 5.0f;
 
         public static bool EnableDimming = true;
@@ -23,7 +23,7 @@ namespace ScreenDimmer
         public static int OpacityNight = 60;
         public static float MaxTrueOpacity = 0.8f;
 
-        public static int MinTransitionSteps = 60 * 30;
+        public static int TransitionSteps = 60 * 30; // 30 fps transition in shortest transition time (1 min)
         public static bool EnableTransition = false;
         public static DateTime NightStart = new DateTime(DateTime.Now.Year, 1, 1, 19, 30, 0);
         public static DateTime DayStart = new DateTime(DateTime.Now.Year, 1, 1, 6, 00, 0);
@@ -82,7 +82,7 @@ namespace ScreenDimmer
             this.opacityNight = DefaultSettings.OpacityNight;
             this.maxTrueOpacity = DefaultSettings.MaxTrueOpacity;
 
-            this.minTransitionSteps = DefaultSettings.MinTransitionSteps;
+            this.transitionSteps = DefaultSettings.TransitionSteps;
             this.nightStartHour = DefaultSettings.NightStart.Hour;
             this.nightStartMinute = DefaultSettings.NightStart.Minute;
             this.dayStartHour = DefaultSettings.DayStart.Hour;

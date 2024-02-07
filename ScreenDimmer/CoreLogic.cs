@@ -36,7 +36,7 @@ namespace ScreenDimmer
         private DateTime nightTransitionStart;
         private DateTime nightTransitionEnd;
         private TimeSpan transitionTimeSpan;
-        private int minTransitionSteps;
+        private int transitionSteps;
 
         private SolarTimes solarTimes;
         private System.Timers.Timer sunUpdateTimer;
@@ -231,7 +231,7 @@ namespace ScreenDimmer
         {
             if(dimmingPhase == DimmingPhase.DayStart || dimmingPhase == DimmingPhase.NightStart)
             {
-                return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / minTransitionSteps), DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000f);
+                return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / transitionSteps), DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000f);
             }
 
             DateTime nextTransitionDateTime = (dimmingPhase == DimmingPhase.Day) ? nightTransitionStart : dayTransitionStart;
