@@ -188,7 +188,6 @@ namespace ScreenDimmer
         private void DimmingEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             core.dimmingEnabled = DimmingEnableCheckBox.Checked;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
@@ -196,7 +195,6 @@ namespace ScreenDimmer
         {
             core.opacityDay = OpacityDaySlider.Value;
             OpacityDayValueBox.Text = core.opacityDay.ToString();
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
@@ -204,7 +202,6 @@ namespace ScreenDimmer
         {
             core.opacityNight = OpacityNightSlider.Value;
             OpacityNightValueBox.Text = core.opacityNight.ToString();
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
@@ -221,7 +218,6 @@ namespace ScreenDimmer
 
                 core.opacityDay = value;
                 OpacityDaySlider.Value = core.opacityDay;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
             else
@@ -244,7 +240,6 @@ namespace ScreenDimmer
 
                 core.opacityNight = value;
                 OpacityNightSlider.Value = core.opacityNight;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
             else
@@ -260,7 +255,6 @@ namespace ScreenDimmer
         private void NightTransitionEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             core.nightTransitionEnabled = NightTransitionEnabledCheckBox.Checked;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
@@ -269,7 +263,6 @@ namespace ScreenDimmer
             if (!SunBasedDimmingCheckBox.Checked)
             {
                 core.nightStartHour = NightStartHourDateTimePicker.Value.Hour;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
         }
@@ -279,7 +272,6 @@ namespace ScreenDimmer
             if (!SunBasedDimmingCheckBox.Checked)
             {
                 core.nightStartMinute = NightStartMinuteDateTimePicker.Value.Minute;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
         }
@@ -289,7 +281,6 @@ namespace ScreenDimmer
             if (!SunBasedDimmingCheckBox.Checked)
             {
                 core.dayStartHour = DayStartHourDateTimePicker.Value.Hour;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
         }
@@ -299,7 +290,6 @@ namespace ScreenDimmer
             if (!SunBasedDimmingCheckBox.Checked)
             {
                 core.dayStartMinute = DayStartMinuteDateTimePicker.Value.Minute;
-                core.Update();
                 overlayUpdateTick(sender, e);
             }
         }
@@ -317,7 +307,6 @@ namespace ScreenDimmer
             }
 
             core.transitionTimeHour = TransitionTimeHourDateTimePicker.Value.Hour;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
@@ -334,7 +323,6 @@ namespace ScreenDimmer
             }
 
             core.transitionTimeMinute = TransitionTimeMinuteDateTimePicker.Value.Minute;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
         #endregion
@@ -344,14 +332,12 @@ namespace ScreenDimmer
         private void PreviewEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             core.previewEnabled = PreviewEnableCheckBox.Checked;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
         private void PreviewRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             core.previewSelection = PreviewDayRadioButton.Checked ? PreviewSelection.Day : PreviewSelection.Night;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
         #endregion
@@ -407,7 +393,6 @@ namespace ScreenDimmer
 
             toggleTransitionTimePickers(SunBasedDimmingCheckBox.Checked);
             core.sunBasedDimming = SunBasedDimmingCheckBox.Checked;
-            core.Update();
             overlayUpdateTick(sender, e);
         }
 
