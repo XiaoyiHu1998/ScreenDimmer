@@ -135,9 +135,13 @@ namespace ScreenDimmer
                 dayTransitionStart = sunRise;
             }
 
-            TimeSpan dayTimeSpan = (dayTransitionStart - nightTransitionStart).Duration();
-            TimeSpan nightTimeSpan = (nightTransitionStart - dayTransitionStart).Duration();
-            maxTransitionTimeSpan = (dayTimeSpan < nightTimeSpan) ? dayTimeSpan : nightTimeSpan;
+            DateTime firstTransitionTime = (dayTransitionStart < nightTransitionStart) ? dayTransitionStart : nightTransitionStart;
+            DateTime secondTransitionTime = (dayTransitionStart > nightTransitionStart) ? dayTransitionStart : nightTransitionStart;
+            DateTime firstTransitionTimeTommorow = firstTransitionTime.AddDays(1);
+
+            TimeSpan firstMaxTransitionTimeSpan = (secondTransitionTime - firstTransitionTime).Duration();
+            TimeSpan secondMaxTransitionTimeSpan = (firstTransitionTimeTommorow - secondTransitionTime).Duration();
+            maxTransitionTimeSpan = (firstMaxTransitionTimeSpan < secondMaxTransitionTimeSpan) ? firstMaxTransitionTimeSpan : secondMaxTransitionTimeSpan;
 
             int maxTotalMinutes = (int)maxTransitionTimeSpan.TotalMinutes;
             if (transitionTimeSpan > maxTransitionTimeSpan){
