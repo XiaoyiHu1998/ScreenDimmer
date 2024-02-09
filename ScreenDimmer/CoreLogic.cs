@@ -113,9 +113,9 @@ namespace ScreenDimmer
             TimeSpan secondMaxTransitionTimeSpan = (firstTransitionTimeTommorow - secondTransitionTime).Duration();
             maxTransitionTimeSpan = (firstMaxTransitionTimeSpan < secondMaxTransitionTimeSpan) ? firstMaxTransitionTimeSpan : secondMaxTransitionTimeSpan;
 
-            int maxTotalMinutes = (int)maxTransitionTimeSpan.TotalMinutes;
+            int maxTransitionMinutes = (int)maxTransitionTimeSpan.TotalMinutes;
             if (transitionTimeSpan > maxTransitionTimeSpan){
-                transitionTimeSpan = new TimeSpan(maxTotalMinutes / 60, maxTotalMinutes % 60, 0);
+                transitionTimeSpan = new TimeSpan(maxTransitionMinutes / 60, maxTransitionMinutes % 60, 0);
             }
 
             nightTransitionEnd = TransitionEndDateTime(nightTransitionStart);

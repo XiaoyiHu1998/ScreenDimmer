@@ -37,7 +37,6 @@ namespace ScreenDimmer
         public static bool dimSettingsForm = false;
         public static bool RunOnStartup = true;
         public static bool SunBasedDimming = false;
-        public static DateTime SunUpdateTime = new DateTime(DateTime.Now.Year, 1, 1, 12, 0, 0);
         public static float Latitude = 0.0f;
         public static float Longitude = 0.0f;
     }
@@ -67,8 +66,6 @@ namespace ScreenDimmer
         public bool dimSettingsForm { get; set; }
         public bool RunOnStartup { get; set; }
         public bool SunBasedDimming { get; set; }
-        public int SunUpdateHour { get; set; }
-        public int SunUpdateMinute { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
     }
@@ -92,7 +89,6 @@ namespace ScreenDimmer
             this.transitionTimeSpan = new TimeSpan(transitionTimeHour, transitionTimeMinute, 0);
             this.latitude = DefaultSettings.Latitude;
             this.longitude = DefaultSettings.Longitude;
-            this.sunUpdateTime = DefaultSettings.SunUpdateTime;
 
             this.previewEnabled = DefaultSettings.PreviewEnabled;
             this.previewSelection = DefaultSettings.PreviewState;
@@ -158,8 +154,6 @@ namespace ScreenDimmer
                 dimSettingsForm = this.DimWindowCheckBox.Checked,
                 RunOnStartup = this.RunOnStartUpCheckBox.Checked,
                 SunBasedDimming = this.SunBasedDimmingCheckBox.Checked,
-                SunUpdateHour = this.core.GetSunUpdateTime().Item1,
-                SunUpdateMinute = this.core.GetSunUpdateTime().Item2,
                 Latitude = this.latitude,
                 Longitude = this.longitude,
             };
@@ -203,7 +197,6 @@ namespace ScreenDimmer
 
                 this.DimWindowCheckBox.Checked = settingsValues.dimSettingsForm;
                 this.RunOnStartUpCheckBox.Checked = settingsValues.RunOnStartup;
-                this.core.SetSunUpdateTime(settingsValues.SunUpdateHour, settingsValues.SunUpdateMinute, 0);
                 this.latitude = settingsValues.Latitude;
                 this.longitude = settingsValues.Longitude;
                 this.core.UpdateGeoLocation(this.latitude, this.longitude); //MUST be called after setting latitude and longitude
