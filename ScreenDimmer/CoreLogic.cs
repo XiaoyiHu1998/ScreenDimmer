@@ -225,18 +225,5 @@ namespace ScreenDimmer
             UpdateSun();
             Update();
         }
-
-        public void SetSunUpdateTime(int hour = 0, int minute = 0, int second = 0)
-        {
-            int updateHour = Math.Max(Math.Min(hour, 60), 0);
-            int updateMinute = Math.Max(Math.Min(hour, 60), 0);
-            int updateSecond = Math.Max(Math.Min(hour, 60), 0);
-            sunUpdateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, updateHour, updateMinute, updateSecond);
-        }
-
-        public Tuple<int,int> GetSunUpdateTime()
-        {
-            return new Tuple<int, int>(sunUpdateTime.Hour, sunUpdateTime.Minute);
-        }
     }
 }
