@@ -39,7 +39,6 @@ namespace ScreenDimmer
         private int transitionSteps;
 
         private SolarTimes solarTimes;
-        private System.Timers.Timer sunUpdateTimer;
         private DateTime sunUpdateTime;
 
         //Public members
@@ -70,7 +69,6 @@ namespace ScreenDimmer
         {
             UpdateOverlayOpacityCurrent();
             SetDefaultSettings();
-            SetupSunUpdateTimer();
             Update();
         }
 
@@ -100,26 +98,6 @@ namespace ScreenDimmer
             sunSet = TimeZoneInfo.ConvertTimeFromUtc(solarTimes.Sunset.ToUniversalTime(), TimeZoneInfo.Local);
         }
 
-        private void SunUpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            UpdateSun();
-            sunUpdateTimer.Stop();
-            sunUpdateTimer.Interval = (int)GetNextSunUpdateDateTime().Subtract(now).TotalMilliseconds;
-            sunUpdateTimer.Start();
-        }
-            
-        private void SetupSunUpdateTimer()
-        {
-            solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
-            sunRise = solarTimes.Sunrise.ToLocalTime();
-            sunSet = solarTimes.Sunset.ToLocalTime();
-
-            sunUpdateTimer = new System.Timers.Timer();
-            sunUpdateTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.SunUpdateTimer_Elapsed);
-            sunUpdateTimer.Interval = (int)GetNextSunUpdateDateTime().Subtract(DateTime.Now).TotalMilliseconds;
-            sunUpdateTimer.Start();
-        }
-
         private void UpdateDateTimes()
         {
             Func<DateTime, DateTime> TransitionEndDateTime = startDateTime => startDateTime.AddHours(transitionTimeSpan.TotalMinutes / 60).AddMinutes(transitionTimeSpan.TotalMinutes % 60);
@@ -131,6 +109,9 @@ namespace ScreenDimmer
 
             if (sunBasedDimming)
             {
+                if(sunRise < now  && sunSet < now)
+                    UpdateSun();
+
                 nightTransitionStart = sunSet;
                 dayTransitionStart = sunRise;
             }
@@ -227,7 +208,8 @@ namespace ScreenDimmer
 
         private void UpdateOverlayFormOpacity(float opacityPercentage)
         {
-            Func<float, float> TrueOverlayOpacity = x => Math.Max(Math.Min(x / 100.0f, maxTrueOpacity), 0.0f);
+            // translation of opacity range from [0,100] to [0,Min(1,MaxTrueOpacity)] for overlayForm
+            Func<float, float> TrueOverlayOpacity = x => Math.Max(Math.Min(x / 100.0f, 1.0f), 0.0f) * maxTrueOpacity;
             overlayFormOpacity = TrueOverlayOpacity(opacityPercentage);
         }
 
