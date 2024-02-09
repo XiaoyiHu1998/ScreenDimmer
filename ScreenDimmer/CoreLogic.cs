@@ -80,17 +80,6 @@ namespace ScreenDimmer
             UpdateOverlayFormOpacity(opacityCurrent);
         }
 
-        private DateTime GetNextSunUpdateDateTime()
-        {
-            DateTime nextUpdate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, sunUpdateTime.Hour, sunUpdateTime.Minute, sunUpdateTime.Second);
-            while (nextUpdate < DateTime.Now)
-            {
-                nextUpdate = nextUpdate.AddDays(1);
-            }
-
-            return nextUpdate;
-        }
-
         private void UpdateSun()
         {
             solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
@@ -109,7 +98,7 @@ namespace ScreenDimmer
 
             if (sunBasedDimming)
             {
-                if(sunRise < now  && sunSet < now)
+                if(sunRise.Date < now.Date  && sunSet.Date < now.Date)
                     UpdateSun();
 
                 nightTransitionStart = sunSet;
