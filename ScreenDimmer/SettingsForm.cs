@@ -126,13 +126,13 @@ namespace ScreenDimmer
                 this.Visible = true;
                 this.TopMost = true;
                 this.TopMost = !dimSettingsForm;
-                this.Activate();
             }
             else
             {
                 this.BringToFront();
-                this.Activate();
             }
+
+            this.Activate();
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
