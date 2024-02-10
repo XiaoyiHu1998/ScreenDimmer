@@ -13,10 +13,11 @@ namespace ScreenDimmer
     {
         public static string DonationLink = "https://www.paypal.com/donate/?hosted_button_id=SLD955KCBDGQC";
         public static string CopyrightInfo = "Copyright © 2023 Xiaoyi Hu";
-        public static string settingsFileName = "settings.json";
-        public static JsonSerializerOptions serializerOptions = new JsonSerializerOptions { WriteIndented = true };
+        public static string SettingsFilePath = Application.StartupPath + "\\" + "settings.json";
+        public static JsonSerializerOptions SerializerOptions = new JsonSerializerOptions { WriteIndented = true };
+
         public static float MaxTransitionUpdateIntervalSeconds = 5.0f;
-        public static float JsonExportTimerIntervalSeconds = 5.0f;
+        public static float JsonExportTimerIntervalSeconds = 2.5f;
 
         public static bool EnableDimming = true;
         public static int OpacityDay = 10;
@@ -158,16 +159,16 @@ namespace ScreenDimmer
                 Longitude = this.longitude,
             };
 
-            string jsonString = JsonSerializer.Serialize(settingValues, DefaultSettings.serializerOptions);
-            System.IO.File.WriteAllText(DefaultSettings.settingsFileName, jsonString);
+            string jsonString = JsonSerializer.Serialize(settingValues, DefaultSettings.SerializerOptions);
+            System.IO.File.WriteAllText(DefaultSettings.SettingsFilePath, jsonString);
         }
 
         private bool ImportSettingsJson()
         {
-            if (System.IO.File.Exists(DefaultSettings.settingsFileName))
+            if (System.IO.File.Exists(DefaultSettings.SettingsFilePath))
             {
-                string jsonContent = System.IO.File.ReadAllText(DefaultSettings.settingsFileName);
-                SettingsFormValues settingsValues = JsonSerializer.Deserialize<SettingsFormValues>(jsonContent, DefaultSettings.serializerOptions);
+                string jsonContent = System.IO.File.ReadAllText(DefaultSettings.SettingsFilePath);
+                SettingsFormValues settingsValues = JsonSerializer.Deserialize<SettingsFormValues>(jsonContent, DefaultSettings.SerializerOptions);
 
                 int FormLocationX = Math.Max(settingsValues.FormLocationX, 0);
                 int FormLocationY = Math.Max(settingsValues.FormLocationY, 0);
