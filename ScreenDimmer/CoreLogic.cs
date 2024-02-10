@@ -39,7 +39,6 @@ namespace ScreenDimmer
         private int transitionSteps;
 
         private SolarTimes solarTimes;
-        private DateTime sunUpdateTime;
 
         //Public members
         public PreviewSelection previewSelection;
@@ -60,8 +59,8 @@ namespace ScreenDimmer
 
         public bool previewEnabled;
         public bool sunBasedDimming;
-        public float latitude;
-        public float longitude;
+        public float latitude { get; private set; }
+        public float longitude { get; private set; }
         public DateTime sunRise { get; private set; }
         public DateTime sunSet { get; private set; }
 
@@ -85,6 +84,14 @@ namespace ScreenDimmer
             solarTimes = new SolarTimes(DateTime.Now, latitude, longitude);
             sunRise = TimeZoneInfo.ConvertTimeFromUtc(solarTimes.Sunrise.ToUniversalTime(), TimeZoneInfo.Local);
             sunSet = TimeZoneInfo.ConvertTimeFromUtc(solarTimes.Sunset.ToUniversalTime(), TimeZoneInfo.Local);
+        }
+
+        public void UpdateGeoLocation(float latitude, float longitude)
+        {
+            this.latitude = latitude;
+            this.longitude = longitude;
+            UpdateSun();
+            Update();
         }
 
         private void UpdateDateTimes()
@@ -209,21 +216,13 @@ namespace ScreenDimmer
                 return (int)Math.Min(Math.Floor(transitionTimeSpan.TotalMilliseconds / transitionSteps), DefaultSettings.MaxTransitionUpdateIntervalSeconds * 1000f);
             }
 
-            DateTime nextTransitionDateTime = (dimmingPhase == DimmingPhase.Day) ? nightTransitionStart : dayTransitionStart;
-            if (now > nextTransitionDateTime)
+            DateTime nextUpdateDateTime = (dimmingPhase == DimmingPhase.Day) ? nightTransitionStart : dayTransitionStart;
+            if (now > nextUpdateDateTime)
             {
-                nextTransitionDateTime = nextTransitionDateTime.AddDays(1);
+                nextUpdateDateTime = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0).AddDays(1);
             }
 
-            return (int)Math.Floor(Math.Abs(nextTransitionDateTime.Subtract(now).Duration().TotalMilliseconds));
-        }
-
-        public void UpdateGeoLocation(float latitude, float longitude)
-        {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            UpdateSun();
-            Update();
+            return (int)Math.Floor(Math.Abs(nextUpdateDateTime.Subtract(now).Duration().TotalMilliseconds));
         }
     }
 }
