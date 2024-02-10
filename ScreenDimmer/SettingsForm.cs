@@ -126,6 +126,7 @@ namespace ScreenDimmer
                 this.Visible = true;
                 this.TopMost = true;
                 this.TopMost = !dimSettingsForm;
+                this.Activate();
             }
             else
             {
