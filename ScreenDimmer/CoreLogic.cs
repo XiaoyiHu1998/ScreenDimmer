@@ -222,7 +222,7 @@ namespace ScreenDimmer
                 nextUpdateDateTime = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0).AddDays(1);
             }
 
-            return (int)Math.Floor(Math.Abs(nextUpdateDateTime.Subtract(now).Duration().TotalMilliseconds));
+            return Math.Max((int)Math.Floor(Math.Abs(nextUpdateDateTime.Subtract(now).Duration().TotalMilliseconds)), 1);
         }
     }
 }
