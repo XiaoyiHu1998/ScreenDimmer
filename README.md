@@ -1,4 +1,4 @@
-Improve your sleep and increase late night scrolling comfort by matching your display brightness to your body's circadian rythm hassle free, just set and forget!
+Improve your sleep and increase late night web scrolling comfort by matching your display brightness to your body's circadian rythm hassle free, just set and forget!
 ScreenDimmer is a Windows application that allows you to dim your display beyond the limits of your monitor's settings.
 
 Unlike alternatives however, ScreenDimmer supports transitioning between different dimming levels according to time through either a manual schedule or current sun position.
